@@ -1,0 +1,160 @@
+.team-grid {
+    padding: 40px 0;
+}
+
+.about-shadow {
+    // box-shadow: 0 20px 74px -30px rgba(165,143,134,0.34);
+    box-shadow: 0 20px 24px -11px rgba(165,143,134,0.34);
+}
+
+.dark-gradient-bg {
+    background: linear-gradient(to bottom, rgba(0,0,0, 0) 0%,rgba(0,0,0,.9) 100%);
+}
+
+.team-member {
+    position: relative;
+    background-color: #ddd;
+    width: 100%;
+    max-width: 300px;
+    .about-shadow;
+    margin: 0 auto 16px;
+
+    .info {
+        position: absolute;
+        bottom: 0;
+        color: #fff;
+        z-index: 20;
+        line-height: 1;
+        // text-shadow: 1px 1px 0 rgba(0, 0, 0, .7);
+        padding: 78px 16px 8px;
+        width: 100%;
+
+        .icon {
+            margin: 0;
+            width: 20px;
+        }
+    }
+
+    .name {
+        .content-title;
+        font-size: 24px;
+        color: @light;
+    }
+
+    .icons {
+        min-height: 20px;
+    }
+}
+
+.member-position {
+    .maison;
+    color: @primary-color;
+    font-size: 15px;
+    padding: 4px 0;
+}
+
+.join-btn {
+    margin: 50px auto 110px;
+}
+
+.board-members {
+    padding-top: 64px;
+
+}
+
+.board-member {
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    color: @primary-color;
+    .maison;
+    font-size: 14px;
+    letter-spacing: -.04em;
+    line-height: 1;
+    margin-bottom: 16px;
+    width: 100%;
+    text-align: center;
+}
+
+.board-member-img {
+    // width: 100%;
+    max-width: 150px;
+}
+
+.board-member-title {
+    .content-title;
+    font-size: 36px;
+    display: block;
+    padding: 8px;
+    letter-spacing: normal;
+}
+
+.page-about .copy p:first-of-type{
+    margin-bottom:1em;
+}
+
+@media only screen and (min-width: @screen-sm-min) {
+    .team-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        //display: flex;
+        //flex-wrap: wrap;
+        justify-content: center;
+        //max-width: 1100px;
+        margin:auto;
+        gap: 16px;
+        margin-bottom: 16px;
+    }
+
+    .board-member-title {
+        font-size: 24px;
+    }
+
+    .board-member-content {
+        font-size: 14px;
+    }
+
+    .board-members {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: center;
+        column-gap: 8px;
+    }
+
+    .team-member {
+        margin:0;
+        .name {
+            font-size: 22px;
+        }
+    }
+
+    .member-position {
+        font-size: 12px;
+    }
+}
+@media only screen and (min-width: @screen-md-min) {
+    .team-member {
+        .name {
+            font-size: 28px;
+        }
+    }
+    .board-members {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .member-position {
+        font-size: 16px;
+    }
+}
+
+//IE 11 BS
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) and (min-width:@screen-sm-min) {
+    .team-member {
+        display: inline-block;
+        width: 24%;
+    }
+
+    .board-member {
+        width: 24%;
+    }
+}

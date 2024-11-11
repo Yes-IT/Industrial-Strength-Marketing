@@ -1,0 +1,123 @@
+.cards-container {
+}
+
+.card {
+    //     display: inline-block;
+    background: #ffffff;
+    padding-bottom: 16px;
+}
+
+.card-img {
+    width: 100%;
+    height: auto;
+}
+
+.card-content-container {
+    padding: 8px 0 40px;
+    font-size: 16px;
+    line-height: 24px;
+    .link-learn-more {
+        .maison;
+        // font-size:9px;
+    }
+}
+
+.card-title {
+    display: block;
+    .headline;
+    font-size: 24px;
+    padding-bottom: 16px;
+    color: @black;
+}
+
+.card-copy {
+}
+
+.card-img-conainer {
+    min-height: 200px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    margin-bottom: 16px;
+}
+
+.media-card {
+    background: #ffffff;
+    box-shadow: 0 62px 74px -25px rgba(165, 143, 134, 0.34);
+    width:88%;
+    margin:auto;
+    margin-bottom:32px;
+}
+a.media-card{
+    display: block;
+
+    &:hover{
+        text-decoration: none;
+    }
+}
+.media-card-img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.media-card-title {
+    .maison-bold;
+    font-size: 24px;
+    color: @black;
+    letter-spacing: 0.3px;
+}
+.media-card-copy{
+    padding:40px;
+}
+@media screen and (min-width: @screen-sm-min) {
+    .cards-container {
+        display: -ms-grid;
+        display: grid;
+        -ms-grid-columns: 1fr 1fr 1fr;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 13px;
+    }
+    .card-img-conainer {
+        // min-height: 414px;
+        // background-size: contain;
+        // background-position: 50% 100%;
+    }
+    .card {
+        box-shadow: 0 62px 74px -25px rgba(165, 143, 134, 0.34);
+    }
+    .card-content-container {
+        padding: 32px;
+    }
+    .card:nth-child(1) {
+        -ms-grid-column: 1;
+        -ms-grid-row: 1;
+    }
+    .card:nth-child(2) {
+        -ms-grid-column: 2;
+        -ms-grid-row: 1;
+    }
+    .card:nth-child(3) {
+        -ms-grid-column: 3;
+        -ms-grid-row: 1;
+    }
+    .media-card, a.media-card {
+        display: grid;
+        grid-template-columns: 40% 1fr;
+        width: auto;
+        max-width: 632px;
+    }
+    .media-card-img{
+        object-fit: cover;
+        width: 100%;
+        background-color: #f0f0f0;
+    }
+    .media-card-copy{
+        padding:40px;
+    }
+}
+
+@media screen and (min-width: @screen-md-min) {
+    .card-img-conainer {
+        min-height: 414px;
+    }
+}

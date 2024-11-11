@@ -1,0 +1,126 @@
+//Tabs
+.ism-tabs {
+  .tab-right {
+    h5 {
+      font-size: 19px;
+      .services-head;
+    }
+    p {
+      
+      font-size: 16px;
+      margin-top: 10px;
+    }
+  }
+  &.enhanced {
+    @triangle-width: 36px;
+    @triangle-height: 30px;
+    margin-top: 40px;
+    .ism-tabs-nav {
+      padding-bottom: @triangle-height;
+    }
+    .tab-content {
+      clear: both;
+      border-top: 1px solid @primary-color !important;
+      margin-top: @triangle-height;
+      padding-top: @triangle-height + 10;
+      min-height: 150px;
+
+      .tab-left {
+        margin-bottom: 30px;
+        h3 {
+          margin-top: 0px;
+        }
+      }
+      .tab-left.pull-left, .tab-right {
+        font-size: 19px;
+      }
+
+    }
+    .tab-label {
+      padding-bottom: 14px;
+      text-align: center;
+      position: relative;
+      span {
+        display: block;
+      }
+      img {
+        max-width: 100% !important;
+        margin-bottom:15px;
+      }
+
+      &:after, &:before {
+        transition: border-bottom .2s ease;
+        content: ' ';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        bottom: -@triangle-height - 6;
+      }
+
+      &:after {
+        margin-left: -@triangle-width/2;
+        .triangle(up, 0, 0, #eeeeee);
+      }
+
+      &:before {
+        .triangle(up, 0, 0, #fff);
+        margin-left: -@triangle-width/2;
+        z-index: 1;
+      }
+
+      a {
+        font-size: 30px;
+        color: @accent-color;
+        padding: 0;
+        text-decoration: none;
+
+        &:hover {
+          border: 0 !important;
+          background: none !important;
+        }
+      }
+
+      &.active {
+
+        &:after {
+          margin-left: -@triangle-width/2;
+          .triangle(up, @triangle-width, @triangle-height, @primary-color);
+        }
+
+        &:before {
+          .triangle(up, @triangle-width, @triangle-height, #fff);
+          margin-left: -@triangle-width/2;
+          z-index: 1;
+        }
+
+        &:after {
+          bottom: -@triangle-height - 4;
+        }
+
+      }
+    }
+  }
+
+
+  //  .tab-pane{
+  //    display:none;
+  //    &.active{
+  //      display: block;
+  //    }
+  //  }
+  .col-sm-3 {
+    &.tab-label {
+      a {
+        font-size: 25px;
+        color: lighten(@secondary-color, 35%);
+       
+        text-transform: uppercase;
+      }
+      &.active {
+        a {
+          color: @secondary-color;
+        }
+      }
+    }
+  }
+}

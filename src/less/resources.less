@@ -1,0 +1,44 @@
+.resource{
+    margin:0 auto 80px;
+    max-width: 300px;
+    a{
+        color:@black;
+    }
+    img{
+        margin-bottom:16px;
+    }
+    .content-title{
+        margin-bottom:16px;
+        line-height: 1;
+    }
+    p{
+        line-height: 1.4;
+    }
+}
+.page-resources{
+    hr{
+        margin:40px auto;
+    }
+}
+.resources-grid{
+    
+}
+
+@media screen and (min-width:@screen-sm-min) {
+    .resources-grid{
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(30%,1fr));
+        column-gap: 2%;
+    }
+    .page-resources{
+        hr{
+            margin:80px auto;
+        }
+    }
+}
+
+@media screen and (max-width:@screen-sm-min) {
+    h1#resources, h2#contact-us {
+        margin-top:50px;
+    }
+}

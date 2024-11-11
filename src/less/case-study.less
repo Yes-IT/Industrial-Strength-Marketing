@@ -1,0 +1,298 @@
+.case-study-summary{
+    font-size: 16px;
+}
+.case-study-more-link{
+    .gt-america-compressed-bold;
+    color:@accent-color !important;
+}
+.img-case-study-overview{
+    margin-bottom:8px;
+}
+
+.featured{
+    color:#B2A49C;
+    .gt-america-compressed-bold;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.case-study-container {
+    .copy {
+        color: @black;
+    }
+}
+
+.case-study-caption {
+    padding: 40px;
+    text-align: left;
+}
+.case-study-overview-title{
+    font-size:40px;
+    padding-bottom:16px;
+    color:@black;
+
+    a,a:link, a:visited{
+        color:@black;
+    }
+}
+.case-study-title {
+    .content-title;
+    text-transform: uppercase;
+}
+
+.case-study-copy {
+    color: @black;
+    padding-bottom: 72px;
+}
+
+.case-study {
+    margin-bottom: 80px;
+}
+
+.img-solution {
+    margin: 0;
+}
+
+
+// page specific styling
+.solution-img-container {
+    background: rgba(51,56,57,.87);
+    background-image: linear-gradient(163deg,#31364E 9%,#523537 100%);
+    position: relative;
+    margin-bottom: 118px;
+    text-align: center;
+    padding:16px;
+    max-width: 1200px;
+
+    &.motion-industries {
+        background-image: linear-gradient(-34deg,#523537 46%,#31364E 80%);        
+    }
+    &.manufacturing-day{
+        background-image: linear-gradient(-180deg, #5E4135 6%, #2C3034 100%);
+    }
+    &.baldor-electric-company{
+        background-image: linear-gradient(-25deg, #567767 5%, #40585F 100%);
+    }
+    &.duroair-technologies{
+        background-image: linear-gradient(-34deg, #3E6886 0%, #A9AEB2 100%);
+        
+    }
+    &.hennessy-industries{
+        background-image: linear-gradient(-28deg, #5D4B4C 0%, #2E3132 90%);
+    }
+    
+    &.davron{
+        background-image: linear-gradient(-34deg,#5F4B35 46%,#4D3235 80%);
+    }
+    &.pam-transport{
+        background-image: linear-gradient(-34deg,#4D3235 46%,#383C3D 80%);
+    }
+    &.processbarron{
+        background-image: linear-gradient(-34deg,#353735 46%,#4A5C3E 80%);
+    }
+    &.wearwell{
+        background-image: linear-gradient(-34deg,#414546 46%,#543C39 80%);
+    }
+    &.southern-metal-fabricators{
+        background-image: linear-gradient(-34deg,#55646A 46%,#2E3D4A 80%);
+    }
+    &.worthington-industries{
+        max-height: 847px;
+        background-image: linear-gradient(-34deg,#2E3D4A 46%,#55646A 80%);
+    }
+    &.manufacturing-extension-partnership{
+        margin-top:32px;
+        background-image: linear-gradient(-34deg,#2E434F 46%,#2F3538 80%);
+    }
+}
+
+
+.work-with-us {
+    background-color: @light;
+    padding: 24px 16px 32px;
+}
+
+.result-stat {
+    font-size: 46px;
+    color: @accent-color;
+    .gt-america-compressed-bold;
+    line-height: .9;
+    padding-bottom: 8px;
+    text-transform: uppercase;
+
+    span{
+        color:@black;
+    }
+
+}
+
+.testimonial {
+    }
+
+.testimonial-copy {
+    @p:18px;
+    position: relative;
+    // .gt-america-compressed-bold;
+    font-size: 24px;
+    line-height: 1.2;
+    padding-left:@p;
+    color:@brown;
+
+    &:before {
+        content: '“';
+        margin-left: -@p;
+    }
+
+    &:after {
+        content: '”';
+        margin-right: -@p;
+    }
+}
+
+.testimonial-attestant {
+    color: #B9B9C4;
+    padding:8px 0 0;
+    padding-left:18px;
+}
+.case-study-footer{
+    padding-top:56px;
+}
+.img-responsive-cs{
+    max-width: 100% !important;
+    height: auto;
+}
+@media screen and (min-width:@screen-sm-min) {
+    
+    .case-study-copy {
+        max-width: 588px;
+        margin: auto;
+    }
+    
+    .img-case-study {
+        margin: 0 auto 160px;
+    }
+    .img-solution {
+        margin:0 auto;
+    }
+    .case-study-caption {
+        padding: 32px 0 40px;
+        max-width: 588px;
+        margin: auto;
+    }
+    
+    .result-stat{
+        font-size: 72px;
+        white-space: nowrap;
+    }
+    .work-with-us {
+        padding: 108px 15px;    
+    }
+}
+
+@media screen and (min-width:@screen-lg-min) {
+    .testimonial-copy {
+        font-size: 24px;
+    }
+    // page specific styling
+    .solution-img-container {
+        padding:0;
+        min-height: 450px;
+        
+        &.davron {
+            max-height: 770px;
+        }
+        &.processbarron {
+            max-height: 847px;
+        }
+        &.wearwell{
+            max-height: 641px;
+            margin-top:40px;
+        }
+        &.duroair-technologies{
+            margin-top:80px;
+            margin-bottom:72px;
+            max-height: 750px;
+        }
+        &.baldor-electric-company{
+            max-height: 573px;
+            margin-top:82px;
+        }
+        &.worthington-industries{
+            margin-top:44px;
+        }
+        &.landair-transportation{
+            padding:56px 0 0;
+        }
+        &.motion-industries {
+            min-height: 791px;
+            background-image: linear-gradient(-34deg,#523537 46%,#31364E 80%);        
+        }
+    }
+    //page specific
+    .img-baldor-electric-company{
+        position: relative;
+        top:-82px;
+    }
+    .img-davron {
+        position: relative;
+        // margin-left: 50%;
+        // transform: translateX(-50%);
+        top:32px;
+    }
+    .img-motion-industries {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+    .img-duroair-technologies {
+        position: relative;
+        top:-73px;
+        // margin-left: 50%;
+        // transform: translateX(-50%);
+    }
+    
+    .img-landair-transportation{
+        // margin-left: 50%;
+        // transform: translateX(-50%);
+        position: relative;
+        top:49px;
+    }
+    .img-wearwell{
+        // margin-left: 50%;
+        // transform: translateX(-50%);
+        position: relative;
+        top:-39px;
+    }
+    .img-pam-transport{
+        position: relative;
+        left:-64px;
+        top:48px;
+    }
+    .img-processbarron{
+        position: relative;
+        top:8px;
+        left:-40px;
+    }
+    .img-worthington-industries{
+        // margin-left: 50%;
+        // transform: translateX(-50%);
+        position: relative;
+        top:-44px;
+    }
+    .img-manufacturing-extension-partnership{
+        position: relative;
+        top:-32px;
+        margin-bottom:-72px;
+    }
+    .img-southern-metal-fabricators{
+        position: relative;
+        top:48px;
+    }
+}
+@media screen and (min-width:@screen-lg-min) {
+    .case-study-overview-title{
+        padding-top:120px;
+    }
+}

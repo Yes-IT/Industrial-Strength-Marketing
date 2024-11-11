@@ -1,0 +1,293 @@
+/*
+LESS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: @icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+@icon-home: x y offset_x offset_y width height total_width total_height image_path name;
+
+At the bottom of this section, we provide information about the spritesheet itself
+@spritesheet: width height image @spritesheet-sprites;
+*/
+@icon-bomb-name: icon-bomb;
+@icon-bomb-x: 53px;
+@icon-bomb-y: 0px;
+@icon-bomb-offset-x: -53px;
+@icon-bomb-offset-y: 0px;
+@icon-bomb-width: 50px;
+@icon-bomb-height: 53px;
+@icon-bomb-total-width: 205px;
+@icon-bomb-total-height: 195px;
+@icon-bomb-image: '../img/spritesheet.png';
+@icon-bomb: 53px 0px -53px 0px 50px 53px 205px 195px '../img/spritesheet.png' icon-bomb;
+@icon-bullseye-name: icon-bullseye;
+@icon-bullseye-x: 106px;
+@icon-bullseye-y: 0px;
+@icon-bullseye-offset-x: -106px;
+@icon-bullseye-offset-y: 0px;
+@icon-bullseye-width: 51px;
+@icon-bullseye-height: 50px;
+@icon-bullseye-total-width: 205px;
+@icon-bullseye-total-height: 195px;
+@icon-bullseye-image: '../img/spritesheet.png';
+@icon-bullseye: 106px 0px -106px 0px 51px 50px 205px 195px '../img/spritesheet.png' icon-bullseye;
+@icon-envelope-name: icon-envelope;
+@icon-envelope-x: 189px;
+@icon-envelope-y: 125px;
+@icon-envelope-offset-x: -189px;
+@icon-envelope-offset-y: -125px;
+@icon-envelope-width: 16px;
+@icon-envelope-height: 13px;
+@icon-envelope-total-width: 205px;
+@icon-envelope-total-height: 195px;
+@icon-envelope-image: '../img/spritesheet.png';
+@icon-envelope: 189px 125px -189px -125px 16px 13px 205px 195px '../img/spritesheet.png' icon-envelope;
+@icon-fb-sm-name: icon-fb-sm;
+@icon-fb-sm-x: 43px;
+@icon-fb-sm-y: 155px;
+@icon-fb-sm-offset-x: -43px;
+@icon-fb-sm-offset-y: -155px;
+@icon-fb-sm-width: 26px;
+@icon-fb-sm-height: 26px;
+@icon-fb-sm-total-width: 205px;
+@icon-fb-sm-total-height: 195px;
+@icon-fb-sm-image: '../img/spritesheet.png';
+@icon-fb-sm: 43px 155px -43px -155px 26px 26px 205px 195px '../img/spritesheet.png' icon-fb-sm;
+@icon-fb-name: icon-fb;
+@icon-fb-x: 146px;
+@icon-fb-y: 105px;
+@icon-fb-offset-x: -146px;
+@icon-fb-offset-y: -105px;
+@icon-fb-width: 40px;
+@icon-fb-height: 40px;
+@icon-fb-total-width: 205px;
+@icon-fb-total-height: 195px;
+@icon-fb-image: '../img/spritesheet.png';
+@icon-fb: 146px 105px -146px -105px 40px 40px 205px 195px '../img/spritesheet.png' icon-fb;
+@icon-forklift-name: icon-forklift;
+@icon-forklift-x: 0px;
+@icon-forklift-y: 58px;
+@icon-forklift-offset-x: 0px;
+@icon-forklift-offset-y: -58px;
+@icon-forklift-width: 55px;
+@icon-forklift-height: 44px;
+@icon-forklift-total-width: 205px;
+@icon-forklift-total-height: 195px;
+@icon-forklift-image: '../img/spritesheet.png';
+@icon-forklift: 0px 58px 0px -58px 55px 44px 205px 195px '../img/spritesheet.png' icon-forklift;
+@icon-gp-sm-name: icon-gp-sm;
+@icon-gp-sm-x: 130px;
+@icon-gp-sm-y: 155px;
+@icon-gp-sm-offset-x: -130px;
+@icon-gp-sm-offset-y: -155px;
+@icon-gp-sm-width: 26px;
+@icon-gp-sm-height: 26px;
+@icon-gp-sm-total-width: 205px;
+@icon-gp-sm-total-height: 195px;
+@icon-gp-sm-image: '../img/spritesheet.png';
+@icon-gp-sm: 130px 155px -130px -155px 26px 26px 205px 195px '../img/spritesheet.png' icon-gp-sm;
+@icon-gp-name: icon-gp;
+@icon-gp-x: 113px;
+@icon-gp-y: 58px;
+@icon-gp-offset-x: -113px;
+@icon-gp-offset-y: -58px;
+@icon-gp-width: 40px;
+@icon-gp-height: 40px;
+@icon-gp-total-width: 205px;
+@icon-gp-total-height: 195px;
+@icon-gp-image: '../img/spritesheet.png';
+@icon-gp: 113px 58px -113px -58px 40px 40px 205px 195px '../img/spritesheet.png' icon-gp;
+@icon-ink-and-quill-name: icon-ink-and-quill;
+@icon-ink-and-quill-x: 0px;
+@icon-ink-and-quill-y: 0px;
+@icon-ink-and-quill-offset-x: 0px;
+@icon-ink-and-quill-offset-y: 0px;
+@icon-ink-and-quill-width: 50px;
+@icon-ink-and-quill-height: 55px;
+@icon-ink-and-quill-total-width: 205px;
+@icon-ink-and-quill-total-height: 195px;
+@icon-ink-and-quill-image: '../img/spritesheet.png';
+@icon-ink-and-quill: 0px 0px 0px 0px 50px 55px 205px 195px '../img/spritesheet.png' icon-ink-and-quill;
+@icon-ln-sm-name: icon-ln-sm;
+@icon-ln-sm-x: 72px;
+@icon-ln-sm-y: 155px;
+@icon-ln-sm-offset-x: -72px;
+@icon-ln-sm-offset-y: -155px;
+@icon-ln-sm-width: 26px;
+@icon-ln-sm-height: 26px;
+@icon-ln-sm-total-width: 205px;
+@icon-ln-sm-total-height: 195px;
+@icon-ln-sm-image: '../img/spritesheet.png';
+@icon-ln-sm: 72px 155px -72px -155px 26px 26px 205px 195px '../img/spritesheet.png' icon-ln-sm;
+@icon-ln-name: icon-ln;
+@icon-ln-x: 0px;
+@icon-ln-y: 155px;
+@icon-ln-offset-x: 0px;
+@icon-ln-offset-y: -155px;
+@icon-ln-width: 40px;
+@icon-ln-height: 40px;
+@icon-ln-total-width: 205px;
+@icon-ln-total-height: 195px;
+@icon-ln-image: '../img/spritesheet.png';
+@icon-ln: 0px 155px 0px -155px 40px 40px 205px 195px '../img/spritesheet.png' icon-ln;
+@icon-mac-name: icon-mac;
+@icon-mac-x: 160px;
+@icon-mac-y: 0px;
+@icon-mac-offset-x: -160px;
+@icon-mac-offset-y: 0px;
+@icon-mac-width: 45px;
+@icon-mac-height: 53px;
+@icon-mac-total-width: 205px;
+@icon-mac-total-height: 195px;
+@icon-mac-image: '../img/spritesheet.png';
+@icon-mac: 160px 0px -160px 0px 45px 53px 205px 195px '../img/spritesheet.png' icon-mac;
+@icon-map-marker-name: icon-map-marker;
+@icon-map-marker-x: 159px;
+@icon-map-marker-y: 155px;
+@icon-map-marker-offset-x: -159px;
+@icon-map-marker-offset-y: -155px;
+@icon-map-marker-width: 12px;
+@icon-map-marker-height: 17px;
+@icon-map-marker-total-width: 205px;
+@icon-map-marker-total-height: 195px;
+@icon-map-marker-image: '../img/spritesheet.png';
+@icon-map-marker: 159px 155px -159px -155px 12px 17px 205px 195px '../img/spritesheet.png' icon-map-marker;
+@icon-market-research-name: icon-market-research;
+@icon-market-research-x: 58px;
+@icon-market-research-y: 58px;
+@icon-market-research-offset-x: -58px;
+@icon-market-research-offset-y: -58px;
+@icon-market-research-width: 52px;
+@icon-market-research-height: 44px;
+@icon-market-research-total-width: 205px;
+@icon-market-research-total-height: 195px;
+@icon-market-research-image: '../img/spritesheet.png';
+@icon-market-research: 58px 58px -58px -58px 52px 44px 205px 195px '../img/spritesheet.png' icon-market-research;
+@icon-media-name: icon-media;
+@icon-media-x: 160px;
+@icon-media-y: 56px;
+@icon-media-offset-x: -160px;
+@icon-media-offset-y: -56px;
+@icon-media-width: 44px;
+@icon-media-height: 44px;
+@icon-media-total-width: 205px;
+@icon-media-total-height: 195px;
+@icon-media-image: '../img/spritesheet.png';
+@icon-media: 160px 56px -160px -56px 44px 44px 205px 195px '../img/spritesheet.png' icon-media;
+@icon-phone-name: icon-phone;
+@icon-phone-x: 189px;
+@icon-phone-y: 105px;
+@icon-phone-offset-x: -189px;
+@icon-phone-offset-y: -105px;
+@icon-phone-width: 16px;
+@icon-phone-height: 17px;
+@icon-phone-total-width: 205px;
+@icon-phone-total-height: 195px;
+@icon-phone-image: '../img/spritesheet.png';
+@icon-phone: 189px 105px -189px -105px 16px 17px 205px 195px '../img/spritesheet.png' icon-phone;
+@icon-social-name: icon-social;
+@icon-social-x: 0px;
+@icon-social-y: 105px;
+@icon-social-offset-x: 0px;
+@icon-social-offset-y: -105px;
+@icon-social-width: 50px;
+@icon-social-height: 47px;
+@icon-social-total-width: 205px;
+@icon-social-total-height: 195px;
+@icon-social-image: '../img/spritesheet.png';
+@icon-social: 0px 105px 0px -105px 50px 47px 205px 195px '../img/spritesheet.png' icon-social;
+@icon-tw-sm-name: icon-tw-sm;
+@icon-tw-sm-x: 101px;
+@icon-tw-sm-y: 155px;
+@icon-tw-sm-offset-x: -101px;
+@icon-tw-sm-offset-y: -155px;
+@icon-tw-sm-width: 26px;
+@icon-tw-sm-height: 26px;
+@icon-tw-sm-total-width: 205px;
+@icon-tw-sm-total-height: 195px;
+@icon-tw-sm-image: '../img/spritesheet.png';
+@icon-tw-sm: 101px 155px -101px -155px 26px 26px 205px 195px '../img/spritesheet.png' icon-tw-sm;
+@icon-tw-name: icon-tw;
+@icon-tw-x: 103px;
+@icon-tw-y: 105px;
+@icon-tw-offset-x: -103px;
+@icon-tw-offset-y: -105px;
+@icon-tw-width: 40px;
+@icon-tw-height: 40px;
+@icon-tw-total-width: 205px;
+@icon-tw-total-height: 195px;
+@icon-tw-image: '../img/spritesheet.png';
+@icon-tw: 103px 105px -103px -105px 40px 40px 205px 195px '../img/spritesheet.png' icon-tw;
+@icon-wand-name: icon-wand;
+@icon-wand-x: 53px;
+@icon-wand-y: 105px;
+@icon-wand-offset-x: -53px;
+@icon-wand-offset-y: -105px;
+@icon-wand-width: 47px;
+@icon-wand-height: 47px;
+@icon-wand-total-width: 205px;
+@icon-wand-total-height: 195px;
+@icon-wand-image: '../img/spritesheet.png';
+@icon-wand: 53px 105px -53px -105px 47px 47px 205px 195px '../img/spritesheet.png' icon-wand;
+@spritesheet-width: 205px;
+@spritesheet-height: 195px;
+@spritesheet-image: '../img/spritesheet.png';
+@spritesheet-sprites: @icon-bomb @icon-bullseye @icon-envelope @icon-fb-sm @icon-fb @icon-forklift @icon-gp-sm @icon-gp @icon-ink-and-quill @icon-ln-sm @icon-ln @icon-mac @icon-map-marker @icon-market-research @icon-media @icon-phone @icon-social @icon-tw-sm @icon-tw @icon-wand;
+@spritesheet: 205px 195px '../img/spritesheet.png' @spritesheet-sprites;
+
+/*
+The provided classes are intended to be used with the array-like variables
+
+.icon-home {
+  .sprite-width(@icon-home);
+}
+.icon-email {
+  .sprite(@icon-email);
+}
+*/
+.sprite-width(@sprite) {
+  width: extract(@sprite, 5);
+}
+
+.sprite-height(@sprite) {
+  height: extract(@sprite, 6);
+}
+
+.sprite-position(@sprite) {
+  @sprite-offset-x: extract(@sprite, 3);
+  @sprite-offset-y: extract(@sprite, 4);
+  background-position: @sprite-offset-x @sprite-offset-y;
+}
+
+.sprite-image(@sprite) {
+  @sprite-image: extract(@sprite, 9);
+  @sprite-image-bare: ~`"@{sprite-image}".slice(1, -1)`;
+  background-image: url(@sprite-image-bare);
+}
+
+.sprite(@sprite) {
+  .sprite-image(@sprite);
+  .sprite-position(@sprite);
+  .sprite-width(@sprite);
+  .sprite-height(@sprite);
+}
+
+/*
+The `.sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of LESS
+
+This must be run when you have at least 2 sprites.
+  If run with a single sprite, then there will be reference errors.
+
+.sprites(@spritesheet-sprites);
+*/
+.sprites(@sprites, @i: 1) when (@i <= length(@sprites)) {
+  @sprite: extract(@sprites, @i);
+  @sprite-name: extract(@sprite, 10);
+  .@{sprite-name} {
+    .sprite(@sprite);
+  }
+  .sprites(@sprites, @i + 1);
+}

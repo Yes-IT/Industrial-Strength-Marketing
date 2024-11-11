@@ -1,0 +1,239 @@
+.clients-info-grid {
+    margin-top: 140px;
+}
+.icon-client {
+    // float:left;
+    margin-right: 12px;
+    //     margin-top:-4px;
+    //     padding: 8px;
+}
+.client-cards {
+    margin-bottom: 56px;
+}
+
+.client-logos-container {
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    justify-items: center;
+}
+
+.client-logo {
+    margin: 0 8px 48px;
+    max-width: 60%;
+}
+
+.client-info {
+    margin-bottom: 40px;
+    text-align: left;
+}
+.info-block-grid {
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 16px;
+    padding: 32px 16px;
+    transition: all .3s;
+    &.active {
+        display: block;
+    }
+}
+.workforce-info-block {
+    
+    p {
+        font-size: 16px;
+        color: #333839;
+        letter-spacing: 0;
+        line-height: 26px;
+    }
+    ul {
+        opacity: 0.77;
+        .maison;
+        font-size: 16px;
+        color: #333839;
+        letter-spacing: 0;
+        line-height: 32px;
+        margin:0 0 34px;
+    }
+}
+.info-block-headline {
+    .gt-america-compressed-bold;
+    font-size: 24px;
+    color: #444444;
+    letter-spacing: -0.42px;
+    padding: 16px 0px;
+    border: 1px solid #cb7958;
+    border-left: 0;
+    border-right: 0;
+    margin-bottom: -1px;
+    cursor: pointer;
+    position: relative;
+
+    svg{
+        // content: '+';
+        // display: inline-block;
+        position: absolute;
+        top:25px;
+        right:5px;
+        font-size: 40px;
+        color:#cb7958;
+    }
+    &.active{
+        .vertical-line{
+            display: none;
+        }
+    }
+    &:hover{
+        // background-color: #eee;
+    }
+}
+.carousel-intro{
+    padding-bottom: 110px;
+}
+.partner-imgs{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    gap: 24px;
+    justify-items: center;
+    padding-top:80px;
+    padding:24px;
+    img{
+        display: inline-block;
+        object-fit: contain;
+        // width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
+}
+.logo-flex-grid{
+    display: flex;
+    flex-wrap: wrap;
+    gap: ~"max(3rem, 6vw)";
+    justify-content: center;
+    padding:0 ~"max(2rem, 10vw)";
+
+    img{
+        object-fit: contain;    
+    }
+}
+.section-intro {
+    .maison;
+    font-size: 24px;
+    color: #8f7567;
+    letter-spacing: 0;
+    line-height: 40px;
+    max-width: 670px;
+    margin:auto;
+
+    &.padded{
+        padding:24px 0;
+    }
+    &.bp{
+        padding-bottom:40px;
+    }
+    h2{
+        text-align: center;
+    }
+}
+.block-row.workforce-recruiting{
+    @g:10%;
+    grid-column-gap: @g;
+    gap:@g;
+    align-items: center;
+    padding-left:16px;
+    padding-right:16px;
+    .block-copy{
+        h2{
+            font-size: 40px;
+        }
+    }
+
+}
+.block-nav{
+    padding:64px 0 40px;
+}
+.block-icon--container{
+    min-height: 80px;
+}
+.gov-partners{
+    padding: 42px 0 182px;
+    margin-bottom:-80px;
+}
+.workforce-section{
+    @p: 50px;
+    padding-top: @p;
+    padding-bottom: @p;
+
+    .img-responsive{
+        width:100%;
+    }
+}
+.icon-nav-block{
+    margin-bottom:32px;
+    display: block;
+}
+.n-anchor{
+    position: relative;
+    top:-110px;
+}
+
+@media screen and (min-width: @screen-sm-min) {
+    .client-cards {
+        margin-bottom: 112px;
+    }
+    .clients-info-grid {
+        text-align: center;
+    }
+
+    .client-info {
+        margin-bottom: 0;
+    }
+
+    .client-logos-container {
+        grid-template-columns: repeat(4, 1fr);
+        grid-row-gap: 40px;
+    }
+
+    .client-logo {
+        margin: 0 18px 80px;
+    }
+    .icon-client {
+        float: none;
+        margin: 0;
+        padding: 8px;
+    }
+    .partner-imgs{
+        padding:24px 0;
+    }
+    .workforce-section{
+        @p: 110px;
+        padding-top: @p;
+        padding-bottom: @p;
+    }
+    .workforce-carousel{
+        .home-carousel-item{
+            align-items: center;
+        }
+        .home-carousel-text{
+            padding-bottom:70px;
+        }
+        .carousel-controls{
+            position: relative;
+            bottom:90px;
+        }
+    }
+    .icon-nav-block{
+        margin:0;
+    }
+    .info-block-grid {
+        &.active {
+            display: grid;
+        }
+    }
+}
+@media screen and (min-width: @screen-md-min) {
+    .clients-info-grid {
+        column-gap: 15%;
+    }
+}
