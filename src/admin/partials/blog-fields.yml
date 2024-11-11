@@ -1,0 +1,35 @@
+
+<!-- @include-static partials/base-fields.yml -->
+<!-- @include-static partials/jumbotron.yml -->
+- {label: "Layout", name: "layout", widget: "hidden", default: "blog-post.njk"}
+- {label: "Private", name: "private", widget: "boolean", required: false, 'hint':'Set to true to prevent publishing'}
+- {label: "Short Description", name: "short_description", widget: "string", 'hint':"shows on blog overview/listing page"}
+- {label: "Post Date", name: "date", widget: "datetime", time_format: false, required: true, format: 'YYYY-MM-DD'}
+- {label: "Intro", name: "intro", widget: "markdown", required: false}
+- {label: "Thumbnail Image", name: "thumbnail", widget: "image", required: false, hint: "Shows on listings"}
+- {label: "Thumbnail Image Alt", name: "thumbnail_alt", widget: "string", required: false, hint: "Alt text for seo."}
+- {label: "Footer Image", name: "footer_image", widget: "image", required: false, hint: "Shows on site footer (625x434)"}
+- {label: "Footer Image Alt", name: "footer_image_alt", widget: "string", required: false, hint: "Alt text for accessibility and seo."}
+- {label: "Section Image", name: "section_image", widget: "image", required: false, hint: "Shows after the Intro"}
+- {label: "Section Image Alt", name: "section_image_alt", widget: "string", required: false, hint: "Alt text for accessibility and seo."}
+- {label: "Permalink (slug)", name: "permalink", widget: "string", required: false, hint: "A permalink will be inferred from the title if not provided. If you do enter a custom permalink, be sure to include the full path (eg. insights/articles/my-cool-link/). Do not inlude a leading slash for custom permalinks. Do not include 'https://', this is not a url field"}
+- {label: "Body", name: "body", widget: "markdown"}
+- label: "Post Type"
+  name: "post_type"
+  widget: "select"
+  options:
+    - { label: "Article", value: "article"}
+    - { label: "Fun Fact", value: "fun-fact"}
+    - { label: "Video", value: "video"}
+    - { label: "Podcast", value: "podcast"}
+  hint: 'This controls graphical differences for posts. Currently only "fun fact" is used and should be set for all articles that are fun facts.'
+<!-- @include-static partials/campaign-dropdown.yml -->
+- label: "CTA"
+  name: "cta"
+  widget: "object"
+  fields:
+    - { label: "CTA Headline", name: "headline", widget: "string" , required: false}
+    - { label: "CTA Copy", name: "copy", widget: "string" , required: false}
+    - { label: "CTA URL", name: "url", widget: "string" , required: false}
+    - { label: "CTA Button Label", name: "label", widget: "" , required: false}
+    - { label: "CTA Image", name: "image", widget: "image" , required: false}

@@ -1,0 +1,8 @@
+- name: "blog"
+  label: "Blog"
+  label_singular: "Blog Post"
+  folder: "src/content/insights/articles/"
+  filter: {field: "layout", value: "blog-post.njk"}
+  create: true
+  fields:
+    <!-- @include-static partials/blog-fields.yml -->

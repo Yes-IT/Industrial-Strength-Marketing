@@ -1,0 +1,43 @@
+- name: "podcasts"
+  label: "Podcasts"
+  label_singular: "Podcast"
+  folder: "src/content/insights/podcast/"
+  filter: {field: "layout", value: "blog-post.njk"}
+  create: true
+  fields:
+    - label: "Post Type"
+      name: "post_type"
+      widget: "select"
+      options:
+        - { label: "Article", value: "article"}
+        - { label: "Fun Fact", value: "fun-fact"}
+        - { label: "Video", value: "video"}
+        - { label: "Podcast", value: "podcast"}
+      hint: 'This controls graphical differences for posts. Currently only "fun fact" is used and should be set for all articles that are fun facts.'
+    - {label: "Title", name: "title", widget: "string"}
+    - label: SEO
+      name: "seo"
+      widget: "object"
+      required: false
+      fields:
+        - {label: "Page Title", name: "page_title", widget: "string"}
+        - {label: "Page Description", name: "description", widget: "string", required: false}
+        - {label: "No index, no follow", name: "noindex", widget: "boolean", required: false}
+    - {label: "Layout", name: "layout", widget: "hidden", default: "blog-post.njk"}
+    - {label: "Private", name: "private", widget: "boolean", required: false, 'hint':'Set to true to prevent publishing'}
+    - {label: "Short Description", name: "short_description", widget: "string", 'hint':"Shows on Podcast overview page"}
+    - {label: "Post Date", name: "date", widget: "datetime", time_format: false, required: true, format: 'YYYY-MM-DD'}
+    - {label: "Episode", name: "episode", widget: "string", required: false}
+    - {label: "Podcast Embed", name: "podcast_embed", widget: "string", required: false, hint: 'Copy/Paste the entire Buzzsprout embed.'}
+    
+    - {label: "Open Graph Image", name: "open_graph_img", widget: "image", required: true, hint: "Needed for social platforms"}
+    - {label: "Episode URL Permalink", name: "permalink", widget: "string", required: true, default: "insights/podcast/"}
+    - {label: "Thumbnail Image", name: "thumbnail", widget: "image", required: true, hint: "Shows on listings"}
+    - {label: "Thumbnail Image Alt Text", name: "thumbnail_alt", widget: "string", required: true, hint: "Use for accessibility and seo. Describe the image."}
+    - {label: "Body", name: "body", widget: "markdown"}
+    - label: jumbotron
+      name: "jumbotron"
+      widget: "object"
+      required: false
+      fields:
+        - {label: "img", name: "img", widget: "hidden", default: "/img/podcasts-jumbotron.jpg"}

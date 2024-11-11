@@ -1,0 +1,20 @@
+- {label: "Title", name: "title", widget: "string"}
+- label: SEO
+  name: "seo"
+  widget: "object"
+  collapsed: true
+  required: false
+  fields:
+    - {label: "Page Title", name: "page_title", widget: "string"}
+    - {label: "Page Description", name: "description", widget: "string", required: false}
+    - {label: "No index, no follow", name: "noindex", widget: "boolean", required: false}
+    - {label: "Canonical link", name: "canonical", widget: "string", required: false, hint: "Not required. One will be generated if not filled in."}
+- {label: "Nav Title", name: "nav_title", widget: "string", hint: "Optional nav item label (will default to page title)", required: false}
+- {label: "Nav Order", name: "nav_sort", widget: "number", required: false, value_type: "int"}
+- label: "Show in nav?"
+  name: "show_in_menu"
+  widget: "select"
+  required: false
+  options:
+    - { label: "Yes", value: "true" }
+    - { label: "No", value: "false" }

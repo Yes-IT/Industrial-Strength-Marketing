@@ -1,0 +1,19 @@
+- label: "Redirects"
+  name: "redirects"
+  file: "src/content/redirects.md"
+  fields:
+    - label: Redirect Rules
+      label_singular: Redirect Rule
+      name: redirects
+      widget: list
+      collapsed: true
+      summary: 'redirect: {{fields.incoming}} to: {{fields.destination}}'
+      fields:
+        - {label: Incoming, name: incoming, widget: string}
+        - {label: Destination, name: destination, widget: string}
+        - label: "Status Code"
+          name: "statusCode"
+          widget: "select"
+          options: ["301", "302", "404", "200"]
+          default: "301"
+        - {label: Note, name: note, widget: string, required: false}

@@ -1,0 +1,13 @@
+- label: "Hero"
+  name: "jumbotron"
+  widget: "object"
+  required: false
+  collapsed: true
+  fields:
+    - {label: "Headline", name: "headline", widget: "string", required: false}
+    - {label: "Tagline", name: "tagline", widget: "string", required: false}
+    - {label: "CTA Url", name: "ctaUrl", widget: "string", required: false}
+    - {label: "CTA Label", name: "ctaText", widget: "string", required: false}
+    - {label: "Image", name: "img", widget: "image", 'hint':"make it a big one", required: false}
+    - {label: "Image Alt Text", name: "img_alt", widget: "string", 'hint':"Alt text for accessibility and seo.", required: false}
+    - {label: "Video", name: "video", widget: "file", 'hint':"videos will override images", required: false}

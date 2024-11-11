@@ -1,0 +1,298 @@
+backend:
+  name: git-gateway
+  branch:  <!-- @echo BRANCH -->
+display_url: /
+media_folder: "public/img/uploads" # Media files will be stored in the repo at this location
+public_folder: "/img/uploads" # The src attribute for uploaded media will begin with this
+collections:
+  - label: Settings
+    name: settings
+    files:
+    <!-- @include redirects.yml -->
+  - label: "Pages"
+    name: pages
+    files:
+      - label: "About Page"
+        name: about
+        file: "src/content/about/index.md"
+        fields:
+          - {label: "Layout", name: "layout", widget: "hidden", default: "about.njk"}
+          <!-- @include-static partials/base-fields.yml -->
+          <!-- @include-static partials/jumbotron.yml -->
+          - {label: "Body", name: "body", widget: "markdown"}
+      - label: "Privacy-Policy Page"
+        name: "privacy_policy"
+        file: "src/content/privacy-policy.md"
+        fields:
+          - {label: "Layout", name: "layout", widget: "hidden", default: "default.njk"}
+          - {label: "Heading", name: "heading", widget: "string"}
+          - {label: "Last Updated Date", name: "last_updated_date", widget: "string"}
+          - label: "Policies"
+            name: "policies"
+            widget: "list"
+            collapsed: true
+            required: false
+            fields:
+              - {label: "Policy Title", name: "policy_title", widget: "string"}
+              - {label: "Policy Description", name: "policy_description", widget: "markdown"}
+      - label: "Footer"
+        name: "footer"
+        file: "src/content/insights/articles/8-b2b-marketing-services-that-drive-business-growth.md"
+        create: true
+        fields:
+          - {label: "Layout", name: "layout", widget: "hidden", default: "footer.njk"}
+          - {label: "Subhead 1", name: "subhead1", widget: "string", required: false}
+          - {label: "Title 1", name: "title1", widget: "string", required: false}
+          - {label: "Description 1", name: "description1", widget: "string"}
+          - {label: "Image 1", name: "footer_image1", widget: "image"}
+          - {label: "URL 1", name: "path1", widget: "string", pattern: ['https?://.*', 'Must be a valid URL']}
+          - {label: "Subhead 2", name: "subhead2", widget: "string", required: false}
+          - {label: "Title 2", name: "title2", widget: "string", required: false}
+          - {label: "Description 2", name: "description2", widget: "string"}
+          - {label: "Image 2", name: "footer_image2", widget: "image"}
+          - {label: "URL 2", name: "path2", widget: "string", pattern: ['https?://.*', 'Must be a valid URL']}
+      - label: "Work Page"
+        name: work
+        file: "src/content/work.md"
+        create: false
+        fields:
+          - {label: "Layout", name: "layout", widget: "hidden", default: "work-index.njk"}
+          <!-- @include-static partials/jumbotron2.yml -->
+          <!-- @include-static partials/case_studies.yml -->
+      - label: "Contact Us"
+        name: contact_us
+        file: "src/content/contact.md"
+        fields:
+          - {label: "Layout", name: "layout", widget: "hidden", default: "contact.njk"}
+          - {label: "Title", name: "title", widget: "string", required: true}
+          - {label: "Page Description", name: "description", widget: "markdown", required: true}
+          - {label: "Contact Number", name: "contact_number", widget: "string"}
+          - label: SEO
+            name: "seo"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - {label: "Page Title", name: "page_title", widget: "string"}
+              - {label: "Page Description", name: "description", widget: "string", required: false}
+              - {label: "No index, no follow", name: "noindex", widget: "boolean", required: false}
+              - {label: "Canonical link", name: "canonical", widget: "string", required: false, hint: "Not required. One will be generated if not filled in."}
+          - label: "Contact Detail"
+            name: "contact_detail"
+            widget: "object"
+            collapsed: true
+            fields:
+              - {label: "Title", name: "title", widget: "string", required: true}
+              - {label: "Image", name: "image", widget: "image", required: false}
+              - {label: "Description", name: "description", widget: "text", required: true}
+      - label: "Clients Page"
+        name: "clients"
+        file: "src/content/clients/index.md"
+        fields:
+          - {label: "Layout", name: "layout", widget: "hidden", default: "default.njk"}
+          <!-- @include-static partials/base-fields.yml -->
+          <!-- @include-static partials/jumbotron.yml -->
+          - {label: "Body", name: "body", widget: "markdown"}
+          - label: "Clients"
+            name: "clients"
+            widget: "list"
+            fields:
+              - {label: "Title", name: "title", widget: "string", tagname: "h3"}
+              - {label: "Text", name: "content", widget: "text"}
+              - {label: "Image", name: "img", widget: "image"}
+              - {label: "URL", name: "url", widget: "text"}
+          - label: Logos
+            name: logos
+            widget: list
+            fields:
+              - {label: "Image", name: "img", widget: "image"}
+      - label: "Resources Page"
+        name: "resources"
+        file: "src/content/insights/resources.md"
+        create: true
+        fields:
+          - {label: "Layout", name: "layout", widget: "hidden", default: "resources.njk"}
+          <!-- @include-static partials/jumbotron2.yml -->
+          - label: "Resource List"
+            name: resource_list
+            widget: list
+            collapsed: true
+            fields:
+              - {label: "Headline", name: "headline", widget: "string", required: true}
+              - {label: "Copy Text", name: "copy", widget: "text", required: true}
+              - {label: "Image", name: "img", widget: "image", required: true}
+              - {label: "URL", name: "url", widget: "string", required: true}
+              - {label: "Order", name: "order", widget: "number", required: false, value_type: "int"}
+              - {label: "Active", name: "active", widget: "select", required: true, options: [{label: "Inactive", value: "0"}, {label: "Active", value: "1"}]}
+          - {label: "Description", name: "description", widget: "string"}
+          - {label: "Button Text", name: "button_text", widget: "string"}
+          - {label: "Button URL", name: "button_url", widget: "string"}
+      - label: "Free Consultation"
+        name: "free_consultation"
+        file: "src/content/free-consultation.md"
+        fields:
+          - {label: "Layout", name: "layout", widget: "hidden", default: "landing-page.njk"}
+          - {label: "Heading", name: "heading", widget: "string"}
+          - {label: "Subheading", name: "subheading", widget: "text"}
+          - label: "Introduction"
+            name: "introduction"
+            widget: "markdown"
+          - label: "List Items"
+            name: "list_items"
+            widget: "list"
+            fields:
+              - {label: "Item", name: "item", widget: "string"}
+      - label: "Home Page"
+        name: home
+        file: "src/content/index.md"
+        fields:
+          - {label: "Layout", name: "layout", widget: "hidden", default: "default.njk"}
+          <!-- @include-static partials/jumbotron.yml -->
+          <!-- @include-static partials/base-fields.yml -->
+          - label: Clients
+            name: clients
+            widget: list
+            fields:
+              - {label: "Title", name: "title", widget: "string", tagname: "h3"}
+              - {label: "Text", name: "content", widget: "text"}
+              - {label: "Image", name: "img", widget: "image"}
+              - {label: "URL", name: "url", widget: "text"}
+              - {label: "Link Label", name: "label", widget: "text"}
+          - label: Services
+            name: services
+            widget: list
+            fields:
+              - {label: "Title", name: "title", widget: "string", tagname: "h3"}
+              - {label: "Text", name: "content", widget: "text"}
+              - {label: "Icon", name: "icon", widget: "image"}
+          - label: Ways To Engage
+            name: ways_to_engage
+            widget: list
+            fields:
+              - {label: "Title", name: "title", widget: "string", tagname: "h3"}
+              - {label: "Text", name: "content", widget: "text"}
+              - {label: "Image", name: "img", widget: "image"}
+  - name: "case-study"
+    label_singular: "Case Study"
+    label: "Case Studies"
+    folder: "src/content/work"
+    create: true
+    editor: 
+      preview: false
+    fields:
+      - {label: "Layout", name: "layout", widget: "hidden", default: "case-study.njk"}
+      - {label: "Jumbotron Subhead", name: "jumbotron_subhead", widget: "hidden", default: "Case Study"}
+      - {label: "Private", name: "private", widget: "boolean", default: true, hint: "Set to private to prevent display on the website (like a 'draft')"}
+      - label: "Featured" 
+        name: "collection" 
+        widget: "select"
+        required: false
+        options:
+          - { label: "No", value: "" }
+          - { label: "Yes", value: "featured_case_study" }
+      <!-- @include-static partials/base-fields.yml -->
+      <!-- @include-static partials/jumbotron.yml -->
+      - {label: "Summary", name: "summary", widget: "markdown", required: true, hint: "Shows on work overview page"}
+      - {label: "Order", name: "order", widget: "number", required: false, value_type: "int"}
+      - {label: "Overview Image", name: "overviewimg", widget: "image", required: false}
+      - {label: "Overview Image Alt Text", name: "overviewimg_alt", widget: "string", required: false, hint: "used for accessibility and SEO. Describe the image."}
+      - {label: "Video Embed", name: "videoEmbed", widget: "string", required: false}
+      - name: challenge
+        label: "Challenge"
+        widget: "object"
+        required: false
+        fields:
+          - {label: "Copy", name: "copy", widget: "markdown", required: false}
+          - {label: "Image", name: "img", widget: "image", required: false}
+          - {label: "Image Alt Text", name: "img_alt", widget: "string", required: false, hint:"used for accessibility and SEO. Describe the image."}
+          - {label: "Image Caption", name: "caption", widget: "string", required: false}
+      - name: solution
+        label: "Solution"
+        widget: "object"
+        required: false
+        fields:
+          - {label: "Copy", name: "copy", widget: "markdown", required: false}
+          - {label: "Image", name: "img", widget: "image", required: false}
+          - {label: "Image Alt Text", name: "img_alt", widget: "string", required: false, hint:"used for accessibility and SEO. Describe the image."}
+          - {label: "Image Caption", name: "caption", widget: "string", required: false}
+      - name: results
+        label: "Results"
+        widget: "object"
+        required: false
+        fields:
+          - {label: "Copy", name: "copy", widget: "markdown", required: false}
+          - {label: "Image", name: "img", widget: "image", required: false}
+          - {label: "Image Caption", name: "caption", widget: "string", required: false}
+          - {label: "Image Alt Text", name: "img_alt", widget: "string", required: false, hint:"used for accessibility and SEO. Describe the image."}
+          - {label: "Results Stat", name: "stat", widget: "string", required: false, hint: 'Wrap in <span></span> tags for black color'}
+      - name: testimonial
+        label: "Testimonial"
+        widget: "object"
+        required: false
+        fields:
+          - {label: "Copy", name: "copy", widget: "markdown", required: false}
+          - {label: "Attestant", name: "attestant", widget: "string", required: false, hint: '"attestant": one who attests'}
+  - name: "team"
+    label: "Team"
+    folder: "src/content/team"
+    create: true
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Job Title", name: "job_title", widget: "string"}
+      - {label: "Image", name: "img", widget: "image"}
+      - {label: "Linkedin", name: "linkedin", widget: "string", required: false}
+      - {label: "Twitter", name: "twitter", widget: "string",  required: false}
+      - {label: "Facebook", name: "facebook", widget: "string", required: false}
+      - {label: "Order", name: "order", widget: "number", required: true, value_type: "int"}
+  - name: "social_media"
+    label: "Social Media"
+    folder: "src/content/social_media"
+    create: false
+    delete: false
+    slug: 'social-media'
+    fields:
+      - {label: "Layout", name: "layout", widget: "hidden", default: "footer.njk"}
+      - {label: "Title", name: "title", widget: "string", required: false}
+      - {label: 'Website Links', name: 'web_link', widget: 'string', pattern: ['https?://.*', 'Must be a valid URL']}
+      - {label: 'YouTube URL', name: 'youtube', widget: 'string', pattern: ['https?://.*', 'Must be a valid URL']}
+      - {label: 'Facebook URL', name: 'facebook', widget: 'string', pattern: ['https?://.*', 'Must be a valid URL']}
+      - {label: 'Twitter (X) URL', name: 'x', widget: 'string', pattern: ['https?://.*', 'Must be a valid URL']}
+      - {label: 'LinkedIn URL', name: 'linkedin', widget: 'string', pattern: ['https?://.*', 'Must be a valid URL']}
+  - name: "clients" 
+    label: "Client" 
+    folder: "src/content/clients" 
+    create: true
+    fields: 
+      - {label: "Layout", name: "layout", widget: "hidden", default: "client.njk"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      <!-- @include-static partials/base-fields.yml -->
+      <!-- @include-static partials/jumbotron.yml -->
+      - label: "Related Case Study"
+        name: "relatedCaseStudy"
+        widget: "relation"
+        collection: "case-study"
+        search_fields: ["title"]
+        value_field: "title"
+        display_fields: ["title"]
+        required: false
+      - label: Sections
+        name: sections
+        widget: list
+        fields:
+          - {label: "Title", name: "title", widget: "string", tagname: "h3"}
+          - {label: "Text", name: "content", widget: "text"}
+          - {label: "Icon", name: "img", widget: "image", hint: "max size"}
+  - name: "service" 
+    label: "Services Pages" 
+    folder: "src/content/services" 
+    create: true
+    editor: 
+      preview: false
+    fields: 
+      - {label: "Layout", name: "layout", widget: "hidden", default: "service.njk"}
+      <!-- @include-static partials/base-fields.yml -->
+      <!-- @include-static partials/jumbotron.yml -->
+      - {label: "Body", name: "body", widget: "markdown"}
+  <!-- @include articles.yml -->
+  <!-- @include videos.yml -->
+  <!-- @include podcasts.yml -->

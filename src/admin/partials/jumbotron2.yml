@@ -1,0 +1,9 @@
+- label: "Hero"
+  name: "jumbotron"
+  widget: "object"
+  required: false
+  collapsed: true
+  fields:
+    - {label: "Headline", name: "headline", widget: "string", required: false}
+    - {label: "Tagline", name: "tagline", widget: "string", required: false}
+    - {label: "Image", name: "img", widget: "image", 'hint':"make it a big one", required: false}

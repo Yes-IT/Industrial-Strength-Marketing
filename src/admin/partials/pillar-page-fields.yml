@@ -1,0 +1,122 @@
+fields:
+  <!-- @include-static base-fields.yml -->
+  <!-- @include-static jumbotron.yml -->
+  - {label: "Layout", name: "layout", widget: "hidden", default: "pillar-page.njk"}
+  - {label: "Private", name: "private", widget: "boolean", required: false, 'hint':'Set to true to prevent publishing'}
+  - label: "Intro"
+    name: "intro"
+    widget: "object"
+    fields:
+      - {label: "Copy", name: "copy", widget: "markdown"}
+  - label: Stat Blocks
+    name: stat_blocks
+    widget: list
+    summary: '{{fields.stat}}  {{fields.attribution}}'
+    fields:
+      - {label: "Stat", name: "stat", widget: "string"}
+      - {label: "Text", name: "content", widget: "text"}
+      - {label: "Attribution", name: "attribution", widget: "string"}
+  - label: What it is
+    name: what_it_is
+    widget: object
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Copy", name: "copy", widget: "markdown"}
+      - {label: "Image", name: "image", widget: "image", required: false}
+  - label: What it isn't
+    name: what_it_isnt
+    widget: object
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Copy", name: "copy", widget: "markdown"}
+      - {label: "Image", name: "image", widget: "image", required: false}
+  - label: Section 1
+    name: section_1
+    widget: object
+    fields:
+      - {label: "Intro", name: "intro", widget: "markdown"}
+      - {label: "Copy", name: "copy", widget: "markdown"}
+      - {label: "Image", name: "image", widget: "image", required: false}
+      - {label: "CTA Label", name: "cta_label", widget: "string", required: false}
+  - label: Section 2
+    name: section_2
+    widget: object
+    fields:
+      - {label: "Subhead", name: "subhead", widget: "string"}
+      - {label: "Headline", name: "headline", widget: "string"}
+      - label: Blocks
+        name: blocks
+        widget: list
+        summary: '{{fields.title}}'
+        fields:
+          - {label: "Icon", name: "icon", widget: "image", required: false}
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Copy", name: "copy", widget: "markdown"}
+  - label: Section 3
+    name: section_3
+    widget: object
+    fields:
+      - {label: "Intro", name: "intro", widget: "markdown"}
+      - {label: "CTA Label", name: "cta_label", widget: "string", required: false}
+      - label: Blocks
+        name: blocks
+        widget: list
+        fields:
+          - {label: "Image", name: "image", widget: "image", required: false}
+          - {label: "Copy", name: "copy", widget: "markdown"}
+          - {label: "Image Layout", name: "image_layout", widget: "select", options: ['left','right'], default: "left"}
+  - label: Section 4
+    name: section_4
+    widget: object
+    fields:
+      - {label: "Intro", name: "intro", widget: "markdown"}
+      - {label: "CTA Label", name: "cta_label", widget: "string", required: false}
+      - label: Blocks
+        name: blocks
+        widget: list
+        fields:
+          - {label: "Image", name: "image", widget: "image", required: false}
+          - {label: "Copy", name: "copy", widget: "markdown"}
+          - {label: "Image Layout", name: "image_layout", widget: "select", options: ['left','right'], default: "left"}
+  - label: Section 5
+    name: section_5
+    widget: object
+    fields:
+      - {label: "Intro", name: "intro", widget: "markdown"}
+      - {label: "CTA Label", name: "cta_label", widget: "string", required: false}
+      - label: Blocks
+        name: blocks
+        widget: list
+        fields:
+          - {label: "Image", name: "image", widget: "image", required: false}
+          - {label: "Copy", name: "copy", widget: "markdown"}
+          - {label: "Image Layout", name: "image_layout", widget: "select", options: ['left','right'], default: "left"}
+  - label: Section 6
+    name: section_6
+    widget: object
+    fields:
+      - {label: "Subhead", name: "subhead", widget: "string"}
+      - {label: "Intro", name: "intro", widget: "markdown"}
+      - {label: "CTA Label", name: "cta_label", widget: "string", required: false}
+      - label: Blocks
+        name: blocks
+        widget: list
+        summary: '{{fields.title}}'
+        fields:
+          - {label: "Icon", name: "icon", widget: "image", required: false}
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Copy", name: "copy", widget: "markdown"}
+  - label: Outro
+    name: outro
+    widget: object
+    fields:
+      - {label: "Copy", name: "copy", widget: "markdown"}
+      - {label: "Image", name: "image", widget: "image"}
+  - {label: "service tag", name: "service_tag", widget: "string"}
+  - label: "Slide in banner"
+    name: "slide_in_banner"
+    widget: "image"
+    fields:
+      - {label: "Headline", name: "headline", widget: "string"}
+      - {label: "Sub Headline", name: "subheadline", widget: "string"}
+      - {label: "Button Label", name: "buttonLabel", widget: "string"}

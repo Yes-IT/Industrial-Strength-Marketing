@@ -1,0 +1,11 @@
+- name: "videos"
+  label: "Videos"
+  label_singular: "Video"
+  folder: "src/content/insights/videos/"
+  filter: {field: "layout", value: "blog-post.njk"}
+  create: true
+  fields:
+    <!-- @include-static partials/blog-fields.yml -->
+    - {label: "Youtube URL", name: "youtube_url", widget: "string", required: false, 'hint':'For videos only - enter a full url like "https://www.youtube.com/watch?v=8PVal8Fy7CM"'}
+    - {label: "Youtube ID", name: "youtube_id", widget: "string", required: false, 'hint':'For videos only - enter an id like "8PVal8Fy7CM"'}
+    - {label: "Thumbnail Image Alt Text", name: "youtube_thumbnail_alt", widget: "string", required: true, hint: "Use for accessibility and seo. Describe the image."}
