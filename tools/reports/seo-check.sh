@@ -1,0 +1,1 @@
+seolint -c seolint.config.json | tee seo-report.txt
