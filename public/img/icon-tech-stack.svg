@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="66px" height="54px" viewBox="0 0 66 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon-tech-stack</title>
+    <g id="Pillar-Pages" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Integrated-Marketing" transform="translate(-1092.000000, -3309.000000)" fill="#000000" fill-rule="nonzero">
+            <g id="icon-tech-stack" transform="translate(1092.000000, 3309.000000)">
+                <path d="M32.601,3.55271368e-15 L0,14.127 L15.6,20.366 L0,27.127 L15.6,33.366 L0,40.127 L32.601,53.167 L65.202,40.127 L49.601,33.367 L65.202,27.127 L49.601,20.367 L65.202,14.127 L32.601,3.55271368e-15 Z M60,40.053 L32.601,51.013 L5.202,40.053 L18.217,34.413 L32.601,40.167 L46.985,34.414 L60,40.053 Z M60,27.053 L47.016,32.247 L46.998,32.239 L46.99,32.257 L32.601,38.013 L18.211,32.257 L18.203,32.238 L18.184,32.246 L5.202,27.053 L18.217,21.413 L32.601,27.167 L46.985,21.414 L60,27.053 Z M46.998,19.239 L46.99,19.257 L32.601,25.013 L18.211,19.257 L18.203,19.238 L18.184,19.246 L5.202,14.053 L32.601,2.18 L60,14.053 L47.016,19.247 L46.998,19.239 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>
