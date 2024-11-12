@@ -1,0 +1,14 @@
+<div class="blog-img-container img-{{post.collection | getInsightType}}">
+    {% set alt = post.thumbnail_alt | default("") %}
+    {%- if post.post_type == 'fun-fact' -%}    
+        <span class="fun-fact-icon"></span>
+    {%- endif -%}
+    {%- if post.youtube_url -%}
+        {%- set img = post.youtube_url | getYoutubeThumbnail -%}
+        {%- set alt = post.youtube_thumbnail_alt | default("") -%}
+    {%- else -%}
+        {%- set img = post.thumbnail -%}
+    {%- endif -%}
+    
+    <a href="/{{post.path}}"><img src="{{img}}" alt="{{alt | e}}" class="img-responsive"></a>
+</div>

@@ -1,0 +1,192 @@
+{% extends "layout.njk" %}
+{%- set oa = [
+    { 
+        text: 'We work for life.',
+        img: 'oa-icons-07.png'
+    },
+    { 
+        text: 'We roll up our sleeves.',
+        img: 'oa-icons-07-copy.png'
+    },
+    { 
+        text: 'We question the status quo.',
+        img: 'oa-icons-07-copy-4.png'
+    },
+    { 
+        text: 'We tough love.',
+        img: 'oa-icons-07-copy-3.png'
+    },
+    { 
+        text: 'We deliver and delight.',
+        img: 'oa-icons-07-copy-2.png'
+    }    
+] 
+-%}
+{% block body %}
+<div class="container about-board-member-content" id="about-top">
+    <div class="narrow">
+        <div class="leadin">{{ contents | safe }}</div>
+        <p class="leadin" style="margin-bottom: 2rem;">Our mission is to better those who design, make, and move the world. INDUSTRIAL team members share the same core values:</p>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="flex flex-wrap md:justify-between justify-center pb-16">
+        {%- for item in oa  -%}
+            <div class="text-center content-title oa-item">
+                <img src="/img/icons/{{item.img}}" alt=""><br>
+                {{item.text}}
+            </div>
+        {%- endfor -%}
+    </div>
+</div>
+<p class="leadin text-center pb-8" style="margin:3rem 0 2rem;">We are humbled to have been recognized by the following organizations.</p>
+<div>
+    {%- set awards =[
+        {           
+            img: '/img/awards/aaf.svg',
+            label: 'American Advertising Federation Nashville’s ADDY Awards',
+            href:'https://aafnashville.com/AmericanAdvertisingAwards'
+        },
+        {                
+            img: '/img/awards/nbj.svg',
+            label: 'Nashville Business Journal’s Best Places to Work',
+            href: 'https://www.bizjournals.com/nashville/nomination'
+        },
+        {                
+            img: '/img/awards/inc.svg',
+            label: 'Inc. 5000’s America’s Fastest-Growing Private Companies ',
+            href: 'https://www.inc.com/inc5000/2020'
+        },
+        {                
+            img: '/img/awards/nbj-bib.svg',
+            label: 'Nashville Business Journal’s Best in Business Awards',
+            href: 'https://www.bizjournals.com/nashville/nomination'
+        },
+        {       
+            img: '/img/awards/bme.svg',
+            label: 'The B2B Marketing Elevation Awards',
+            href:'https://www.b2bmarketing.net/'
+        }
+    ]  -%}
+        <style>
+            .narrow{
+                max-width: 630px;
+                margin:auto;
+            }
+            .awards{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                padding-bottom: 6rem;
+            }
+            .awards a{
+                display: inline-block;
+                margin:8px;
+                max-width: 40%;
+            }
+            .awards img{
+                max-width: 100%;
+                display: block;
+                width:100%;
+            }
+            .oa-item{
+                    width:45%;
+                    line-height: 1.2;
+                    padding:1rem 0;
+                }
+
+            @media screen and (min-width:800px){
+                .awards{
+                    margin:auto;
+                    width:80%;
+                    padding:.4rem 0 6rem;
+                }
+                .awards a{
+                    width:308px;
+                    height: 300px;
+                    /* max-width: 160px; */
+                }
+                .oa-item{
+                    width:189px;
+                }
+            }
+
+        </style>
+        <div class="awards">
+    {%- for item in awards -%}
+            <a href="{{item.href}}" title="{{item.label | e}}" target="_blank" style="color:#222;font-size:11px;">
+                <img src="{{item.img}}" alt="{{item.label | e}}" width="160">
+                {# {% include item.img %} #}
+            </a>
+            {%- endfor -%}
+        </div>
+</div>
+<div id="about-team" class="container-fluid">
+    <div class="narrowxx copy">
+        <h2>Leadership Team</h2>
+    </div>
+    <div class="team-grid">
+        {% for item in team %}
+            {% if item.enabled %}
+        <div class="team-member ">
+            <img src="{{item.img}}" alt="Photo of {{item.title}}" class="img-responsive">
+            <div class="info dark-gradient-bg">
+                <strong class="name">{{item.title}}</strong>
+                <div class="member-position">{{item.job_title}}</div>
+                <div class="icons">
+                    {% if item.linkedin %}
+                    <a href="{{item.linkedin}}" target="_blank"><img src="/img/social-icons/icon-ln.svg" alt="Linkedin" class="icon" height="20"></a>
+                    {% endif %}
+                    {% if item.twitter %}
+                    <a href="{{item.twitter}}" target="_blank"><img src="/img/social-icons/icon-tw.svg" alt="Twitter" class="icon" height="20"></a>
+                    {% endif %}
+                    {% if item.facebook %}
+                    <a href="{{item.facebook}}" target="_blank"><img src="/img/social-icons/icon-fb.svg" alt="Facebok" class="icon" height="20"></a>
+                    {% endif %}
+                    {%- if item.title == 'James Soto' -%}
+                        <!-- <a href="/james-soto-speaking/"><img src="/img/basic_link.svg" alt="James Soto speaking engagements" class="icon" height="20" width="20"></a> -->
+                    {%- endif -%}
+                </div>
+            </div>
+        </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-4 text-center join-btn-container">
+            <a href="/about/careers/" class="btn btn-secondary">Join Our Team</a>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 copy">
+            <br><br><br><br>
+            <h2>Our Advisors</h2>
+            <p>Even the best teams need counsel. Our strategic advisors are thought leaders and founders that pave the way in digital technology, finance, and manufacturing. They’ve helped us become one of the most talked about industrial marketing agencies in the U.S.</p>
+        </div>
+    </div>
+    <div class="board-members">
+        <div class="board-member">
+            <img src="/img/mitch-free.jpg" alt="Photograph of Mitch Free" class="board-member-img">
+                <strong class="board-member-title">Mitch Free</strong>
+                Founder MFG.com, <br>Fast Radius & ZYCI
+        </div>
+        <div class="board-member">
+            <img src="/img/marcus-whitney.jpg" alt="Photograph of Marcus Whitney" class="board-member-img">
+                <strong class="board-member-title">Marcus Whitney</strong>
+                President &amp; Co-Founder<br>Jumpstart Foundry
+        </div>
+        <div class="board-member">
+            <img src="/img/jon-shearer.jpg" alt="Photograph of Jon Shearer" class="board-member-img">
+                <strong class="board-member-title">Jon Shearer</strong>
+                Sr. Executive Director of Digital <br>Development DaveRamsey.com
+        </div>
+        <div class="board-member">
+            <img src="/img/jerry-bostleman.jpg" alt="Photograph of Jerry Bostleman" class="board-member-img">
+                <strong class="board-member-title">Jerry Bostleman</strong>
+                Founding Partner <br>VACO<br><br>
+        </div>
+    </div>
+</div>
+{% endblock %}

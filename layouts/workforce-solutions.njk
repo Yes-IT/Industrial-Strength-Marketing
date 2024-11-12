@@ -1,0 +1,289 @@
+{% extends "layout.njk" %}
+{% macro block(block) %}
+<div class="block-row {{block.image_layout}} workforce-recruiting">
+    <div class="block-img">
+        {%- if block.label -%}
+        <a name="{{block.label | toSlug}}" class="n-anchor"></a>
+        {%- endif -%}
+        <img src="{{block.image}}" class="img-responsive" /></div>
+    <div class="block-copy">
+        {%- if block.icon -%}
+        <div class="block-icon--container">
+            <img src="{{block.icon}}" alt="">
+        </div>
+        {%- endif -%}
+        <h2>{{block.title}}</h2>
+        {{block.copy}}
+    </div>
+</div>
+{% endmacro %}
+{% macro blocks(blocks) %}
+{%- for item in blocks -%}
+{{block(item)}}
+{%- endfor -%}
+{% endmacro %}
+{% block body %}
+<div class="container-fluid workforce-section ntp" style="padding-top: 0;padding-bottom: 40px;">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2 class="text-center">{{introduction.headline}}</h2>
+            <p class="section-intro" style="max-width: 760px;">{{introduction.copy}}</p>
+        </div>
+    </div>
+</div>
+<div class="container-fluid workforce-section" style="padding-top:50px;">
+    {{ blocks(section_1_blocks)}}
+</div>
+<section class="bg-light workforce-section">
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <!-- section 2 -->
+                <h2 class="text-center">{{section_2.headline}}</h2>
+                <p class="section-intro padded">{{section_2.intro}}</p><br>
+            </div>
+        </div>
+        <div class="row">
+            {{block(section_2.block)}}
+        </div>
+    </div>
+</section>
+<section class=" workforce-section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <!-- section 4 -->
+                <h2>{{section_3.headline}}</h2>
+            </div>
+        </div>
+        <div class="row block-nav">
+            {%- for item in section_3.blocks -%}
+            <div class="col-sm-3 text-center">
+                <a href="#{{item.label | toSlug}}" class="icon-nav-block">
+                    <div class="block-icon--container">
+                        <img src="{{item.icon}}" alt="">
+                    </div>
+                    <div class="content-title">{{item.label}}</div>
+                </a>
+            </div>
+            {%- endfor -%}
+        </div>
+        <div class="row">
+            {{ blocks(section_3.blocks)}}
+        </div>
+    </div>
+</section>
+<section class=" workforce-section bg-light">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <!-- section 4 -->
+                <div class="carousel-intro">
+                    <h2>{{section_4.headline}}</h2>
+                    <p class="section-intro">{{section_4.intro}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="carousel-container">
+            <div id="carousel" class="carousel carousel-home workforce-carousel slide" data-ride="carousel" data-interval="10000">
+                <div class="carousel-inner">
+                    {%- for item in section_4.case_studies -%}
+                    {% set case_study = item.case | findByField('title', work) %}
+                    <div class="item {{'active' if loop.first}}">
+                        <div class="home-carousel-item">
+                            <div class="home-carousel-text">
+                                <strong class="caption-title">SUCCESS STORIES</strong>
+                                <h3>{{ case_study.title}}</h3>
+                                <p class="summary">{{ item.copy}}</p>
+                                <a href="/{{case_study.path}}/" class="btn btn-secondary">Read Case Study</a>
+                            </div>
+                            <div class="home-carousel-img-container">
+                                <a href="/{{case_study.path}}/"><img src="{{case_study.overviewimg }}" width="629" height="379" class="img-responsive center" alt="{{ item.title}}" /></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="carousel-controls">
+                    <a class="left carousel-control" href="#carousel" role="button" data-slide="prev"><span class="sr-only">Previous</span></a>
+                    <ol class="carousel-indicators">
+                        {% for item in section_4.case_studies %}
+                        <li data-target="#carousel" data-slide-to="{{loop.index}}" class="{{'active' if loop.first}}"></li>
+                        {% endfor %}
+                    </ol>
+                    <a class="right carousel-control" href="#carousel" role="button" data-slide="next"><span class="sr-only">Next</span></a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <br><br><br>
+                <h2>Our Partners</h2>
+                <p class="section-intro">A sampling of brands we are proud to have partnered with to enhance their workforce recruitment marketing efforts.</p>
+                <br><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="partner-imgs">
+                {% set imgs = [
+                    {img:'PAM-logo.png', alt:"Pam Transport"},
+                    {img:'Hennessy.png', alt:"Hennessy"},
+                    {img:'nam-logo.png', alt:"NAM"},
+                    {img:'Landair.png', alt:"Landiar"},
+                    {img:'MFG-logo.png', alt:"Manufacturing Day"},
+                    {img:'Nashville-made.png', alt:"Nashville Made"},
+                    {img:'VGT.png', alt:"VGT"},
+                    {img:"dreamitdoit.png", alt:"Dream It Do IT TN" }
+                    ] %}
+                {%- for item in imgs -%}
+                <img src="/img/workforce-recruiting/{{item.img}}" alt="{{item.alt | e}}" />
+                {%- endfor -%}
+            </div>
+        </div>
+    </div>
+</section>
+<section class="workforce-section">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <h2>{{section_5.headline}}</h2>
+                <p class="section-intro padded bp">{{section_5.intro}}</p>
+                <br><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                {% set plusIcon = '<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"><g  stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square"><line x1="0" y1="12" x2="24" y2="12" id="Line" stroke="#CB7958"></line><line x1="12" y1="0" x2="12" y2="24" id="Line" class="vertical-line" stroke="#CB7958"></line></g></svg>' %}
+                <div class="info-block-headline" data-toggle="#ifb1">
+                    Employer Talent Marketing Solutions {{plusIcon}}
+                </div>
+                <div class="info-block-grid" id="ifb1">
+                    <div class="workforce-info-block">
+                        <p>Great Place to Work Formation / Strategic Talent Transformation Services</p>
+                        <ul>
+                            <li>Employer Branding &amp; Leadership Culture</li>
+                            <li>Employer Value Proposition Alignment for the CEO, CHRO, COO, CMO, and CFO</li>
+                        </ul>
+                    </div>
+                    <div class="workforce-info-block">
+                        <p>Recruitment Marketing Digital Transformation</p>
+                        <ul>
+                            <li>MAS/CRM/RMP/ATS (Recruitment and MarTech Stack Integration)</li>
+                        </ul>
+                    </div>
+                    <div class="workforce-info-block">
+                        <p>Talent Acquisition Strategy</p>
+                        <ul>
+                            <li>Recruitment Performance Optimization</li>
+                            <li>Programmatic Advertising</li>
+                            <li>Owned, Earned, and Social Media Strategy</li>
+                        </ul>
+                    </div>
+                    <div class="workforce-info-block">
+                        <p>Talent Lifecycle Enablement, Retention &amp; Amplification</p>
+                        <ul>
+                            <li>Employer/Employee Communications</li>
+                            <li>Employer Promoter Score</li>
+                            <li>Employee Referral &amp; Influencer Strategy</li>
+                        </ul>
+                        <p>Recruitment Cost/Performance Optimization</p>
+                    </div>
+                </div>
+                <div class="info-block-headline"  data-toggle="#ifb2">
+                    Integrated Recruitment Marketing {{plusIcon}}
+                </div>
+                <div class="info-block-grid"  id="ifb2">
+                    <div class="workforce-info-block">
+                        <p>Talent Awareness</p>
+                        <ul>
+                            <li>Not in the market</li>
+                            <li>Passive (open to opportunities)</li>
+                            <li>Active (have need/desire to change)</li>
+                        </ul>
+                    </div>
+                    <div class="workforce-info-block">
+                        <p>Research &amp; Discoverability</p>
+                        <ul>
+                            <li>Searching company and job opportunities online</li>
+                            <li>Search and mobile-optimized company job board implementation, custom development</li>
+                            <li>Company jobs syndication, XML feed, and programmatic listing management (e.g. Google Jobs initiative, Indeed, LinkedIn, Craigslist, etc.)</li>
+                            <li>Search-optimized video property strategy</li>
+                        </ul>
+                    </div>
+                    <div class="workforce-info-block">
+                        <p>Comparison/Consideration/Validation</p>
+                        <ul>
+                            <li>Employer reputation management (e.g. job board reviews, social commentary)</li>
+                            <li>Job fit personalization (e.g. “just right” job surveys, zip code lane registration)</li>
+                            <li>Talent referral programs</li>
+                            <li>Job offer competitive analysis campaigns</li>
+                        </ul>
+                    </div>
+                    <div class="workforce-info-block">
+                        <p>Decision &amp; Signing</p>
+                        <ul>
+                            <li>Job selection criteria resources </li>
+                            <li>Decision stage email and social media nurturing</li>
+                            <li>Personalized recruiter, dispatcher, leader communications</li>
+                            <li>Recognition, perks, and swag design</li>
+                        </ul>
+                    </div>
+                    <div class="workforce-info-block">
+                        <p>Orientation</p>
+                        <ul>
+                            <li>Orientation show rate email, decision reinforcement, and travel logistics support</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="info-block-headline"  data-toggle="#ifb3">
+                    Talent Lifecycle Engagement and Nurturing {{plusIcon}}
+                </div>
+                <div class="info-block-grid"  id="ifb3">
+                    <div class="workforce-info-block">
+                        <p>Recruiting Operations / Job Conversion Optimization </p>
+                        <ul>
+                            <li>Recruitment process optimization</li>
+                            <li>Candidate hiring experience optimization</li>
+                            <li>Onboarding/Orientation nurturing</li>
+                            <li>Talent experience insights and action plans</li>
+                        </ul>
+                    </div>
+                    <div class="workforce-info-block">
+                        <p>Talent Engagement, Relationships, and Retention Strategy</p>
+                        <ul>
+                            <li>Talent success, resources, and social engagement content strategy</li>
+                            <li>Candidate news and recognition newsletters/social/email campaigns</li>
+                            <li>Employer, leader, and dispatcher communications (employer/employee trust)</li>
+                            <li>Employee/Talent pulse surveys</li>
+                            <li>Video influencer (prospects seeking "those just like me") strategy</li>
+                        </ul>
+                    </div>
+                    <div class="workforce-info-block">
+                        <p>Recruitment Marketing Performance Optimization &amp; Cost Mitigation</p>
+                        <ul>
+                            <li>Recruitment marketing analytics</li>
+                            <li>Paid media cost/performance scrutiny</li>
+                            <li>Application full attribution</li>
+                            <li>Hiring cost mitigation strategy</li>
+                            <li>Earned, owned, social mix diversification</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <br><br><br>
+                <p class="section-intro">
+                    Ready to improve your workforce recruitment strategy? 
+                    Contact us now and let us know!
+                </p>
+                <a href="/free-consultation/" class="btn btn-default">Request a Consultation</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

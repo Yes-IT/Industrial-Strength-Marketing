@@ -1,0 +1,38 @@
+{% extends "layout.njk" %}
+{% block body %}
+<div class="container">
+    <div class="row text-center-sm">
+        <div class="col-sm-8 col-sm-offset-2">
+            {{ contents | safe }}
+            <br><br>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="cards-container client-cards">
+        {% for client in clients %}
+        <div class="card">
+            <a href="{{client.url}}" class=""><img src="{{client.img}}" class="card-img" alt="{{client.title}}"></a>
+            <div class="card-content-container">
+                <strong class="card-title">{{client.title}}</strong>
+                <p class="card-copy">{{client.content}}</p>
+                <a href="{{client.url}}" class="link-learn-more">See More</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 text-center">
+            <h2>Great Clients = Great Work</h2>
+            <p >
+                We’ve partnered with clients in almost every industrial sector <br class="hidden-xs">and from every region.
+            </p><br><br>
+        </div>
+    </div>
+    <div class="client-logos-container">
+        {% for logo in logos %}
+            <img src="{{logo.img}}" class="client-logo" alt="">
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

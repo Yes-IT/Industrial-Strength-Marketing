@@ -1,0 +1,54 @@
+{%- set shareTitle = title | urlencode  -%}
+{%- set emailBody = 'I+recommend+you+visit+industrialstregthmarketing.com+to+read:+%0D+%0D' + shareTitle +'%0D' -%}
+{%- set socialShareProviders = [
+        {
+            name: 'Facebook',
+            baseUrl: 'https://www.facebook.com/sharer/sharer.php?u=',
+            icon : '<svg height="37" viewBox="0 0 37 37" width="37" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><mask id="a" fill="#fff"><path d="m0 0h36.8978379v36.8905756h-36.8978379z" fill="#fff" fill-rule="evenodd"/></mask><path d="m18.4478379-.0014499c-10.18966114 0-18.45000001 8.30902456-18.45000001 18.5587426 0 9.2632049 6.74689834 16.9410148 15.56718751 18.3332829v-12.9686463h-4.6845703v-5.3646366h4.6845703v-4.088723c0-4.65128483 2.7544553-7.22051076 6.9688389-7.22051076 2.0185813 0 4.1299892.36247544 4.1299892.36247544v4.56719062h-2.3265017c-2.2919441 0-3.0067014 1.4305818-3.0067014 2.8982448v3.4813229h5.1169922l-.8179981 5.3646366h-4.2989941v12.9686463c8.8202892-1.3922681 15.5671875-9.070078 15.5671875-18.3332829 0-10.24971804-8.2603389-18.5587426-18.45-18.5587426z" fill="#898989" fill-rule="evenodd" mask="url(#a)" transform="translate(.002162 .00145)"/></svg>'
+        },
+        {
+            name: 'Twitter',
+            baseUrl: 'https://twitter.com/intent/tweet?via=industrialsays&text='+shareTitle+'&url=',
+            icon : '<div style="background: #898989;border-radius: 100%;height: 38px;padding:5px;"><svg viewBox="0 0 24 24" aria-hidden="true" height="28"><g><path fill="#ffffff" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></g></svg></div>'
+        },
+        {
+            name: 'Linkedin',
+            baseUrl: 'https://www.linkedin.com/shareArticle/?mini=true&url=',
+            icon : '<svg height="38" viewBox="0 0 38 38" width="38" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><circle cx="18.63" cy="18.63" fill="#898989" r="18.63"/><path d="m26.2336083 25.2102902v-5.3706023c0-2.8918628-1.5147852-4.2230378-3.5804016-4.2230378-1.652493 0-2.3869343.9180517-2.8000576 1.5606879v-1.331175h-3.1213757c.0459025.8721491 0 9.3641272 0 9.3641272h3.1213757v-5.2328946c0-.2754155 0-.550831.0918051-.7803439.229513-.550831.7344414-1.1475646 1.6065906-1.1475646 1.1475645 0 1.5606878.8721491 1.5606878 2.1115189v5.0033816h3.1213757zm-12.7609184-10.6493995c1.101662 0 1.7442982-.7344414 1.7442982-1.6065905 0-.9180517-.6885388-1.6065904-1.7442982-1.6065904-1.0557595 0-1.7442982.6885387-1.7442982 1.6065904s.6426362 1.6065905 1.7442982 1.6065905zm1.5606879 10.6493995v-9.3641272h-3.1213758v9.3641272zm-3.4233778-17.1102902h14.04c1.9385194 0 3.51 1.57148053 3.51 3.51v14.04c0 1.9385194-1.5714806 3.51-3.51 3.51h-14.04c-1.93851947 0-3.51-1.5714806-3.51-3.51v-14.04c0-1.93851947 1.57148053-3.51 3.51-3.51z" fill="#fff" fill-rule="nonzero"/></g></svg>'
+        },
+        {
+            name: 'Email',
+            baseUrl: 'mailto:?&subject=From+industrialstregthmarketing.com:+'+shareTitle+'&body='+emailBody,
+            icon : '<svg height="38" viewBox="0 0 38 38" width="38" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><circle cx="18.82" cy="18.63" fill="#898989" r="18.63"/><g stroke="#fff" stroke-width="1.8" transform="translate(8.29 12.327188)"><path d="m0 0h21.06v12.15h-21.06z"/><path d="m0 0 10.53 6.48 10.53-6.48"/></g></g></svg>'
+        }
+    
+    ]  -%}
+<div>
+<div class="subhead">Share this post</div>
+<div class="flex justify-between" style="max-width: 200px;">
+    {%- for s in socialShareProviders -%}
+    {%- set url = siteConfig.siteUrl + '/' + path -%}
+        <a href="{{s.baseUrl}}{{url}}" 
+        {%- if s.name != 'Email'  -%}
+            data-social="{{s.name}}"
+        {%- else -%}
+        target="_blank" 
+        {%- endif -%}
+        rel="noopener">{{s.icon}}</a>
+        {%- endfor -%}
+    </div>
+</div>
+<script>
+var shareLinks = Array.from(document.querySelectorAll('[data-social="Twitter"],[data-social="Facebook"],[data-social="Linkedin"]'));
+var windowFeatures = "menubar=no,location=yes,resizable=yes,scrollbars=yes,status=yes,width=600,height=700";
+    
+shareLinks.forEach(function(el){
+    el.addEventListener('click',function(e){
+        e.preventDefault();
+        window.open(el.href, "ind_social_share", windowFeatures);  
+        return false;
+    });
+});
+</script>
+
+

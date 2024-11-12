@@ -1,0 +1,24 @@
+{% if jumbotron %}
+<div id="hero" {% if jumbotron.video %} data-vid="{{ jumbotron.video }}" {% endif %}  class="{{jumbotronCssClass}}">
+    <div class="container-fluid" id="hero-container">
+        <div class="jumbo-content">
+            {% if jumbotron.subhead or jumbotron_subhead%}
+            <div class="subhead {{jumbotron.subhead_type}}">{{ jumbotron.subhead }}{{jumbotron_subhead}}</div>
+            {% endif %}
+            <h1 {{'class="long"' if (jumbotron.headline.length and jumbotron.headline.length > 72)}}>{{ jumbotron.headline }}</h1>
+            <div class="jumbo-tagline"><p>{{ jumbotron.tagline }}</p></div>
+            {% if jumbotron.ctaUrl %}
+            <a href="{{jumbotron.ctaUrl}}" class="btn {{ jumbotron.ctaCssClass if jumbotron.ctaCssClass else "btn-default" }}" data-ga-event="Button" data-ga-action="Click">{{jumbotron.ctaText}}</a>
+            {% endif %}
+        </div>
+        {% if home %}
+            <a href="#start" class="down-arrow"></a>
+        {% endif %}
+    </div>
+    {% if jumbotron.img and layout != 'blog-post.njk' %}
+        {{ jumbotron.img | responsiveImage({cssClass:'hero-bg', alt: jumbotron.img_alt | e | default("")})}}
+    {% else %}
+        <img src="{{jumbotron.img}}"  class="hero-bg" alt="{{(jumbotron.img_alt | default("")) | e}}"/>
+    {% endif %}
+</div>
+{% endif %}

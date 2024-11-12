@@ -1,0 +1,58 @@
+{% extends "layout.njk" %}
+{% block body %}
+<div class="container" id="content">
+    <div id="inner-content" class="row">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                    <h2 class="page-title">{{title}}</h2>
+                    <span class="hidden-xs"><br><br></span>
+                    <div class="text-md resources-overview mb60">
+                        {{ contents | safe }}
+                    </div>
+                    <span class="hidden-xs"><br><br></span>
+            </div>
+            <div class="col-sm-12">
+                <div class="stat-filters">
+                    <div class="stat-search">
+                        <input type="text" class="form-control" id="stat-search" placeholder="search by keyword or topic">
+                    </div>
+                    <div class="stat-category-drodown-container">
+                        <div class="dropdown">
+                            <button class="btn btn-block case-study-trigger dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true">
+                                <span class="btn-label">Show All</span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" id="category-dropdown">
+                                <li><a class="category" data-key="0">Show All</a></li>
+                                <li><a class="category" data-key="7">Advertising</a></li>
+                                <li><a class="category" data-key="10">Analytics</a></li>
+                                <li><a class="category" data-key="9">Budgeting</a></li>
+                                <li><a class="category" data-key="5">Content Marketing</a></li>
+                                <li><a class="category" data-key="6">Email</a></li>
+                                <li><a class="category" data-key="11">Marketing Automation</a></li>
+                                <li><a class="category" data-key="4">SEO</a></li>
+                                <li><a class="category" data-key="8">Social Media</a></li>
+                                <li><a class="category" data-key="1">Uncategorized</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="main" class="col-sm-12 text-center" role="main">
+            <div class="search-message">
+                <span class="icon-x"></span>Whoops! Perhaps you can try a broader search. &nbsp;
+                <br class="visible-xs"><button type="button" name="button" id="stats-reset-filter" class="btn btn-default">Reset All Filters</button>
+            </div>
+            <div id="stats-loading"></div>
+            <div id="stats-container"></div>
+                     
+        </div>
+        <br>
+        <br>
+    </div>
+</div>
+</div>
+<?php get_footer(); ?>
+
+{% endblock %}

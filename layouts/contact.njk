@@ -1,0 +1,38 @@
+{% extends "layout.njk" %}
+{% block body %}
+<div class="container-fluid padding-top">
+    <div class="row">
+        <div class="col-sm-6  col-md-5 col-md-offset-1 leadin">
+            <h1>{{ title }}</h1>
+            <p>{{ description }}</p>
+            <strong class="accent">{{ contact_number }}</strong>
+        </div>
+        <div class="col-sm-6  col-md-5 col-md-offset-1 form-col">
+            <div class="form-container">
+                    <div class="form-intro upper">Contact Us</div>
+                <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+                <script>
+                    hbspt.forms.create({
+                        portalId: "480219",
+                        formId: "47262761-934c-41f6-a884-ff2991e734ca",
+                        css: ""
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <br><br>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-1"><br>
+            <span class="contact-areas">{{contact_detail.title}}</span><br>
+            <p>{{ contact_detail.description }}</p>
+        </div>
+        <div class="col-md-7 text-center">
+            {% if contact_detail.image %}
+                <img src="{{ contact_detail.image }}" alt="Contact Image" class="img-responsive pull-right">
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

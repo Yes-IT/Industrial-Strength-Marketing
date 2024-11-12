@@ -1,0 +1,55 @@
+{%- set seo = { noindex: true } -%}
+{% extends "layout.njk" %}
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 {{ path | cssClassify}} main-copy">
+            {{ contents | safe }}
+            <p>
+                If your download does not start automtically, <a href="{{file_download}}" download target="_blank">click here</a>
+        <div class="col-sm-8 col-sm-offset-2 {{ path | cssClassify}} main-copy text-center">
+            <div class="leadin">{{ contents | safe }}</div>
+            <p id="dl-message" style="display: none;"></p>
+            <p>
+                <a href="{{file_download}}" class="btn btn-accent" target="_blank">{{download_label}}</a>
+            </p>
+        </div>
+    </div>
+</div>
+<script>
+    setTimeout(function () { window.open('{{file_download}}'); }, 3000);
+{%- if file_download.indexOf('.pdf') === -1 -%}
+<iframe width="1" height="1" frameborder="0" src="{{file_download}}"></iframe>
+{%- else -%}
+<script>
+    var seconds = 5;
+    var element = document.getElementById('dl-message');
+    var interval = setInterval(function () {
+        element.style.display = "block";
+        element.innerText = "Your download will start shortly... " + seconds;
+        seconds--;
+        if (seconds <= 0) {
+            clearInterval(interval);
+            element.style.display = "none";
+            document.location = '{{file_download}}';
+        }
+    }, 1000);
+</script>
+{%- endif -%}
+<script>
+var score = getParameterByName('score');
+if (score){
+    var headline = document.querySelector('#hero h1');
+    headline.innerText = "You scored " + score + "/5!";
+}
+function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+</script>
+{% endblock %}

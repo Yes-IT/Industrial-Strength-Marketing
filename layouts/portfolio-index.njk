@@ -1,0 +1,27 @@
+{% extends "layout.njk" %}
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="leadin">{{ contents | safe }}</div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="cards-container">
+                {% for item in portfolio %}
+                <div>
+                    {% set lp = item.lps[0] %}
+                    <a href="/{{item.path}}">
+                        {{item.title}}
+                        <img src="{{ lp.img }}"/>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

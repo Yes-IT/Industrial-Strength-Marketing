@@ -1,0 +1,32 @@
+<div class="podcast-embed">
+    {{ podcast_embed | transformSoundcloudEmbed}}
+    <script src="https://w.soundcloud.com/player/api.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        (function(){
+          var widgetIframe = document.getElementById('podcast-embed'),
+              widget       = SC.Widget(widgetIframe);
+      
+          widget.bind(SC.Widget.Events.READY, function() {
+            widget.bind(SC.Widget.Events.PLAY, function(e) {
+                window.dataLayer.push({
+                    'event': 'gaEvent',
+                    'category': 'Soundcloud Player',
+                    'action': 'Play',
+                    'label': '{{title}}'
+                });
+                widget.unbind(SC.Widget.Events.PLAY);
+            });
+            widget.bind(SC.Widget.Events.FINISH, function(e) {
+                window.dataLayer.push({
+                    'event': 'gaEvent',
+                    'category': 'Soundcloud Player',
+                    'action': 'Finish',
+                    'label': '{{title}}'
+                });
+                widget.unbind(SC.Widget.Events.FINISH);
+            });
+          });
+      
+        }());
+      </script>
+</div>

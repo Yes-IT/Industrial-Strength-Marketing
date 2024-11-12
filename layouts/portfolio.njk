@@ -1,0 +1,40 @@
+{% extends "layout.njk" %}
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <h2>{{title}}</h2>
+            <div class="leadin">{{ contents | safe }}</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Media</h3>
+            {% for i in media%}
+            <a href="{{i.img}}">{{i.title}}<br>
+            <img src="{{i.img}}" width="120"/>
+            </a>
+            {% endfor%}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Pages</h3>
+            {% for i in lps%}
+            {{i.title}}<br>
+            <a href="{{i.url}}"><img src="{{i.img}}" width="200"/></a>
+            {% endfor%}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Email</h3>
+            {% for i in email%}
+            <a href="{{i.img}}">{{i.title}}<br>
+            <img src="{{i.img}}" width="120"/>
+            </a>
+            {% endfor%}
+        </div>
+    </div>
+</div>
+{% endblock %}

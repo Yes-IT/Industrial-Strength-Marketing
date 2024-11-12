@@ -1,0 +1,36 @@
+{% set landing_page = true %}
+{% extends "landing-page-layout.njk" %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-7 col-lg-6 lp-content">
+            <h1 class="free-consult-title">
+                {{ heading | safe }}
+                <br><span class="accent">{{ subheading | safe }}</span>
+            </h1>
+            <p>{{ introduction | safe }}</p>
+            <h3>OUR EXPERTS CAN HELP YOU</h3>
+            <ul>
+                {% for item in list_items %}
+                    <li>{{ item.item | safe }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="col-md-5 col-lg-4 col-lg-offset-2 form-col">
+            <div id="form" class="form-container">
+                {% if hubspot_form_intro %}
+                    <div class="form-intro">{{ hubspot_form_intro | safe }}</div>
+                {% endif %}
+                {{ hubspot_form | safe }}
+                {% if not hide_email_note %}
+                <div class="small form-info-msg">
+                    After submitting the form, you will also receive occasional surveys, event invitations, or special offers from INDUSTRIAL and our partners via email. We will not sell or distribute your email address to any third party at any time. View our <a href="/privacy-policy" class="underline">Privacy Policy</a>.
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

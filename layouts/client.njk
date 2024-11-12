@@ -1,0 +1,54 @@
+{% extends "layout.njk" %}
+{% block body %}
+<div class="client-type">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 copy">
+                <h2>{{ intro_title if intro_title else title }}</h2>
+                <div class="leadin">{{ contents | safe }}</div>
+                <div class="text-center"><a href="/free-consultation/" class="btn btn-default">Get a Free Consultation</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="third-grid clients-info-grid">
+            {% for item in sections %}
+            <div class="info client-info">
+                <div class="img-container">
+                    <img class="icon icon-client" src="{{item.img}}" alt="icon">
+                </div>
+                <h4 class="content-title">{{item.title}}</h4>
+                <div class="client-info--copy">
+                    {{item.content | md}}
+                </div> 
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- related case study 
+        <div class="container-fluid">
+        {%set caseStudy = relatedCaseStudy | findByField('title', work) %}
+        <div class="row case-study">
+            <div class="col-sm-7 col-sm-push-5">
+                <div class="img-container"><a href="/{{caseStudy.path}}"><img src="{{ caseStudy.overviewimg}}" width="736" class="img-responsive img-case-study-overview" alt="{{ caseStudy.title}}"></a></div>
+            </div>
+            <div class="col-sm-5 col-sm-pull-7">
+                <h3 class="case-study-overview-title"><a href="/{{caseStudy.path}}">{{ caseStudy.title}}</a></h3>
+                <p class="case-study-summary">{{ caseStudy.summary}}</p>
+                <a href="/{{caseStudy.path}}" class="link-learn-more case-study-more-link">Read Case Study</a>
+            </div>
+        </div>
+    </div> -->
+</div>
+<br><br>
+<div class="container-fluid next-block-small">
+        {% if next %}
+        {% set nextItem = next %}
+        {% else %}
+        {% set nextItem = client[0] %}
+        {% endif %}
+        {% set nextSubTitle = 'Area' %}
+        {% set titleKey = 'nav_title' %}
+        {% include "partials/next-block.njk" %}
+        </div>
+{% endblock %}

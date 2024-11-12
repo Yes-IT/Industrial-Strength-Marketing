@@ -1,0 +1,219 @@
+{% extends "layout.njk" %}
+{# {%- set headExtra = '<link rel="stylesheet" href="/css/glide.core.min.css"><link rel="stylesheet" href="/css/glide.theme.min.css">' -%} #}
+{% set headExtra %}
+<style>
+{% include 'partials/css/glide.core.min.css' %}
+{% include 'partials/css/glide.theme.min.css' %}
+</style>  
+{% endset %}
+
+{% block jumbotron %}
+    <div id="hero" >
+        <div class="container-fluid">
+            <div class="jumbo-content">
+                <h1>
+                    <div class="subhead">Marketers Since 2003</div>Born <br>Industrial <br>
+                    <span class="accent">Raised <br>Digital</span></h1>
+                <div class="jumbo-tagline"></div>
+                <a href="/free-consultation/" class="btn btn-secondary" data-ga-event="Button" data-ga-action="Click">Talk to an Expert</a>
+            </div>
+            <a href="#start" class="down-arrow"></a>
+        </div>
+        {{ "/img/heros/home-hero.webp" | responsiveImage({cssClass:'hero-bg'})}}
+    </div>
+{% endblock %}
+{# {% block jumbotron %}
+     <a href="/free-consultation/">
+     <video id="hero-vid" preload="none" width="100%" height="100%" playsinline  muted autoplay style="background-color: #212121;">
+         <source src="https://res.cloudinary.com/industrial/video/upload/v1665666350/ind/video-heros/industrial-marketing-agency.mp4">
+         <h1>Industrial Marketing Agency</h1>
+     </video>
+     </a>
+     <script>
+     document.addEventListener('DOMContentLoaded', (e) => {
+        let v = document.getElementById('hero-vid');
+         v.play();
+         v.addEventListener('ended', function () {
+             setTimeout(function (){v.play()}, 5000);
+         },false);
+     });
+     </script>
+ {% endblock %} #}
+
+{% block body %}
+    <a name="start"></a>
+    <div class="bg-light pillar-section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-sm-offset-2">
+                <a href="https://ism.industrialstrengthmarketing.com/en-us/industrial-trade-show-marketing-playbook" target="_new"><img src="/img/Industrial_Trade_Show_Playbook_268.png" alt="INDUSTRIAL Tradeshow Marketing Playbook" class="img-responsive"></a>
+            </div>
+            <div class="col-sm-5 ">
+                    <div class="subhead">New From Industrial</div>
+                    <h2>The Industrial Trade Show Marketing Playbook</h2>
+                    <p>Get more trade show value before, during, and after your next manufacturing live event.</p>
+                    <a href="https://ism.industrialstrengthmarketing.com/en-us/industrial-trade-show-marketing-playbook" target="_new" class="btn btn-default">Download the Playbook</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="section">
+        <div class="container-fluid">
+            <div class="text-center-sm">
+                <div class="subhead">Who We Are</div>
+                <h2>Unapologetically Industrial.</h2>
+                <p class="">
+                We are a full-service marketing agency that brands, modernizes and <br class="hidden-xs">grows companies in the following industrial sectors:
+            </p>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="cards-container">
+            {% for client in clients %}
+                <div class="card">
+                    <a href="{{client.url}}">
+                         {{ client.img | responsiveImage({alt: "client type picture", width:408, height:418, cssClass:"img-full"})}}
+                    </a>
+                    <div class="card-content-container">
+                        <strong class="card-title">{{client.title}}</strong>
+                        <p class="card-copy">{{client.content}}</p>
+                        <a href="{{client.url}}" class="link-learn-more" aria-label="more about {{client.title}}" title="more about {{client.title}}">See More</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="section">
+        <div class="">
+            <div class="text-center">
+                <div class="subhead">What we provide</div>
+                <h2>Featured Services</h2>
+            </div>
+            <div class="services">
+                {% for service in services %}
+                    <div class="service">
+                        <a href="{{service.url}}">
+                            <div class="img-container">
+                                <img class="icon" src="{{service.icon}}" width="64" height="64" loading="lazy" alt="{{service.title}}">
+                            </div>
+                        </a>
+                        <div class="service-content">
+                            <strong class="upper content-title">
+                                <a href="{{service.url}}">{{service.title}}</a>
+                            </strong>
+                            <p>{{service.content}}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="text-center"><br><br>
+                <a href="/services/" class="btn btn-secondary" aria-label="See All Marketing Services" title="See All Marketing Services">See More</a>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="container-fluid">
+            <div class="carousel-container">
+                {# <div id="carousel" class="carousel carousel-home slide" data-ride="carousel" data-interval="10000" >
+                    <div class="carousel-inner">
+                        {% for item in featured_case_study %}
+                            <div class="item {{'active' if loop.first}}">
+                                <div class="home-carousel-item">
+                                    <div class="home-carousel-text">
+                                        <strong class="caption-title">Featured Project</strong>
+                                        <h3>{{ item.title}}</h3>
+                                        <p class="summary">{{ item.summary}}</p>
+                                        <a href="/{{item.path}}/" class="btn btn-secondary" aria-label="case study about {{item.tilte}}">Read Case Study</a>
+                                    </div>
+                                    <div class="home-carousel-img-container">
+                                        <a href="/{{item.path}}/">
+                                            <picture>
+                                                <source type="image/webp" srcset="{{item.overviewimg | replace('.jpg','.webp') | replace('/img/case-studies/','/img/resized/case-studies/')}}">
+                                                <img src="{{item.overviewimg }}" loading="lazy" width="629" height="379" class="img-responsive center" alt="{{ item.title}}"/>
+                                            </picture>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="carousel-controls">
+                        <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
+                            <span class="sr-only">Previous</span></a>
+                        <ol class="carousel-indicators">
+                            {% for item in featured_case_study %}
+                                <li data-target="#carousel" data-slide-to="{{loop.index}}" class="{{'active' if loop.first}}"></li>
+                            {% endfor %}
+                        </ol>
+                        <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
+                            <span class="sr-only">Next</span></a>
+                    </div>
+                </div> #}
+                <div id="carousel" class="glide carousel-home">
+                    <div class="glide__track" data-glide-el="track">
+                        <ul class="glide__slides">
+                            {% for item in featured_case_study %}
+                                <li class="glide__slide item {{'active' if loop.first}}">
+                                    <div class="home-carousel-item">
+                                        <div class="home-carousel-text">
+                                            <strong class="caption-title">Featured Project</strong>
+                                            <h3>{{ item.title}}</h3>
+                                            <p class="summary">{{ item.summary}}</p>
+                                            <a href="/{{item.path}}/" class="btn btn-secondary" aria-label="case study about {{item.tilte}}">Read Case Study</a>
+                                        </div>
+                                        <div class="home-carousel-img-container">
+                                            <a href="/{{item.path}}/">
+                                                <picture>
+                                                    <source type="image/webp" srcset="{{item.overviewimg | replace('.jpg','.webp') | replace('/img/case-studies/','/img/resized/case-studies/')}}">
+                                                    <img src="{{item.overviewimg }}" loading="lazy" width="629" height="379" class="img-responsive center" alt="{{ item.overviewimg_alt | e | default("")}}"/>
+                                                </picture>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <div class="carousel-controls">
+
+                        <div class="glide__arrows" data-glide-el="controls">
+                            <button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
+                            <button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
+                        </div>
+                        <div class="glide__bullets" data-glide-el="controls[nav]">
+                            {% for item in featured_case_study %}
+                                <button class="glide__bullet" data-glide-dir="={{loop.index0}}"></button>
+                            {% endfor %}
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="container-fluid">
+            <div class="text-center-sm">
+                <div class="subhead">How We Work</div>
+                <h2>Needs Based Marketing</h2>
+                <p>Three ways we engage based on your marketing needs:</p><br>
+            </div>
+            <div class="ways-to-engage">
+                {% for item in ways_to_engage %}
+                    <div class="wte-num wte-num-{{loop.index}}">{{loop.index}}</div>
+                    <div class="wte">
+                        <img src="{{item.img}}" width="64" height="64" loading="lazy" alt="icon item.title">
+                        <br>
+                        <strong class="content-title">{{ item.title}}</strong>
+                        <p>{{ item.content}}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <script>
+        window.addEventListener('load',(e) => {
+            new Glide('.glide').mount();
+        })
+    </script>
+{% endblock %}

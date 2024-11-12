@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+    <channel>
+        <title>INDUSTRIAL marketing insights</title>
+        <link>{{ siteConfig.siteUrl }}</link>
+        <description></description>
+        <lastBuildDate>Fri, 03 Jun 2022 14:13:40 +0000</lastBuildDate>
+        <language>en-US</language>
+        {%- block body -%}
+            {%- for article in insights -%}
+                {% if article.short_description %}
+                    <item>
+                        <title><![CDATA[{{ article.title }}]]></title>
+                        <link>{{ siteConfig.siteUrl }}/{{ article.path }}/</link>
+                        <guid isPermaLink="false">{{ siteConfig.siteUrl }}/{{ article.path }}</guid>
+                        <description>
+                            <![CDATA[
+                            {{ article.short_description }}
+                            ]]>
+                        </description>
+                    </item>
+                {% endif %}
+            {%- endfor -%}
+        {%- endblock -%}
+    </channel>
+</rss>

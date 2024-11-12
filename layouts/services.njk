@@ -1,0 +1,47 @@
+{% extends "layout.njk" %} {% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 service-intro">
+            {{ contents | safe }}
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="service-grid">
+                <h2 class="wwd-title ">What We Do</h2>
+                {% for item in services_overview %}
+                <a href="{{item.url}}" class="service-grid-item-img-container">
+                    <img src="{{item.img}}" alt="{{item.title}}">
+                </a>
+                <div class="service-grid-item-copy">
+                    <div class="content-title"><a href="{{item.url}}">{{item.title}}</a></div>
+                    {{item.copy}}
+                    <br><br>
+                    <a href="{{item.url}}" class="link-learn-more">See More</a>
+                </div>
+                {% endfor %}
+            </div>
+            <br><br>
+            <div class="text-center">
+                <blockquote>Profit will be the reward we share for manufacturing a satisfied customer.</blockquote>
+                <div class="quote-author">- James E. Soto</div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <hr>
+                    <p class="leadin">
+                        We apply our services across three client engagement types: a custom agency of record relationship, one-off project basis, or structured monthly marketing package – for small and medium-sized manufacturers – called <a href="/services/communicator/">Communicator</a>.
+                        <br>
+                        <a href="/contact" class="btn btn-default">Get In Touch</a>
+                    </p>
+                    
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

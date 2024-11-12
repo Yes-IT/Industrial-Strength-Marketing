@@ -1,0 +1,76 @@
+{% if pagination %}
+    {% set postsCollection = pagination.files %}
+    {%- if pagination.num > 1 -%}
+        {% set headerCssClass = 'headroom--not-top' %}
+    {%- endif -%}
+{% endif %}
+{% if path == 'insights/videos' %}
+    {%- set jumbotron =  {headline: 'Video',tagline: 'We’ve created a collection of videos to help you stand up what makes you stand out. Let’s dive in.', img: '/img/heros/video-hero.jpg'} -%}
+{% endif %}
+{% if path == 'insights/podcast' %}
+    {%- set jumbotron =  {headline: 'INDUSTRIAL STRENGTH <span>MARKETING</span>',tagline: 'Be a Better Marketer of Your Industrial Products and Services. ', img: '/img/podcasts-jumbotron.jpg'}  -%}
+{% endif %}
+{% if path.indexOf('insights/articles') != -1 %}{% endif %}
+{% if path.indexOf('podcast') != -1 %}
+    {%- set podcastPage = true  -%}
+    {% set jumbotronCssClass = 'podcast-hero' %}
+{% endif %}
+{% import "partials/macros.njk" as helpers %}
+{%- extends "layout.njk" %}
+{%- block body -%}
+{%- if path == 'insights/articles' -%}
+    <div class="recent-insight">
+        {%- set latestInsight =  postsCollection.shift() -%}
+        {%- if latestInsight.jumbotron.img -%}
+            <img src="{{latestInsight.jumbotron.img}}" alt="{{(latestInsight.jumbotron.img_alt | default(""))|e}}" class="recent-insight-img" />
+        {%- endif -%}
+        <div class="container-fluid">
+            <div class="content">
+                <div class="blog-type">{{latestInsight.collection | getInsightType}}</div>
+                <h1>
+                    <a href="/{{latestInsight.path}}">{{latestInsight.title}}</a>
+                </h1>
+                <p>{{latestInsight.short_description}}</p>
+                <a href="/{{latestInsight.path}}" class="btn arrowed light">{{ latestInsight.collection | getInsightType | getLinkLabel}}</a>
+            </div>
+        </div>
+    </div>
+{% endif %}
+    <div class="container-fluid {{ 'blog-container' if pagination.num > 1}}">
+        <div class="row">
+            <div class="col-md-8 {{ path | cssClassify}} main-copy">
+                {%- if podcastPage -%}
+                    {% include "partials/blog/podcast-intro.njk" %}
+                    <h2>PODCAST EPISODES</h2><br><br>
+                {%- endif -%}
+                {% if postsCollection %}
+                    {%- for post in postsCollection -%}
+                        {%- set type = post.collection | getInsightType -%}
+                        {%- set subhead = type -%}
+                        {%- if type == 'podcast' -%}
+                            {%- set subhead = post.episode or type -%}
+                        {%- endif -%}
+                        <div class="row blog-post  post-{{loop.index}} post-{{type}}">
+                            <div class="col-sm-5">{% include "partials/blog/blog-img.njk" %}</div>
+                            <div class="col-sm-7">
+                                <article class=" post-{{loop.index}}">
+                                    <div class="blog-type {{post.post_type}}-type">{{ subhead }}</div>
+                                    <h4 class="blog-listing-title">
+                                        <a href="/{{ post.path }}" class="blog-title-link">{{ post.title }}</a>
+                                    </h4>
+                                    {%- if post.post_type == 'article' or post.post_type == 'fun-fact' -%}
+                                        {{helpers.readTime(post.contents)}}
+                                    {%- endif -%}
+                                    <p class="blog-copy">{{post.short_description }}</p>
+                                    <a href="/{{post.path}}" class="link-learn-more">{{ post.collection | getInsightType | getLinkLabel}}</a>
+                                </article>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    {% include "partials/pagination.njk" %}
+                {% endif %}
+            </div>
+            {% include "partials/blog/blog-sidebar.njk" %}
+        </div>
+    </div>
+{% endblock %}

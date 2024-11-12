@@ -1,0 +1,47 @@
+{%- set navData =  navs.primary -%}
+<nav class="main-nav">
+    <ul>
+        {% for item in navData %}
+
+            <li class="top-level" {{"dropdown" if item.children else ""}}>
+                <a href="{{ item.file.nav_link  if item.file.nav_link  else "/" + item.file.path }}/" class="nav-link {{ 'current' if path == item.path}}">{{item.file.title}}</a>
+                {%- if item.file.title == 'Insights' -%}
+                    <span class="arrow"></span>
+                    <ul class="sub-menu">
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+                            <a href="/insights/podcast/" class="child submenu-link">Podcast</a>
+                        </li>
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+                            <a href="/insights/articles/" class="child submenu-link">Articles</a>
+                        </li>
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+                            <a href="/insights/videos/" class="child submenu-link">Videos</a>
+                        </li>
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+                            <a href="/insights/resources/" class="child submenu-link">Resources</a>
+                        </li>
+                    </ul>
+                {%- endif -%}
+                {% if item.children.length %}
+                    <span class="arrow"></span>
+                    <ul class="sub-menu">
+                        {% for child in item.children %}
+                            <li class="menu-item menu-item-type-post_type menu-item-object-page">
+                                <a href="/{{child.file.path}}/" class="child submenu-link">{{ child.file | navLabel}}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </li>
+        {% endfor %}
+        <li class="top-level">
+            <a href="/contact/"  class="nav-link">Contact Us</a>
+        </li>
+    </ul>
+    <a href="/free-consultation/" class="btn btn-default no-arrow nav-cta" data-ga-event="Button" data-ga-action="Click"  data-ga-label="Request a Consult - Nav"> Request A Consult</a>
+</nav>
+<script>
+ document.getElementById("nav-toggle").addEventListener("click", (e) => {
+            document.body.classList.toggle("nav-active");
+        });
+</script>

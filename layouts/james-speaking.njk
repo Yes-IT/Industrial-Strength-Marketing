@@ -1,0 +1,213 @@
+{% extends "layout.njk" %} {% block body %}
+<style type="text/css">
+    .sidebar-item {
+        margin-bottom: 50px;
+    }
+    .sidebar-item:nth-child(1) {
+        margin-top:30px;
+    }
+
+    .sidebar-icon {
+        margin-bottom: 16px;
+        margin-top: 16px;
+    }
+
+    .topics {
+        text-align: center;
+        
+    }
+
+    .topic {
+        display: inline-block;
+        padding:  24px;
+        width: 100%;
+        text-align: center;
+        vertical-align: top;
+        font-size:15px;
+        /* min-height: 260px; */
+    }
+    .topic strong{
+        font-size:16px;
+    }
+    .topic:nth-child(odd){
+        background: #fbf5e9;
+    }
+
+    .sample-media {
+        background-color: #252525;
+        color: #fff;
+        padding-bottom:72px;
+    }
+    .sample-media img{
+        /* margin-bottom:32px; */
+    }
+
+    .sample-media * {
+        color: #fff;
+    }
+    .examples-logos{
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+        grid-column-gap: 16px;
+        grid-row-gap: 24px;
+      
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .examples-logos img{
+        /* margin:8px 16px; */
+        width: auto;
+        max-height: 80px;
+        height: auto;
+        max-width: 100%;
+        display: block;
+        margin:auto;
+    }
+    h3{
+        margin-top:48px;
+    }
+    h2{
+        padding:42px 0;
+    }
+    h2.first{
+        padding-top:0;
+    }
+    #hero{
+        background-position: 62% 100%;
+    }
+    #hero .btn{
+        margin:20px 0;
+    }
+    .jumbo-content{
+        text-shadow: 1px 3px 3px rgba(0,0,0,.5);
+    }
+    @media screen and (min-width:768px){
+        .topic {
+            padding:  24px;
+            width: 40%;
+        }
+        h3{
+            margin-top:0;
+        }
+    }
+    @media screen and (min-width:1024px){
+        #hero{
+            background-position: 50% 100%;
+        }
+        h2{
+            padding:72px 0;
+        }
+        .topic {
+            padding:  50px;
+            width: 30%;
+        }
+        .examples-logos{
+            grid-template-columns: repeat(6, 1fr);
+            max-width: 1150px;
+            margin: auto;
+        }
+    }
+
+</style>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-1">
+            <h2 class="first">Why James</h2>
+            <p>James Soto is rising in the ranks of top keynote speakers at industrial-focused marketing, trade and technology events in North America. He actively keynotes conferences, summits, national network and corporate events and is also available to speak to teams and leaders.</p>
+            <p>A fun and engaging speaker, James covers an extensive portfolio of topics from business leadership and digital transformation to disruptive technologies, B2B content and social media trends, and the evolution of industrial buyers across the supply chain. James does not believe in canned speeches or sales pitches in educational wrappers. He tailors each topic to the level necessary to inform and inspire every audience.</p>
+            <p>As Founder and CEO of INDUSTRIAL, a fast-growing, Inc. 5000 industrial marketing and innovation agency, James dives into how generational, market force, technology, and culture affects specific industries. He helps attendees discover what’s most important now, providing tangible impact and value throughout. His fun and inspirational approach leaves audiences feeling better off than he found them and well-informed.</p>
+            <p>If you’d like to work with him, please email James or call him at 615-400-0778.</p>
+            <br><a href="mailto:james@weareindustrial.com?subject=Speaking+Inquiry" class="btn btn-primary" data-ga-event="CTA" data-ga-action="Click" data-ga-label="get in touch with james" target="_blnak">Get in touch with James</a>
+        </div>
+        <div class="col-sm-4 col-sm-offset-1 sidebar">
+            <h3>JAMES' APPROACH TO PRESENTATIONS ARE DESIGNED TO SERVE 3 FUNCTIONS:</h3><br>
+            <div class="sidebar-item">
+                <img src="/img/icon-awareness.svg" width="40" alt="" class="sidebar-icon" /><br>
+                <strong>AWARENESS</strong><br>
+                Help industrial stakeholders see the opportunities, validating why they are important, what they need to start doing right now.
+            </div>
+            <div class="sidebar-item">
+                <img src="/img/icon-question.svg" width="40" alt="" class="sidebar-icon" /><br>
+                <strong>QUESTIONING THE STATUS QUO</strong><br>
+                Set the stage for action by challenging audiences to make their way of thinking, doing business and living obsolete.
+            </div>
+            <div class="sidebar-item">
+                <img src="/img/icon-vertical-align.svg" width="40" alt="" class="sidebar-icon" /><br>
+                <strong>ALIGNMENT</strong><br>
+                Bring people, companies and communities closer to reimagined visions and purpose.
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <h2>James Speaking Topics</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="topics">
+            {% for topic in topics %}
+            <div class="topic">
+                <strong>{{topic.title}}</strong><br>
+                {{topic.copy}}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<br><br>
+<br><br>
+<div class="sample-media">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                    <h2>Sample Media</h2>
+            </div>
+            <div class="col-sm-6">
+                <div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="https://player.vimeo.com/video/161783669" width="100%" height="281" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe></div>
+            </div>
+            <div class="col-sm-6">
+                <div class="as-seen">
+                    <h3>AS SEEN AND WRITTEN IN:</h3><br>
+                    <div class="row">
+                        <div class="col-sm-6 col-xs-6 as-seen">
+                            <img src="/img/james-speaking/mashable.png" alt="" width="165" class="img-responsive"><br>
+                            <img src="/img/james-speaking/the-fabricator.png" width="165" alt="" class="img-responsive"><br>
+                            <img src="/img/james-speaking/indmktr.png" alt="" width="165" class="img-responsive"><br>
+                        </div>
+                        <div class="col-sm-6 col-xs-6 as-seen">
+                            <img src="/img/james-speaking/adweek.png" alt="" width="120" class="img-responsive"><br>
+                            <img src="/img/james-speaking/foundry.png" alt="" width="165" class="img-responsive"><br>
+                            <img src="/img/james-speaking/plastics-technology.png" alt=""  width="165" class="img-responsive"><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <h2 class="examples-title">James has given talks for:</h2>
+            <div class="examples-logos">
+                <img src="/img/james-speaking/linkedin.png" alt="">
+                <img src="/img/james-speaking/fabtech.png" alt="">
+                <img src="/img/james-speaking/ama.png" alt="">
+                <img src="/img/james-speaking/pma.png" alt="">
+                <img src="/img/james-speaking/mi.png" alt="">
+                <img src="/img/james-speaking/nist.png" alt="">
+                <img src="/img/james-speaking/ccn_logo.png" alt="">
+                <img src="/img/james-speaking/fia.jpg" alt="">
+                <img src="/img/james-speaking/header_logo.png" alt="">
+                <img src="/img/james-speaking/nashville-made.png" alt="">
+                <img src="/img/james-speaking/topshops-initial-logo.jpg" alt="">
+                <img src="/img/james-speaking/urbanland.png" alt="">
+            </div>
+            <br><br><a href="mailto:james@weareindustrial.com?subject=Speaking+Inquiry" class="btn btn-primary" data-ga-event="CTA" data-ga-action="Click" data-ga-label="get in touch with james" target="_blnak">Get in touch with James</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

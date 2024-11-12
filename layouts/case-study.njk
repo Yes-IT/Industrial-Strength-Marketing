@@ -1,0 +1,62 @@
+{% extends "layout.njk" %}
+{% set disableOuterWrap = true %}
+{% block body %}
+<div class="container-fluid case-study-container">
+    {%- if videoEmbed -%}
+        <div class="video-embed">
+            {{videoEmbed}}
+        </div>
+    {%- endif -%}
+    <div class="case-study-copy">
+        <div class="case-study-title">The Challenge</div>
+        {{challenge.copy}}
+    </div>
+    <div class="caption case-study-caption">
+        {{challenge.caption}}
+    </div>
+    <img src="{{challenge.img}}" class="img-case-study img-responsive-cs" alt="{{ challenge.img_alt | e | default("")}} challenge image" />
+    <div class="case-study-copy">
+        <div class="case-study-title">Solution</div>
+        {{solution.copy}}
+    </div>
+    <div class="caption case-study-caption">
+        {{solution.caption}}
+    </div>
+    <div class="solution-img-container {{ title | cssClassify('') }}">
+        <img src="{{solution.img}}" class="img-case-study img-solution img-responsive-cs {{ title | cssClassify('img-') }}" alt="{{ solution.img_alt | e | default("")}}" />
+    </div>
+    {% if results.copy %}
+    <div class="case-study-copy">
+        <div class="case-study-title">Results</div>
+        <div class="result-stat">{{results.stat | safe }}</div>
+        {{results.copy}}
+    </div>
+    {% endif %}
+    {% if testimonial.copy %}
+    <div class="case-study-copy">
+        <div class="testimonial">
+            <div class="testimonial-copy">{{testimonial.copy}}</div>
+            <div class="testimonial-attestant">{{testimonial.attestant}}</div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+<div class="work-with-us">
+    <div class="elements">
+        <div class="case-study-title">Work with Us</div><br>
+        We tackle all sorts of digital strategy problems for clients in the industrial sector. Get in touch with us today to talk about how we can help you.
+        <br><br><a href="/contact/" class="btn btn-default">Get In Touch</a>
+    </div>
+</div>
+
+<br><br><br><br><br>
+<div class="container-fluid">
+{% if next %}
+{% set nextItem = next %}
+{% else %}
+{% set nextItem = work[0] %}
+{% endif %}
+{% set nextSubTitle = 'Project' %}
+{% include "partials/next-block.njk" %}
+</div>
+{% endblock %}

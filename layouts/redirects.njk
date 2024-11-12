@@ -1,0 +1,3 @@
+{%- for item in redirects %}
+{{item.incoming}}  {{item.destination}} {{item.statusCode}}{{'!' if item.statusCode}}
+{%- endfor -%}

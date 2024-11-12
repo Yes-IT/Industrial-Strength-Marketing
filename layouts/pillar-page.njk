@@ -1,0 +1,310 @@
+{% extends "layout.njk" %}
+{% macro blocks(blocks) %}
+    {%- for block in blocks -%}
+        <div class="block-row {{ block.image_layout }}">
+            {%- set img = '<div class="block-img"><img src="'+ block.image+'" class="img-responsive"/></div>' -%}
+            {%- set copy = '<div class="block-copy">'+block.copy | md +'</div>' -%}
+            {{ img }}
+            {{ copy }}
+        </div>
+    {%- endfor -%}
+{% endmacro %}
+{%- set ctaCss = "pillar-page-cta btn btn-default mb-10 sm:mb-0" -%}
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3 {{ path | cssClassify }} intro text-center">
+                {{ intro.copy | md }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="stat-blocks" id="stat-blocks">
+                    {%- for item in stat_blocks -%}
+                        <div class="stat-block">
+                            <div class="stat" data-stat="{{ item.stat }}">{{ item.stat }}</div>
+                            <div class="stat-copy">{{ item.content }}</div>
+                            <div class="stat-attribution">{{ item.attribution }}</div>
+                        </div>
+                    {%- endfor -%}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="is-isnt">
+        <div class="what-grid">
+            <div class="what-it-is w-grid-item" style="background-image:url('{{ what_it_is.image }}');">
+                <svg width="78" height="78" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="none" fill-rule="evenodd">
+                        <path fill="none" d="M-130-1566h1511v12879H-130z"/>
+                        <g stroke-width="2" transform="translate(1 1)" stroke="#FFF">
+                            <path stroke-linejoin="bevel" d="M14.71 39.226l14.71 14.71 29.419-29.42"/>
+                            <circle cx="38" cy="38" r="37.999"/>
+                        </g>
+                    </g>
+                </svg>
+                <div class="w-grid-item-title">{{ what_it_is.title }}</div>
+                {{ what_it_is.copy | md }}
+            </div>
+            <div class="what-it-isnt  w-grid-item" style="background-image:url('{{ what_it_isnt.image }}');">
+                <svg width="78" height="77" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="none" fill-rule="evenodd">
+                        <path fill="none" d="M-904-1566H607v12879H-904z"/>
+                        <g stroke-width="2" stroke="#FFF">
+                            <path d="M65.868 11.954a36.974 36.974 0 0 1 0 52.886c-14.838 14.605-38.897 14.605-53.736 0a36.974 36.974 0 0 1 0-52.886c14.84-14.606 38.897-14.606 53.736 0zM12.13 11.954L65.87 64.84"/>
+                        </g>
+                    </g>
+                </svg>
+                <div class="w-grid-item-title">{{ what_it_isnt.title }}</div>
+                {{ what_it_isnt.copy | md }}
+            </div>
+        </div>
+    </div>
+    <!-- Section 1 -->
+    <div class="container-fluid pillar-section">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3 pillar-page-intro">
+                {{ section_1.intro | md }}
+                <div class="text-center">
+                    <a href="#form" class="{{ ctaCss }}">{{ section_1.cta_label }}</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-5 col-sm-offset-1">
+                <img src="{{ section_1.image }}" alt="" class="img-responsive">
+            </div>
+            <div class="col-sm-5 ">
+                <br>
+                {{ section_1.copy | md }}
+            </div>
+        </div>
+    </div>
+    <!-- Section 2 -->
+    <section class="bg-light pillar-section">
+        <div class="container-fluid text-center">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="subhead">{{ section_2.subhead }}</div>
+                    <h2>{{ section_2.headline }}</h2><br><br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="p-grid-3">
+                    {%- for block in section_2.blocks -%}
+                        <div class="grid-item">
+                            <img src="{{ block.icon }}" class="icon"/>
+                            <div class="content-title">{{ block.title }}</div>
+                            <div class="brown copy">{{ block.copy }}</div>
+                        </div>
+                    {%- endfor -%}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Section 3 -->
+    <div class="container-fluid pillar-section">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3 pillar-page-intro paddless">
+                {{ section_3.intro | md }}
+                <div class="text-center">
+                    <a href="#form" class="{{ ctaCss }}">{{ section_3.cta_label }}</a>
+                </div>
+            </div>
+        </div>
+        {{ blocks(section_3.blocks) }}
+    </div>
+    <!-- Section 4 -->
+    <section class="bg-light">
+        <div class="container-fluid pillar-section">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 pillar-page-intro">
+                    {{ section_4.intro | md }}
+                    <div class="text-center">
+                        <a href="#form" class="{{ ctaCss }}">{{ section_4.cta_label }}</a>
+                    </div>
+                </div>
+            </div>
+            {{ blocks(section_4.blocks) }}
+        </div>
+    </section>
+    <!-- Section 5 -->
+    <div class="container-fluid pillar-section">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3 pillar-page-intro">
+                {{ section_5.intro | md }}
+                <div class="text-center">
+                    <a href="#form" class="{{ ctaCss }}">{{ section_5.cta_label }}</a>
+                </div>
+            </div>
+        </div>
+        {{ blocks(section_5.blocks) }}
+    </div>
+    <!-- Section 6 -->
+    <div class="container-fluid text-center pillar-section">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 {{ path | cssClassify }} intro">
+                <div class="subhead">{{ section_6.subhead }}</div>
+                {{ section_6.intro | md }}
+                <div class="text-center">
+                    <a href="#form" class="{{ ctaCss }}">{{ section_6.cta_label }}</a>
+                </div>
+            </div>
+            <br>
+        </div>
+        <div class="ways-to-engage left">
+            {% for block in section_6.blocks %}
+                <div class="wte-num wte-num-{{ loop.index }}">{{ loop.index }}</div>
+                <div class="wte">
+                    <img src="{{ block.icon }}" alt="icon item.title">
+                    <h4 class="content-title">{{ block.title }}</h4>
+                    <p>{{ block.copy }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {# <div class="container-fluid pillar-section"> #}
+    {#    <div class="row"> #}
+    {#        <div class="col-sm-6"> #}
+    {#            <img src="{{ outro.image}}" class="img-responsive" /> #}
+    {#        </div> #}
+
+    {#    </div> #}
+    {# </div> #}
+    <div class="container-fluid pillar-section pt-0" id="form">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                {{ outro.copy | md }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <div class="form-container">
+                    <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+                    <script>
+                        hbspt.forms.create({
+                            region: "na1",
+                            portalId: "480219",
+                            formId: "197e22db-86b0-4cf8-8fb1-3c2a0eb177e6",
+                            css: "",
+                            inlineMessage: '<h3 style="color:#fff;">Thanks for reaching out!</h3> One of our experts will respond as soon as possible, usually within an hour on business days. Or, call us immediately at <a href="tel:1-888-616-9115">1-888-616-9115</a>!',
+                            onFormReady: function ($form) {
+                                const input = document.querySelector('[name="service_tag"]');
+                                input.value = "{{ service_tag }}";
+                                input.dispatchEvent(new Event('input', {bubbles: true}));
+                            },
+                            onFormSubmitted: function($f){
+                                try{
+                                    window.lintrk('track', { conversion_id: 8798930 });
+                                }catch (e) {
+                                    console.log(e);
+                                }
+                            }
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="banner">
+        <button data-close>
+            <svg width="20" height="20" viewBox="0 0 35 35" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
+                    <line x1="1" y1="35" x2="35" y2="1" id="Line-2" stroke="#fff" stroke-width="2"></line>
+                    <line x1="1" y1="1" x2="35" y2="35" id="Line" stroke="#fff" stroke-width="2"></line>
+                </g>
+            </svg>
+        </button>
+        {%- set bannerUrl = slide_in_banner.url | default("#form")  -%}
+        <a href="{{ bannerUrl }}" data-ga-event="Banner" data-ga-action="Click" data-ga-label="{{ path }}">
+            <div class="slideout-subtitle">{{ slide_in_banner.subheadline }}</div>
+            <div class="slideout-title">{{ slide_in_banner.headline }}</div>
+            <div class="slideout-copy">
+                <p>{{ slide_in_banner.copy }}</p>
+                <div class="slideout-button">{{ slide_in_banner.buttonLabel }}</div>
+            </div>
+        </a>
+    </div>
+    <script>
+        (function () {
+            // return;
+            const w = window;
+            let slideOutSeen = false;
+
+            if ((conversionBanner = document.getElementById("banner"))) {
+
+                window.addEventListener("scroll", checkScroll);
+                checkScroll();
+            }
+
+            function checkScroll() {
+                const pageHeight = document.documentElement.scrollHeight;
+                const p = w.scrollY / pageHeight * 100;
+                if (p > 18 && p < 78) {
+                    conversionBanner.classList.add("active");
+                    if (!slideOutSeen){
+                        slideOutSeen = true;
+                        window.dataLayer.push({
+                            'event': 'gaEvent',
+                            'category': 'Service Page Banner',
+                            'action': 'Viewed',
+                            'label' : document.location.pathname
+                        });
+                    }
+                } else {
+                    conversionBanner.classList.remove("active");
+                }
+            }
+
+            const btn = document.querySelector('#banner [data-close]');
+            if (btn) {
+                btn.addEventListener('click', e => {
+                    document.getElementById('banner').classList.add('hide');
+                })
+            }
+
+            const target = document.getElementById('stat-blocks');
+
+            let callback = function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        animateStats();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            };
+            let observer = new IntersectionObserver(callback);
+            observer.observe(target);
+
+            function animateStats(){
+                const statBlocks = document.querySelectorAll("[data-stat]");
+
+
+                statBlocks.forEach((el, i) => {
+                    const suffixMatches = el.dataset.stat.match(/\D/gm) || [];
+                    const target = parseInt(el.dataset.stat, 10);
+                    const suffix = suffixMatches[0] || '';
+                    animateValue(el, 0, target, suffix, 500 + (i*600));
+
+                })
+            }
+
+            function animateValue(obj, start, end, suffix, duration) {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) {
+                        startTimestamp = timestamp;
+                    }
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    obj.innerHTML = Math.floor(progress * (end - start) + start) + suffix;
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    }
+                };
+                window.requestAnimationFrame(step);
+            }
+
+
+        })();
+    </script>
+{% endblock %}

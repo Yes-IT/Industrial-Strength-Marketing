@@ -1,0 +1,17 @@
+{% extends "layout.njk" %}
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12lp-content">
+            {{ contents | safe }}
+            
+            <div id="form" class="form-container" style="max-width: 600px;margin:auto;">
+                {{ hubspot_form | safe }}
+            </div>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+</div>
+{% endblock %}

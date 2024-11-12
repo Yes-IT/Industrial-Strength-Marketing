@@ -1,0 +1,129 @@
+{%- set jumbotron =  {headline: title,  img: jumbotron.img, img_alt: jumbotron.img_alt, subhead: collection | getInsightType, subhead_type: post_type + '-type'} -%}
+{%- set jumbotronCssClass =  'blog-post-hero'-%}
+{%- set type = collection | getInsightType -%}
+{% import "partials/macros.njk" as helpers %}
+{% extends "layout.njk" %}
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 {{ path | cssClassify}} main-copy">
+
+                {%- if type == 'article' or type == 'fun-fact' -%}
+                    <div class="text-right" style="display: flex;align-items: center;justify-content: end;">
+                        <span class="read-time">{{ date | formatDate }} |</span>
+                        {{helpers.readTime(contents)}}</div>
+
+                {%- endif -%}
+                {%- if type == 'podcast' -%}
+                    {%- set subhead = episode or type -%}
+                    <div class="subhead">{{subhead}}</div>
+                {%- endif -%}
+                <div class="post-intro">
+                    {{ intro | md}}
+                    {%- if section_image -%}
+                        <img src="{{section_image}}" alt="{{section_image}}" class="section-img img-responsive">
+                    {%- endif -%}
+                </div>
+                {%- if youtube_url -%}
+                    <div class="video-embed">
+                        <iframe width="560" height="315" src="//www.youtube.com/embed/{{ youtube_url | getYoutubeId}}?autoplay=0&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                {%- endif -%}
+                {%- if podcast_embed -%}
+                    {{ podcast_embed  | safe }}
+                {%- endif -%}
+                <div class="links-external insight-content">
+                    {{ contents | safe }}
+                </div>
+                {% include "partials/social-share.njk" %}
+                {%- if cta.url -%}
+                    <div class="post-cta {{ 'cta-2-col' if cta.image}}">
+                        {%- if cta.image -%}
+                            <div class="cta-img-container">
+                                <img src="{{cta.image}}" alt=" " class="cta-img">
+                            </div>
+                        {%- endif -%}
+                        <div>
+                            <h2 class="cta-headline">{{ cta.headline }}</h2>
+                            <p class="cta-copy">{{ cta.copy }}</p>
+                            <a href="{{ cta.url }}" class="btn arrowed">{{cta.label}}</a>
+                        </div>
+                    </div>
+                {%- endif -%}
+                {%- if type == 'podcast' -%}
+                    <hr class="blog-rule">
+                    <div class="row your-host">
+                        <div class="col-sm-5">
+                            <img src="/img/james-soto-podcasts.jpg" alt="James Soto - CEO and founder of INDUSTRIAL" class="img-responsive">
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="subhead">Your Host</div>
+                            <h2>James Soto</h2>
+                            <p class="blog-copy">
+                                As Founder of INDUSTRIAL, North America’s top industrial marketing agency, and the host of Industrial Strength Marketing on YouTube, James Soto is a true industrial marketer. He focuses on critical tips 
+                                and advice that help manufacturers make marketing the strength of
+                                their business.
+                        </p>
+                        </div>
+                    </div>
+                    <br><br><br><br>
+                {%- endif -%}
+                <div class="blog-next">
+                    {% if next %}
+                        {% set nextItem = next %}
+                        {% set nextSubTitle = collection | getInsightType %}
+                        {% include "partials/next-block.njk" %}
+                    {% endif %}
+                </div>
+            </div>
+
+            {% include "partials/blog/blog-sidebar.njk" %}
+        </div>
+    </div>
+    {% if youtube_id %}
+
+        {% set data = videoData[youtube_id] %}
+
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "VideoObject",
+                "name": "{{title}}",
+                "description": "{{contents | safe | striptags}}",
+                "thumbnailUrl": ["{{data.thumbnail}}"],
+                "uploadDate": "{{data.publishedAt}}",
+                "duration": "{{data.duration}}"
+            }
+        </script>
+
+    {% else %}
+        <script type="application/ld+json">
+            {
+                "@context": "http://schema.org",
+                "@type": "Article",
+                "mainEntityOfPage": {
+                    "@type": "WebPage",
+                    "@id": "{{siteConfig.siteUrl}}/{{path}}"
+                },
+                "headline": "{{title}}",
+                "image": "{{siteConfig.siteUrl}}/{{jumbotron.img}}",
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "{{siteConfig.siteName}}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{siteConfig.siteUrl}}/img/logo.png"
+                    }
+                },
+                "author": {
+                    "@type": "Organization",
+                    "name": "{{siteConfig.siteName}}"
+                },
+                "url": "{{siteConfig.siteUrl}}/{{path}}",
+                "datePublished": "{{date}}",
+                "dateCreated": "{{date}}",
+                "dateModified": "{{date}}"
+            }
+        </script>
+    {% endif %}
+{% endblock %}

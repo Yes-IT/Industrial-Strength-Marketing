@@ -1,0 +1,18 @@
+{% extends "layout.njk" %}
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-7 col-lg-6 lp-content">
+            {{ contents | safe }}
+        </div>
+        <div class="col-md-5 col-lg-4 col-lg-offset-2 form-col">
+            <div id="form" class="form-container">
+                {%- if form_headline -%}
+                <h3 class="light text-center pb-8">{{form_headline}}</h3>
+                {%- endif -%}
+                {{ hubspot_form | safe }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

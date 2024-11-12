@@ -1,0 +1,710 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    {% include "partials/head.njk" %}
+    <style type="text/css">
+        .footer-articles, .newsletter-signup-copy, .newsletter-signup-form {
+            display:none;
+        }
+        .sidebar-item {
+            margin-bottom: 50px;
+        }
+        .sidebar-item:nth-child(1) {
+            margin-top: 30px;
+        }
+
+        .sidebar-icon {
+            margin-bottom: 16px;
+            margin-top: 16px;
+        }
+
+        .topics {
+            text-align: center;
+
+        }
+
+        .topic {
+            display: inline-block;
+            padding: 24px;
+            width: 100%;
+            text-align: center;
+            vertical-align: top;
+            font-size: 15px;
+            /* min-height: 260px; */
+        }
+        .topic strong {
+            font-size: 16px;
+        }
+        .topic:nth-child(odd) {
+            background: #fbf5e9;
+        }
+
+        .sample-media {
+            background-color: #252525;
+            color: #fff;
+            padding-bottom: 72px;
+        }
+        .sample-media img {
+            /* margin-bottom:32px; */
+        }
+
+        .sample-media * {
+            color: #fff;
+        }
+        .examples-logos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+            grid-column-gap: 16px;
+            grid-row-gap: 24px;
+
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .examples-logos img {
+            /* margin:8px 16px; */
+            width: auto;
+            max-height: 80px;
+            height: auto;
+            max-width: 100%;
+            display: block;
+            margin: auto;
+        }
+        h3 {
+            margin-top: 48px;
+        }
+        h2 {
+            padding: 42px 0;
+        }
+        h2.first {
+            padding-top: 0;
+        }
+        #hero {
+            background-position: 62% 100%;
+            min-height: 760px;
+            margin-bottom: -70px;
+        }
+        #hero h1 {
+            margin-bottom: 20px;
+        }
+        #hero h1::before {
+            content: '';
+            display: block;
+            height: 3px;
+            background-image: linear-gradient(90deg,#D38564 0,#D38564 100%);
+            width: 113px;
+            margin: 60px auto 20px;
+        }
+        #hero .btn {
+            margin: 20px 0;
+        }
+        #hero .jumbo-content {
+            padding-top: 190px;
+        }
+        .jumbo-content {
+            text-shadow: 1px 3px 3px rgba(0,0,0,.5);
+            position: relative;
+            text-align: center;
+        }
+        .jumbo-tagline {
+            margin: 0 auto;
+        }
+        .footer-articles {
+            padding: 12px 0;
+        }
+        .hmvideo video{
+            display:block;
+        }
+        .smsVideos {
+            text-align:center;
+            background-image: url('/img/ind-studios-raysbg.png');
+            background-size: cover;
+            padding:80px 0;
+            font-size:24px;
+            color:#FFF;
+            font-weight:600;
+        }
+        .smsVideos h2 {
+            color: #FFF;
+            font-size:72px;
+            margin:0 auto;
+            padding: 0px;
+        }
+        .smsVideos hr {
+            width:20%;
+            border:2px solid #49BFAC;
+            margin:40px auto;        
+        }
+         .smsVideos p {
+            width:80%;
+         }
+        .center {
+            text-align:center;
+            margin:0 auto;
+        }
+
+        .indStudios {
+            padding:80px 0;
+        }
+
+        .indStudios h2 {
+            font-size:60px;
+            color:#49BFAC;
+            padding: 0 0px 25px;
+         }
+        .indStudios p {
+            width: 58%;
+            line-height:32px;
+        }
+        .countdown-section {
+            background:#000;
+            color:#FFF;
+            position:relative;
+            padding-bottom:80px;
+            overflow:hidden;
+        }
+        .countdown-title {
+            font-size:30px;
+            margin-bottom:15px;
+            font-weight:600;
+        }
+        .countdown-section video {
+            position:absolute;
+            z-index:0;
+            top:0;bottom:0;right:0;left:0;
+        }
+    
+        .countdown-section .container-fluid {
+            z-index:1000;
+            position:relative;
+        }
+        .countdown-section p{ 
+            font-size:20px;
+            width:88%;
+            font-weight:600;
+        }
+         .countdown-section p span{ 
+             color:#49BFAC;
+         }
+        .object-cover {
+            -o-object-fit: cover;
+            object-fit: cover;
+        }
+
+        .bottom-content {
+            background:#FFF;
+            padding:120px 0px;
+            color:#000;
+            font-size:72px;
+            line-height:75px;
+            position:relative;
+            font-family: GT-America-Compressed-Bold,Impact,Haettenschweiler,'Arial Narrow Bold',sans-serif;
+            text-transform: uppercase;
+
+        }
+        .bottom-content p {
+            padding:0;
+        }
+
+        .btn-green {
+            font-size:32px;
+            background:#49BFAC;
+            padding:15px 30px;
+            border:0px;
+            color:#FFF !important;
+            margin:20px 0px;
+            display:inline-block;
+            height:auto !important;
+        }
+
+        @media screen and (min-width:768px) {
+            .topic {
+                padding: 24px;
+                width: 40%;
+            }
+            h3 {
+                margin-top: 0;
+            }
+        }
+
+        @media screen and (min-width:1200px) {
+            .countdown-section video {
+                width:100%;
+            }
+
+        }
+        @media screen and (min-width:1024px) {
+             .countdown-title {
+                font-size:38px;
+                margin-bottom:30px;
+            }
+            .countdown-section p {
+                font-size:24px;
+            }
+            #hero {
+                background-position: 50% 100%;
+            }
+            h2 {
+                padding: 72px 0;
+            }
+            .topic {
+                padding: 50px;
+                width: 30%;
+            }
+            .examples-logos {
+                grid-template-columns: repeat(6, 1fr);
+                max-width: 1150px;
+                margin: auto;
+            }
+        }
+
+        .countdown-timer {
+            width: 100%;
+            margin: 0 auto;
+            text-align:center;
+        }
+
+        #clockdiv {
+            color: #fff;
+            display: inline-block;
+            font-weight: 100;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .clock-colon {
+            font-size: 140px;
+            vertical-align: top;
+        }
+
+        #clockdiv > div {
+            padding: 5px;
+            border-radius: 3px;
+            display: inline-block;
+            font-family: GT-America-Compressed-Bold,Impact,Haettenschweiler,'Arial Narrow Bold',sans-serif;
+
+        }
+
+        #clockdiv div > span {
+            border-radius: 3px;
+            display: inline-block;
+            font-size: 140px;
+            width: 140px;
+            font-family: GT-America-Compressed-Bold,Impact,Haettenschweiler,'Arial Narrow Bold',sans-serif;
+        }
+        .smalltext {
+            font-family: MaisonNeue,Arial,sans-serif;
+            font-size: 18px;
+            margin-top:-40px;
+        }
+        #mc_embed_signup .hs-input {
+            padding: 9px;
+            max-width: 460px !important;
+            width:360px;
+            display:inline-block;
+            background-color: rgba(155,155,155, .5);
+            border:0;
+            color:#fff;
+            height: 37px;
+            margin-top: 0;
+        }
+        #mc_embed_signup .hs-input::placeholder {
+            color: #fff;
+        }
+
+        #mc_embed_signup .hs-form-field,
+        #mc_embed_signup .hs-submit
+        {
+            display:inline-block;
+            vertical-align: top;
+        }
+        #mc_embed_signup #label-email-0c090a1e-2981-4ec4-9760-6852bf72bfa8,
+        .hs_error_rollup
+        {
+            display: none;
+        }
+        #mc_embed_signup {
+            margin-top: 50px;
+            font-family: MaisonNeue,Arial,sans-serif;
+
+        }
+
+        #mc_embed_signup .hs-button {
+            clear: both;
+            background-color: #cb7958 !important;
+            border: 0 none;
+            color: #FFFFFF !important;
+            font-size: 15px;
+            line-height: 24px;
+            padding: 0;
+            text-align: center;
+            text-decoration: none;
+            vertical-align: top;
+            white-space: nowrap;
+            width: auto;
+            transition: all 0.23s ease-in-out 0s;
+            padding: 6px 20px;
+            text-transform: uppercase;
+            z-index: 10;
+            -webkit-appearance: none;
+            font-family: MaisonNeue,Arial,sans-serif;
+            width: 100%;
+            height: 37px;
+        }
+
+        input.email {
+            background: none;
+            color: #FFF;
+            width: 100%;
+            padding: 8px;
+            line-height: 24px;
+            border: none;
+            font-size: 16px;
+            background: url("/img/transparent-bg.png");
+            font-family: MaisonNeue,Arial,sans-serif;
+
+        }
+        input.email::placeholder {
+            color: #FFF;
+        }
+        .grid-80-20 {
+            display: grid;
+            grid-template-columns: 70% 30%;
+            max-width: 585px;
+            margin: 0 auto;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            max-width: 446px;
+            grid-gap: 50px;
+        }
+         @media only screen and (max-width: 790px) {
+            #clockdiv div > span {
+                font-size:100px;
+                width:100px;
+            }
+            .clock-colon {
+                font-size:100px;
+            }
+         }
+        @media only screen and (max-width: 680px) {
+
+            .countdown-timer {
+                width: 100%;
+            }
+            .smalltext {
+                margin-top:0px;
+            }
+            .countdown-title {
+                font-size:30px;
+                line-height:34px;
+                padding-top:30px;
+                font-weight:600;
+            }
+            .indStudios h2 {
+                line-height:55px;
+            }
+            .indStudios p {
+                width:90%;
+            }
+            .smsVideos {
+                font-weight:300;
+                font-size:20px;
+                padding-top:40px;
+            }
+            .bottom-content {
+                font-size:52px;
+                font-size: 49px;
+                line-height: 50px;
+                padding:75px 0px;
+            }
+            .countdown-section p {
+                font-size:18px;
+                font-weight:300;
+            }
+ 
+            .smsVideos h2 {
+                font-size:52px;
+            }
+
+            .btn-green {
+                font-size:27px;
+            }
+
+            #clockdiv div > span {
+                width: 60px;
+                font-size: 60px;
+            }
+
+            .grid-80-20 {
+                grid-template-columns: 60% 40%;
+            }
+            .clock-colon {
+                font-size: 60px;
+                width: 10px;
+            }
+            .smalltext {
+                font-size: 10px;
+            }
+
+            #hero {
+                min-height: 590px;
+            }
+            #hero .jumbo-content {
+                padding-top: 87px;
+            }
+
+        }
+    .modal {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;        z-index:1000;
+
+    }
+    .modal.open {
+        visibility: visible;
+        opacity: 1;
+        transition-delay: 0s;
+    }
+    .modal-bg {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.8);
+        width: 100%;
+        height: 100%;
+    }
+    .modal-container {
+        background: #fff;
+        position: relative;
+        padding: 30px;
+        max-width:380px;
+        color:black;
+        font-size:14px;
+        text-align:center;
+        z-index:1000;
+    }
+    .modal-container h3 {
+        margin-top:34px;
+    }
+    .modal-container .hs-form-field label {
+        color: black;
+    }
+    .modal-container .hs-form-field {
+        padding: 0 0 20px;
+    }
+
+    .modal-container p {
+        width:100%;
+        margin-bottom:30px;
+        font-size:16px;
+        font-weight:100;
+    }
+
+    .modal-close {
+        position: absolute;
+        right: -15px;
+        top: 0px;
+        outline: none;
+        appearance: none;
+        color: black;
+        background: none;
+        border: 0px;
+        font-weight: bold;
+        cursor: pointer;
+        font-family:Arial, sans-serif;
+        font-size:20px;
+    }
+
+
+    
+    </style>
+</head>
+{% if path == 'contact' or path == 'resources' or path == 'privacy-policy'%}
+{% set customCssClass = 'force-bar'%}
+{% endif %}
+
+<body class="{{ 'jumbo-active' if jumbotron else 'jumbo-inactive' }} {{ path | cssClassify }} {{ customCssClass }}">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WJJ7L2" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    {% include "partials/header.njk" %}
+
+    <div style="background:#000;">
+        <div class="hmvideo" id="video-container">
+            <video playsinline autoplay="true" loop="true" id="vid-bg" class="visible" disablepictureinpicture="true" width="100%" height="100%" muted="true">
+            <source src="/video/Industrial Studios_Landing Page Promo.mp4" type="video/mp4"></video>
+        </div>
+    </div>
+    <div class="smsVideos">     
+         <div class="container-fluid">
+            <h2>STOP MAKING SH*TTY VIDEOS!!</h2>
+            <hr>
+            <p class="center">
+                Your brilliant engineers create amazing things that never existed before, so why make mind-numbing noise?
+            </p>
+        </div>
+    </div>
+    <div class="indStudios center">     
+         <div class="container-fluid">
+            <h2>INDUSTRIAL STUDIOS</h2>
+            <p class="center">
+                We’re launching INDUSTRIAL STUDIOS to tell the stories of the next wave of the industrial revolution. Built from the ground up to break through the noise, we help industrial brands create content and experiences that tap the full range of human emotions.
+            </p>
+            <p class="center">
+             Welcome to the place where branded entertainment, business communications, and audience-first thinking meets your brand and growth objectives.
+            </p>
+        </div>
+    </div>
+    <div class="countdown-section">
+        <video playsinline loop="true" muted="muted" autoplay="" class="overflow-hidden md:block  absolute top-0 w-full h-full object-cover z-0">
+                <source src="/video/countdown-bg.mp4">
+        </video>
+        <div class="container-fluid">
+            <div class="countdown-timer">
+                <div id="clockdiv">
+                    <div>
+                        <span class="days"></span>
+                        <div class="smalltext">Days</div>
+                    </div>
+                    <div class="clock-colon">:</div>
+                    <div>
+                        <span class="hours"></span>
+                        <div class="smalltext">Hours</div>
+                    </div>
+                    <div class="clock-colon">:</div>
+                    <div>
+                        <span class="minutes"></span>
+                        <div class="smalltext">Minutes</div>
+                    </div>
+                    <div class="clock-colon">: </div>
+                    <div>
+                        <span class="seconds"></span>
+                        <div class="smalltext">Seconds</div>
+                    </div>
+                </div>
+            </div>
+            <div class="countdown-title center">
+                Coming soon, a fresh approach to creative collaboration.
+            </div>
+            <p class="center">
+                Come back here on Sept. 12 to see what the INDUSTRIAL STUDIOS rule breakers are creating, or go to the <span>Creators Lounge  (booth #338600) at IMTS 2022</span>,  and tell us your story.
+             
+            </p><br>
+            <p class="center">
+                 <a  class="btn btn-green no-arrow" data-ga-event="Button" data-ga-action="Click" data-modal="modal-one" data-ga-label="Request a Consult - Nav"> See the possibilities</a>
+            </p>
+
+
+
+        </div>
+    </div>
+            <div class="modal" id="modal-one">
+            <div class="modal-bg modal-exit"></div>
+            <div class="modal-container">
+                <h3>Be the first in the know.</h3>
+                    <p>Possibilities are just around the bend. Let's break down the barriers of storytelling together.  </p>
+                    <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+                    <script>
+                    hbspt.forms.create({
+                        region: "na1",
+                        portalId: "480219",
+                        formId: "47a59859-8039-4d32-a639-8ec046b2aac2"
+                    });
+                    </script>
+                <button class="modal-close modal-exit">X</button>
+            </div>
+            </div>
+    <div class="bottom-content">
+        <div class="container-fluid center">
+            <p>WE ARE SCRAPPING THE GUARDRAILS OF STORYTELLING. </p>
+                <br>
+            <p> COME ALONG FOR THE RIDE.</p>
+        </div>
+    </div>
+
+    {% if disableOuterWrap == false %}
+    <div class="outer-wrap">
+        {% endif %}
+        
+        {% if disableOuterWrap == false %}
+    </div>
+    {% endif %}
+    <script>
+        function getTimeRemaining(endtime) {
+            var t = Date.parse(endtime) - Date.parse(new Date());
+            var seconds = Math.floor((t / 1000) % 60);
+            var minutes = Math.floor((t / 1000 / 60) % 60);
+            var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+            var days = Math.floor(t / (1000 * 60 * 60 * 24));
+            return {
+                'total': t,
+                'days': days,
+                'hours': hours,
+                'minutes': minutes,
+                'seconds': seconds
+            };
+        }
+
+        function initializeClock(id, endtime) {
+            var clock = document.getElementById(id);
+            var daysSpan = clock.querySelector('.days');
+            var hoursSpan = clock.querySelector('.hours');
+            var minutesSpan = clock.querySelector('.minutes');
+            var secondsSpan = clock.querySelector('.seconds');
+
+            function updateClock() {
+                var t = getTimeRemaining(endtime);
+
+                daysSpan.innerHTML = t.days;
+                hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+                minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+                secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+                if (t.total <= 0) {
+                    clearInterval(timeinterval);
+                }
+            }
+
+            updateClock();
+            var timeinterval = setInterval(updateClock, 1000);
+        }
+
+        //var deadline = new Date(Date.parse(new Date()) + 77 * 24 * 60 * 60 * 1000);
+
+        var deadline = 'September 12 2022 12:00 pm';
+        initializeClock('clockdiv', deadline);
+
+        const modals = document.querySelectorAll('[data-modal]');
+
+        modals.forEach(function (trigger) {
+        trigger.addEventListener('click', function (event) {
+            event.preventDefault();
+            const modal = document.getElementById(trigger.dataset.modal);
+            modal.classList.add('open');
+            const exits = modal.querySelectorAll('.modal-exit');
+            exits.forEach(function (exit) {
+            exit.addEventListener('click', function (event) {
+                event.preventDefault();
+                modal.classList.remove('open');
+            });
+            });
+        });
+        });
+    </script>
+
+    {% include "partials/footer.njk" %}
+</body>
+
+</html>

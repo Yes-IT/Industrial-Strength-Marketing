@@ -1,0 +1,95 @@
+{% extends "default.njk" %}
+{% block body %}
+    <svg xmlns="http://www.w3.org/2000/svg" class="hidden">
+        <defs>
+            <symbol id="icon-help" viewBox="0 0 512 512">
+                <path class="fill-current"
+                      d="M256 64C150 64 64 150 64 256s86 192 192 192 192-86 192-192S362 64 256 64zm-6 304a20 20 0 1120-20 20 20 0 01-20 20zm33.44-102C267.23 276.88 265 286.85 265 296a14 14 0 01-28 0c0-21.91 10.08-39.33 30.82-53.26C287.1 229.8 298 221.6 298 203.57c0-12.26-7-21.57-21.49-28.46-3.41-1.62-11-3.2-20.34-3.09-11.72.15-20.82 2.95-27.83 8.59C215.12 191.25 214 202.83 214 203a14 14 0 11-28-1.35c.11-2.43 1.8-24.32 24.77-42.8 11.91-9.58 27.06-14.56 45-14.78 12.7-.15 24.63 2 32.72 5.82C312.7 161.34 326 180.43 326 203.57c0 33.83-22.61 49.02-42.56 62.43z"/>
+    </svg>
+    </symbol>
+    </defs>
+    </svg>
+    <div class="container-fluid {{ 'padding-top' if headerCssClass }}">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 {{ path | cssClassify }} main-copy">
+                {{ contents | safe }}
+            </div>
+            {% raw %}
+            <div id="app" class="mt-10 p-4 mx-auto mb-10">
+                <div class="lg:grid grid-cols-app gap-10">
+                    <section class="pb-8">
+                        <h2>Lifetime Value Generated</h2>
+                        <p>Customer lifetime value (CLV) is the total revenue you can expect from a single customer account throughout the lifetime of their relationship with your company. It is calculated based on total historical revenue and the length of the relationship. For a total Average Lifetime Customer Value metric, you will need to take the average of each company’s lifetime value in your portfolio. In
+                            many cases, this data will come from accounting software and records and not from the marketing department. This is an important metric for two reasons: it costs much less to keep a customer than to acquire a new one, and a good relationship with an existing customer often leads to organic growth with that customer.</p>
+                        <div class=" p-4 bg-brand-light rounded-md relative">
+                            <div class="form-overlay" v-bind:class="{ hide: !sendingData }" title="loading...">
+                                <div class="loader"></div>
+                            </div>
+                            <form @submit="validateForm" method="post" class="">
+                                <div class="pb-8">
+                                    <div v-for="(item, index) in inputs.LTVGenerated" class="grid grid-cols-2 pb-2">
+                                        <label>
+                                            {{item.label}}
+                                            <help-icon :text="item.help"></help-icon>
+                                        </label>
+                                        <div>
+                                            <input type="number" v-model.number="variables.LTVGenerated[item.model]" :name="item.model" class="">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h3>Marketing Costs</h3>
+                                    <div v-for="(item, index) in inputs.marketingCosts" class="grid grid-cols-2  pb-2">
+                                        <label>
+                                            {{item.label}}
+                                            <help-icon :text="item.help"></help-icon>
+                                        </label>
+                                        <div>
+                                            <input type="number" v-model.number="variables.marketingCosts[item.model]" :name="item.model" class="">
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-2  pb-2">
+                                        <label>
+                                            Email
+                                        </label>
+                                        <div>
+                                            <input type="email" v-model="variables.email" name="email" class="" required>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-default mt-4" type="submit">Generate Results</button>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+
+                    <section v-bind:class="{ invisible: resultsHidden }" class="text-center">
+                        <h2 title="# New Sales x Avg. LTV per sale ">
+                            LTV Generated
+                            <strong class="text-brand-primary">{{LTVGenerated | formatCurrency}}</strong>
+                        </h2>
+
+                        <h2 title="(LTVG - MC) / MC">
+                            Marketing ROI
+                            <strong class="text-brand-primary">{{marketingRoi}}x</strong>
+                        </h2>
+
+                        <div id="chart-container" class="relative" style="height: 30vh;max-width: 40vw;">
+                            <canvas id="chart"></canvas>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+        {% endraw %}
+        {% if env.environment == 'production' %}
+            <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+        {% else %}
+            <!-- development version, includes helpful console warnings -->
+            <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        {% endif %}
+        <script src="/js/marketing-roi-calculator/app.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    </div>
+{% endblock %}

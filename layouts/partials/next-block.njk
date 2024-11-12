@@ -1,0 +1,26 @@
+{% if titleKey %}
+    {% set nextTitleKey = titleKey %}
+{% else %}
+    {% set nextTitleKey = 'title' %}
+{% endif %}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="next-block">
+            <a href="/{{nextItem.path}}/">
+                <img src="{{ nextItem.jumbotron.img}}" class="next-block-img" alt=" "/>
+                <div class="elements">
+                    <span>{{nextSubTitle if nextSubTitle else 'Next'}}</span>
+                    {{ nextItem[nextTitleKey]}}
+                    <span class="arrow">
+                        <svg width="52px" height="19px" viewBox="0 0 22 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="orange-arrow" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <polyline id="Path-7" stroke="#FAF5E9" fill-rule="nonzero" points="16.6318359 1.21630859 20.8735352 5.45800781 16.6318359 9.69970703"></polyline>
+                                <path d="M0.5,5.5 L20.5,5.5" id="Line-5" stroke="#FAF5E9" stroke-linecap="square"></path>
+                            </g>
+                        </svg>
+                    </span>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,90 @@
+{% set latestInsight = insights[0] %}
+{% set latest = insights.slice(1, 5) %}
+{% set headerCssClass = 'headroom--not-top' %}
+{% set jumbotronCssClass = 'insights' %}
+{% import "partials/macros.njk" as helpers %}
+{%- extends "layout.njk" %}
+{%- block body -%}
+    <div class="recent-insight">
+        {%- if latestInsight.jumbotron.img -%}
+            <img src="{{latestInsight.jumbotron.img}}" alt=" " class="recent-insight-img" />
+        {%- endif -%}
+        <div class="container-fluid">
+            <div class="content">
+                <div class="blog-type {{latestInsight.post_type}}-type">{{latestInsight.collection | getInsightType}}</div>
+                <h1>
+                    <a href="/{{latestInsight.path}}">{{latestInsight.title}}</a>
+                </h1>
+                <p>{{latestInsight.short_description}}</p>
+                <a href="/{{latestInsight.path}}" class="btn arrowed light">read more</a>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="recent-grid">
+                {%- for item in latest -%}
+                    <div class="recent-item">
+                        <div class="img-container img-{{item.collection | getInsightType}}">
+                            {%- if item.youtube_url -%}
+                                {%- set img = item.jumbotron.img -%}
+                            {%- else -%}
+                                {%- set img = item.thumbnail -%}
+                            {%- endif -%}
+                            <a href="/{{item.path}}">
+                                {%- if item.post_type == 'fun-fact' -%}    
+                                <span class="fun-fact-icon"></span>
+                                {%- endif -%}
+                                <img src="{{img}}" alt="{{item.title | escape}}" class="img-responsive"></a>
+                        </div>
+                        <div class="blog-type {{item.post_type}}-type">{{item.collection | getInsightType}}</div>
+                        <h4 class="blog-listing-title">
+                            <a href="/{{ item.path }}" class="blog-title-link">{{ item.title }}</a>
+                        </h4>
+                        {%- if item.post_type == 'article' or item.post_type == 'fun-fact' -%}
+                            {{helpers.readTime(item.contents)}}
+                        {%- endif -%}
+                        <p class="blog-copy">{{item.short_description }}</p>
+                        <a href="/{{item.path}}" class="link-learn-more">{{ item.collection | getInsightType | getLinkLabel}}</a>
+                    </div>
+                {%- endfor -%}
+            </div>
+        </div>
+        <hr class="blog-rule">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <h2>Podcast &amp; Videos</h2><br><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <a class="media-card" href="/insights/podcast/">
+                    <div class="card-img">
+                        <img src="/img/podcase-poster-new.jpg" alt="" class="media-card-img">
+                    </div>
+                    <div class="media-card-copy">
+                        <div class="media-card-title">Agency Podcast</div>
+                        <p class="blog-copy">
+                            Our podcast exists to help industrial leaders make marketing the strength of their business. Listen to this podcast, grow your business.
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6">
+                <a class="media-card" href="https://youtube.com/c/industrialstrengthmarketing" target="_blank">
+                    <div class="card-img">
+                        <img src="/img/industrial-youtube-new.jpg" alt="" class="media-card-img">
+                    </div>
+                    <div class="media-card-copy">
+                        <div class="media-card-title">Industrial YouTube</div>
+                        <p class="blog-copy">
+                           Few industrial businesses seize the opportunity to leverage marketing as a foundation for growth.
+                           To check out our full range of videos, visit our YouTube channel.
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <br><br><br>
+    </div>
+{% endblock %}

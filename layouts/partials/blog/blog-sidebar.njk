@@ -1,0 +1,96 @@
+<div class="col-sm-6 col-sm-offset-3 col-md-3 col-md-offset-1 blog-sidebar">
+    
+    {% if path.indexOf('podcast') != -1 %}
+    <div class="subhead">Listen & Subscribe</div>
+    <h4 >Where To Find Our Show</h4>
+    <div class="podcast-platforms">
+        <a href="https://podcasts.apple.com/us/podcast/industrial-strength-marketing/id1525972127" target="_blank">
+            <img src="/img/icons/apple-podcasts.svg" alt="Apple Podcasts"/>
+        </a>
+        <a href="https://www.youtube.com/playlist?list=PLK_oLP2ATrCJGu3EH9lb8DOh4aC2ZOxd3" target="_blank">
+            <img src="/img/icons/google-podcasts.svg" alt="Goolge Podcasts"/>
+        </a>
+        <a href="https://open.spotify.com/show/7nfTQpTdStwxLco2u99u79?si=gTlLpe9sRc65XZzbD8ftEQ" target="_blank">
+            <img src="/img/icons/spotify-podcasts.svg" alt="Spotify"/>
+        </a>
+        <a href="https://tunein.com/podcasts/Business--Economics-Podcasts/Industrial-Strength-Marketing-p1353284/" target="_blank">
+            <img src="/img/icons/tune-in-podcasts.svg" alt="Tune-In"/>
+        </a>
+      
+
+    </div>
+
+    <div class="subhead">Podcast Newsletter</div>
+        <h4 >Sign Up for Updates </h4>
+        <p class="blog-copy">
+           We'll send new episodes and marketing insights straight to your inbox.
+        </p>
+       
+         <div class="podcast-signup-container">
+        <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+        <script>
+            window.stockpileIgnore = true;
+            hbspt.forms.create({
+                portalId: "480219",
+                formId: "0c090a1e-2981-4ec4-9760-6852bf72bfa8",
+                css: '',
+                cssClass: 'podcast-signup',
+                submitButtonClass: 'btn-signup',
+                onFormSubmitted: function(){
+                        window.dataLayer.push({
+                            'event': 'gaEvent',
+                            'category': 'Forms',
+                            'action': 'Submission',
+                            'label': 'Podcast Newsletter Sign-Up Sidebar',
+                        });
+                    }
+            });
+        </script>
+    </div>
+
+
+    <br><br>
+    <div class="subhead">Apply</div>
+    <div class="podcast-cta">
+        <div class="podcast-cta-title">Apply to Be a Guest on the Show!</div>
+        <a href="/insights/guest-request/" class="btn">Apply Now</a>
+    </div>
+    {%- else -%}
+    <div class="subhead">Subscribe</div>
+    <h4>Sign Up For Our Newsletter</h4>
+    <p class="blog-copy">
+            We'll send the lastest industrial marketing insights straight to your inbox.
+        </p>
+    <div class="blog-signup-container">
+        <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+        <script>
+            window.stockpileIgnore = true;
+            hbspt.forms.create({
+                portalId: "480219",
+                formId: "5e8383a4-60fe-4ab3-b108-e9567fde1d4c",
+                css: '',
+                cssClass: 'blog-signup',
+                submitButtonClass: 'btn-signup',
+                onFormSubmitted: function(){
+                        window.dataLayer.push({
+                            'event': 'gaEvent',
+                            'category': 'Forms',
+                            'action': 'Submission',
+                            'label': 'Email Newsletter Sign-Up Sidebar',
+                        });
+                    }
+            });
+        </script>
+    </div>
+    {%- endif -%}
+    <br><br><br>
+    <div class="subhead">Follow Us</div>
+    <div class="blog-social">
+        <a href="https://youtube.com/c/industrialstrengthmarketing" target="_blank" rel="noopener"><img src="/img/social-icons/icon-dark-yt.svg" width="26" alt=""></a>
+        <a href="http://www.linkedin.com/company/287765?trk=tyah" target="_blank" rel="noopener"><img src="/img/social-icons/icon-dark-ln.svg" width="26" alt=""></a>
+        <a href="https://www.facebook.com/industrialstrengthmarketing?fref=ts" target="_blank" rel="noopener"><img src="/img/social-icons/icon-dark-fb.svg" width="26" alt=""></a>
+        <a href="http://twitter.com/#!/industrialsays" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" width="26" ><g><path fill="#898989" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></g></svg></a>
+        <a href="https://www.instagram.com/weareindustrial/" target="_blank" rel="noopener"><img src="/img/social-icons/icon-dark-ig.svg" width="26" alt=""></a>
+        <a href="/rss.xml" target="_blank" rel="noopener"><img src="/img/social-icons/icon-dark-rss.svg" width="26" alt=""></a>
+    </div>
+</div>

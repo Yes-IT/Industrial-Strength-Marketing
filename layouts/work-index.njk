@@ -1,0 +1,17 @@
+{% extends "layout.njk" %}
+{% block body %}
+<div class="container-fluid">
+    {% for item in case_studies %}
+    <div class="row case-study">
+        <div class="col-sm-7 col-sm-push-5">
+            <div class="img-container"><a href="{{item.url}}"><img src="{{ item.image}}" width="736" class="img-responsive img-case-study-overview" alt="{{ (item.overviewimg_alt | default("")) | e}}"></a></div>
+        </div>
+        <div class="col-sm-5 col-sm-pull-7">
+            <h3 class="case-study-overview-title"><a href="{{item.url}}">{{ item.heading}}</a></h3>
+            <p class="case-study-summary">{{ item.description}}</p>
+            <a href="{{item.url}}" class="link-learn-more">Read Case Study</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "layout.njk" %} {% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <h2>We Work for Life</h2>
+            <p class="leadin">
+                In our final days in this world, we will not be counting dollars or polishing awards — we all will be looking at the differences we’ve made and lives we’ve impacted along the way. Operation Awesome is nothing more than a metaphor for taking personal and collective responsibility for living extraordinary lives and having a positive impact on people we meet along life’s journey. So let’s work together to make this an AWESOME and impactful place to work and live.
+            </p>
+            <div><a href="https://weareindustrial.applytojob.com/apply" class="btn btn-default work-for-life" target="_self">See All Careers</a></div>
+            <br><br>
+            <h2 >Join Operation Awesome</h2>
+            <p class="leadin">
+                Operation Awesome is purposely crafted to focus on personal, professional, financial, spiritual, and philanthropic success for all INDUSTRIAL employees and their families. 
+            </p>
+        </div>
+    </div>    
+    <div class="oa-grid oa-container">
+        {% for item in operationAwesome%}
+        <div class="oa">
+            <div class="icon-container "><img src="/img/operation-awesome/icon-{{item.id}}.svg" alt="{{ item.title }}" class="icon"></div>
+            <h4 class="content-title">{{ item.title }}</h4>
+            <p>{{ item.content}}</p>
+        </div>
+        {% endfor %}
+    </div>
+    <hr class=""/>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 text-center">
+            <h2>Prove Your Mettle</h2>
+            <p class="leadin">You think you got what it takes? Spell-check that résumé, dust off that portfolio and apply now for an opportunity to prove your worth.
+            <a href="https://weareindustrial.applytojob.com/apply" class="btn btn-default work-for-life" target="_self">See All Careers</a>
+                <br><br><br>
+                {# 
+                <strong>Open Positions</strong>
+                <script type="text/javascript" src="https://app.jazz.co/widgets/basic/create/weareindustrial" charset="utf-8"></script>
+                <style>
+                    #resumator-logo{
+                        display: none;
+                    }
+                </style>
+                #}
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
