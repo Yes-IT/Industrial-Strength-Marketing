@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="65" viewBox="0 0 64 65">
+  <g fill="none" fill-rule="evenodd" stroke="#333839" stroke-width="2" transform="translate(1 1)">
+    <polygon points="41 14 41 60 0 60 0 2 29 2"/>
+    <polygon points="54 0 54 53 58 61 62 53 62 0"/>
+    <path d="M7 12L19 12M7 22L34 22M7 30L34 30M7 38L34 38M7 46L34 46"/>
+    <polyline points="41 14 29 14 29 2"/>
+    <path d="M54,10 L62,10"/>
+  </g>
+</svg>
