@@ -1,0 +1,1321 @@
+backend:
+  name: git-gateway
+  branch:  master
+  # branch:  main
+display_url: /
+media_folder: "public/img/uploads" # Media files will be stored in the repo at this location
+public_folder: "/img/uploads" # The src attribute for uploaded media will begin with this
+collections:
+  - label: Settings
+    name: settings
+    files:
+    - label: "Redirects"
+      name: "redirects"
+      file: "src/content/redirects.md"
+      fields:
+        - label: Redirect Rules
+          label_singular: Redirect Rule
+          name: redirects
+          widget: list
+          collapsed: true
+          summary: 'redirect: {{fields.incoming}} to: {{fields.destination}}'
+          fields:
+            - {label: Incoming, name: incoming, widget: string}
+            - {label: Destination, name: destination, widget: string}
+            - label: "Status Code"
+              name: "statusCode"
+              widget: "select"
+              options: ["301", "302", "404", "200"]
+              default: "301"
+            - {label: Note, name: note, widget: string, required: false}
+  - label: "Pages"
+    name: pages
+    files:
+      - label: "About Page"
+        name: about
+        file: "src/content/about/index.md"
+        fields:
+          - {label: "Layout", name: "layout", widget: "hidden", default: "about.njk"}
+          - {label: "Title", name: "title", widget: "string"}
+          - label: SEO
+            name: "seo"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - {label: "Page Title", name: "page_title", widget: "string"}
+              - {label: "Page Description", name: "description", widget: "string", required: false}
+              - {label: "No index, no follow", name: "noindex", widget: "boolean", required: false}
+              - {label: "Canonical link", name: "canonical", widget: "string", required: false, hint: "Not required. One will be generated if not filled in."}
+          - {label: "Nav Title", name: "nav_title", widget: "string", hint: "Optional nav item label (will default to page title)", required: false}
+          - {label: "Nav Order", name: "nav_sort", widget: "number", required: false, value_type: "int"}
+          - label: "Show in nav?"
+            name: "show_in_menu"
+            widget: "select"
+            required: false
+            options:
+              - { label: "Yes", value: "true" }
+              - { label: "No", value: "false" }
+          - label: "Hero"
+            name: "jumbotron"
+            widget: "object"
+            required: false
+            collapsed: true
+            fields:
+              - {label: "Headline", name: "headline", widget: "string", required: false}
+              - {label: "Tagline", name: "tagline", widget: "string", required: false}
+              - {label: "CTA Url", name: "ctaUrl", widget: "string", required: false}
+              - {label: "CTA Label", name: "ctaText", widget: "string", required: false}
+              - {label: "Image", name: "img", widget: "image", 'hint':"make it a big one", required: false}
+              - {label: "Image Alt Text", name: "img_alt", widget: "string", 'hint':"Alt text for accessibility and seo.", required: false}
+              - {label: "Video", name: "video", widget: "file", 'hint':"videos will override images", required: false}
+            - {label: "Body", name: "body", widget: "markdown"}
+      - label: "Work Page"
+        name: work
+        file: "src/content/work.md"
+        fields:
+          - {label: "Layout", name: "layout", widget: "hidden", default: "work-index.njk"}
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Page Description", name: "description", widget: "string", required: false}
+          - label: SEO
+            name: "seo"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - {label: "Page Title", name: "page_title", widget: "string"}
+              - {label: "Page Description", name: "description", widget: "string", required: false}
+              - {label: "No index, no follow", name: "noindex", widget: "boolean", required: false}
+              - {label: "Canonical link", name: "canonical", widget: "string", required: false, hint: "Not required. One will be generated if not filled in."}
+          - label: "Hero"
+            name: "jumbotron"
+            widget: "object"
+            required: false
+            collapsed: true
+            fields:
+              - {label: "Headline", name: "headline", widget: "string", required: false}
+              - {label: "Tagline", name: "tagline", widget: "string", required: false}
+              - {label: "CTA Url", name: "ctaUrl", widget: "string", required: false}
+              - {label: "CTA Label", name: "ctaText", widget: "string", required: false}
+              - {label: "Image", name: "img", widget: "image", 'hint':"make it a big one", required: false}
+              - {label: "Image Alt Text", name: "img_alt", widget: "string", 'hint':"Alt text for accessibility and seo.", required: false}
+              - {label: "Video", name: "video", widget: "file", 'hint':"videos will override images", required: false}
+            - {label: "Body", name: "body", widget: "markdown"}
+          - label: "Work Case Studies"
+            name: "case_studies"
+            widget: "list"  # Loop to allow multiple entries
+            required: false
+            fields:
+              - {label: "Heading", name: "heading", widget: "string"}
+              - {label: "Description", name: "description", widget: "text"}
+              - {label: "Image", name: "image", widget: "image"}
+              - {label: "Image Alt Text", name: "image_alt", widget: "string"}
+              - {label: "URL", name: "url", widget: "string"}
+      - label: "Clients Page"
+        name: clients
+        file: "src/content/clients/index.md"
+        fields:
+          - {label: "Layout", name: "layout", widget: "hidden", default: "default.njk"}
+          - {label: "Title", name: "title", widget: "string"}
+          - label: SEO
+            name: "seo"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - {label: "Page Title", name: "page_title", widget: "string"}
+              - {label: "Page Description", name: "description", widget: "string", required: false}
+              - {label: "No index, no follow", name: "noindex", widget: "boolean", required: false}
+              - {label: "Canonical link", name: "canonical", widget: "string", required: false, hint: "Not required. One will be generated if not filled in."}
+          - {label: "Nav Title", name: "nav_title", widget: "string", hint: "Optional nav item label (will default to page title)", required: false}
+          - {label: "Nav Order", name: "nav_sort", widget: "number", required: false, value_type: "int"}
+          - label: "Show in nav?"
+            name: "show_in_menu"
+            widget: "select"
+            required: false
+            options:
+              - { label: "Yes", value: "true" }
+              - { label: "No", value: "false" }
+          - label: "Hero"
+            name: "jumbotron"
+            widget: "object"
+            required: false
+            collapsed: true
+            fields:
+              - {label: "Headline", name: "headline", widget: "string", required: false}
+              - {label: "Tagline", name: "tagline", widget: "string", required: false}
+              - {label: "CTA Url", name: "ctaUrl", widget: "string", required: false}
+              - {label: "CTA Label", name: "ctaText", widget: "string", required: false}
+              - {label: "Image", name: "img", widget: "image", 'hint':"make it a big one", required: false}
+              - {label: "Image Alt Text", name: "img_alt", widget: "string", 'hint':"Alt text for accessibility and seo.", required: false}
+              - {label: "Video", name: "video", widget: "file", 'hint':"videos will override images", required: false}
+          - {label: "Body", name: "body", widget: "markdown"}
+          - label: Clients
+            name: clients
+            widget: list
+            fields:
+              - {label: "Title", name: "title", widget: "string", tagname: "h3"}
+              - {label: "Text", name: "content", widget: "text"}
+              - {label: "Image", name: "img", widget: "image"}
+              - {label: "URL", name: "url", widget: "text"}
+          - label: Logos
+            name: logos
+            widget: list
+            fields:
+              - {label: "Image", name: "img", widget: "image"}
+      # - label: "Resources Page"
+      #   name: resources
+      #   file: "src/content/resources/index.md"
+      #   fields:
+      #     - {label: "Layout", name: "layout", widget: "hidden", default: "default.njk"}
+      #     - {label: "Title", name: "title", widget: "string"}
+      #     - label: SEO
+      #       name: "seo"
+      #       widget: "object"
+      #       collapsed: true
+      #       required: false
+      #       fields:
+      #         - {label: "Page Title", name: "page_title", widget: "string"}
+      #         - {label: "Page Description", name: "description", widget: "string", required: false}
+      #         - {label: "No index, no follow", name: "noindex", widget: "boolean", required: false}
+      #         - {label: "Canonical link", name: "canonical", widget: "string", required: false, hint: "Not required. One will be generated if not filled in."}
+      #     - {label: "Nav Title", name: "nav_title", widget: "string", hint: "Optional nav item label (will default to page title)", required: false}
+      #     - {label: "Nav Order", name: "nav_sort", widget: "number", required: false, value_type: "int"}
+      #     - label: "Show in nav?"
+      #       name: "show_in_menu"
+      #       widget: "select"
+      #       required: false
+      #       options:
+      #         - { label: "Yes", value: "true" }
+      #         - { label: "No", value: "false" }
+      #     - {label: "Body", name: "body", widget: "markdown"}
+      - label: "Home Page"
+        name: home
+        file: "src/content/index.md"
+        fields:
+          - {label: "Layout", name: "layout", widget: "hidden", default: "default.njk"}
+          - label: "Hero"
+            name: "jumbotron"
+            widget: "object"
+            required: false
+            collapsed: true
+            fields:
+              - {label: "Headline", name: "headline", widget: "string", required: false}
+              - {label: "Tagline", name: "tagline", widget: "string", required: false}
+              - {label: "CTA Url", name: "ctaUrl", widget: "string", required: false}
+              - {label: "CTA Label", name: "ctaText", widget: "string", required: false}
+              - {label: "Image", name: "img", widget: "image", 'hint':"make it a big one", required: false}
+              - {label: "Image Alt Text", name: "img_alt", widget: "string", 'hint':"Alt text for accessibility and seo.", required: false}
+              - {label: "Video", name: "video", widget: "file", 'hint':"videos will override images", required: false}
+          - {label: "Title", name: "title", widget: "string"}
+          - label: SEO
+            name: "seo"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - {label: "Page Title", name: "page_title", widget: "string"}
+              - {label: "Page Description", name: "description", widget: "string", required: false}
+              - {label: "No index, no follow", name: "noindex", widget: "boolean", required: false}
+              - {label: "Canonical link", name: "canonical", widget: "string", required: false, hint: "Not required. One will be generated if not filled in."}
+          - {label: "Nav Title", name: "nav_title", widget: "string", hint: "Optional nav item label (will default to page title)", required: false}
+          - {label: "Nav Order", name: "nav_sort", widget: "number", required: false, value_type: "int"}
+          - label: "Show in nav?"
+            name: "show_in_menu"
+            widget: "select"
+            required: false
+            options:
+              - { label: "Yes", value: "true" }
+              - { label: "No", value: "false" }
+          - label: Clients
+            name: clients
+            widget: list
+            fields:
+              - {label: "Title", name: "title", widget: "string", tagname: "h3"}
+              - {label: "Text", name: "content", widget: "text"}
+              - {label: "Image", name: "img", widget: "image"}
+              - {label: "URL", name: "url", widget: "text"}
+              - {label: "Link Label", name: "label", widget: "text"}
+          - label: Services
+            name: services
+            widget: list
+            fields:
+              - {label: "Title", name: "title", widget: "string", tagname: "h3"}
+              - {label: "Text", name: "content", widget: "text"}
+              - {label: "Icon", name: "icon", widget: "image"}
+          - label: Ways To Engage
+            name: ways_to_engage
+            widget: list
+            fields:
+              - {label: "Title", name: "title", widget: "string", tagname: "h3"}
+              - {label: "Text", name: "content", widget: "text"}
+              - {label: "Image", name: "img", widget: "image"}
+      - label: "Sales Enablement"
+        name: "sales_enablement"
+        file: "src/content/services/sales-enablement.md"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - label: SEO
+            name: "seo"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - {label: "Page Title", name: "page_title", widget: "string"}
+              - {label: "Page Description", name: "description", widget: "string", required: false}
+              - {label: "No index, no follow", name: "noindex", widget: "boolean", required: false}
+              - {label: "Canonical link", name: "canonical", widget: "string", required: false, hint: "Not required. One will be generated if not filled in."}
+          - {label: "Nav Title", name: "nav_title", widget: "string", hint: "Optional nav item label (will default to page title)", required: false}
+          - {label: "Nav Order", name: "nav_sort", widget: "number", required: false, value_type: "int"}
+          - label: "Show in nav?"
+            name: "show_in_menu"
+            widget: "select"
+            required: false
+            options:
+              - { label: "Yes", value: "true" }
+              - { label: "No", value: "false" }
+          - label: "Hero"
+            name: "jumbotron"
+            widget: "object"
+            required: false
+            collapsed: true
+            fields:
+              - {label: "Headline", name: "headline", widget: "string", required: false}
+              - {label: "Tagline", name: "tagline", widget: "string", required: false}
+              - {label: "CTA Url", name: "ctaUrl", widget: "string", required: false}
+              - {label: "CTA Label", name: "ctaText", widget: "string", required: false}
+              - {label: "Image", name: "img", widget: "image", 'hint':"make it a big one", required: false}
+              - {label: "Image Alt Text", name: "img_alt", widget: "string", 'hint':"Alt text for accessibility and seo.", required: false}
+              - {label: "Video", name: "video", widget: "file", 'hint':"videos will override images", required: false}
+          - {label: "Layout", name: "layout", widget: "hidden", default: "pillar-page.njk"}
+          - {label: "Private", name: "private", widget: "boolean", required: false, 'hint':'Set to true to prevent publishing'}
+          - label: "Intro"
+            name: "intro"
+            widget: "object"
+            fields:
+              - {label: "Copy", name: "copy", widget: "markdown"}
+          - label: Stat Blocks
+            name: stat_blocks
+            widget: list
+            summary: '{{fields.stat}}  {{fields.attribution}}'
+            fields:
+              - {label: "Stat", name: "stat", widget: "string"}
+              - {label: "Text", name: "content", widget: "text"}
+              - {label: "Attribution", name: "attribution", widget: "string"}
+          - label: What it is
+            name: what_it_is
+            widget: object
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Copy", name: "copy", widget: "markdown"}
+              - {label: "Image", name: "image", widget: "image", required: false}
+          - label: What it isn't
+            name: what_it_isnt
+            widget: object
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Copy", name: "copy", widget: "markdown"}
+              - {label: "Image", name: "image", widget: "image", required: false}
+          - label: Section 1
+            name: section_1
+            widget: object
+            fields:
+              - {label: "Intro", name: "intro", widget: "markdown"}
+              - {label: "Copy", name: "copy", widget: "markdown"}
+              - {label: "Image", name: "image", widget: "image", required: false}
+              - {label: "CTA Label", name: "cta_label", widget: "string", required: false}
+          - label: Section 2
+            name: section_2
+            widget: object
+            fields:
+              - {label: "Subhead", name: "subhead", widget: "string"}
+              - {label: "Headline", name: "headline", widget: "string"}
+              - label: Blocks
+                name: blocks
+                widget: list
+                summary: '{{fields.title}}'
+                fields:
+                  - {label: "Icon", name: "icon", widget: "image", required: false}
+                  - {label: "Title", name: "title", widget: "string"}
+                  - {label: "Copy", name: "copy", widget: "markdown"}
+          - label: Section 3
+            name: section_3
+            widget: object
+            fields:
+              - {label: "Intro", name: "intro", widget: "markdown"}
+              - {label: "CTA Label", name: "cta_label", widget: "string", required: false}
+              - label: Blocks
+                name: blocks
+                widget: list
+                fields:
+                  - {label: "Image", name: "image", widget: "image", required: false}
+                  - {label: "Copy", name: "copy", widget: "markdown"}
+                  - {label: "Image Layout", name: "image_layout", widget: "select", options: ['left','right'], default: "left"}
+          - label: Section 4
+            name: section_4
+            widget: object
+            fields:
+              - {label: "Intro", name: "intro", widget: "markdown"}
+              - {label: "CTA Label", name: "cta_label", widget: "string", required: false}
+              - label: Blocks
+                name: blocks
+                widget: list
+                fields:
+                  - {label: "Image", name: "image", widget: "image", required: false}
+                  - {label: "Copy", name: "copy", widget: "markdown"}
+                  - {label: "Image Layout", name: "image_layout", widget: "select", options: ['left','right'], default: "left"}
+          - label: Section 5
+            name: section_5
+            widget: object
+            fields:
+              - {label: "Intro", name: "intro", widget: "markdown"}
+              - {label: "CTA Label", name: "cta_label", widget: "string", required: false}
+              - label: Blocks
+                name: blocks
+                widget: list
+                fields:
+                  - {label: "Image", name: "image", widget: "image", required: false}
+                  - {label: "Copy", name: "copy", widget: "markdown"}
+                  - {label: "Image Layout", name: "image_layout", widget: "select", options: ['left','right'], default: "left"}
+          - label: Section 6
+            name: section_6
+            widget: object
+            fields:
+              - {label: "Subhead", name: "subhead", widget: "string"}
+              - {label: "Intro", name: "intro", widget: "markdown"}
+              - {label: "CTA Label", name: "cta_label", widget: "string", required: false}
+              - label: Blocks
+                name: blocks
+                widget: list
+                summary: '{{fields.title}}'
+                fields:
+                  - {label: "Icon", name: "icon", widget: "image", required: false}
+                  - {label: "Title", name: "title", widget: "string"}
+                  - {label: "Copy", name: "copy", widget: "markdown"}
+          - label: Outro
+            name: outro
+            widget: object
+            fields:
+              - {label: "Copy", name: "copy", widget: "markdown"}
+              - {label: "Image", name: "image", widget: "image"}
+          - {label: "service tag", name: "service_tag", widget: "string"}
+          - label: "Slide in banner"
+            name: "slide_in_banner"
+            widget: "image"
+            fields:
+              - {label: "Headline", name: "headline", widget: "string"}
+              - {label: "Sub Headline", name: "subheadline", widget: "string"}
+              - {label: "Button Label", name: "buttonLabel", widget: "string"}
+      - label: "Brand Strategy"
+        name: "brand_strategy"
+        file: "src/content/services/brand-strategy.md"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - label: SEO
+            name: "seo"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - {label: "Page Title", name: "page_title", widget: "string"}
+              - {label: "Page Description", name: "description", widget: "string", required: false}
+              - {label: "No index, no follow", name: "noindex", widget: "boolean", required: false}
+              - {label: "Canonical link", name: "canonical", widget: "string", required: false, hint: "Not required. One will be generated if not filled in."}
+          - {label: "Nav Title", name: "nav_title", widget: "string", hint: "Optional nav item label (will default to page title)", required: false}
+          - {label: "Nav Order", name: "nav_sort", widget: "number", required: false, value_type: "int"}
+          - label: "Show in nav?"
+            name: "show_in_menu"
+            widget: "select"
+            required: false
+            options:
+              - { label: "Yes", value: "true" }
+              - { label: "No", value: "false" }
+          - label: "Hero"
+            name: "jumbotron"
+            widget: "object"
+            required: false
+            collapsed: true
+            fields:
+              - {label: "Headline", name: "headline", widget: "string", required: false}
+              - {label: "Tagline", name: "tagline", widget: "string", required: false}
+              - {label: "CTA Url", name: "ctaUrl", widget: "string", required: false}
+              - {label: "CTA Label", name: "ctaText", widget: "string", required: false}
+              - {label: "Image", name: "img", widget: "image", 'hint':"make it a big one", required: false}
+              - {label: "Image Alt Text", name: "img_alt", widget: "string", 'hint':"Alt text for accessibility and seo.", required: false}
+              - {label: "Video", name: "video", widget: "file", 'hint':"videos will override images", required: false}
+          - {label: "Layout", name: "layout", widget: "hidden", default: "pillar-page.njk"}
+          - {label: "Private", name: "private", widget: "boolean", required: false, 'hint':'Set to true to prevent publishing'}
+          - label: "Intro"
+            name: "intro"
+            widget: "object"
+            fields:
+              - {label: "Copy", name: "copy", widget: "markdown"}
+          - label: Stat Blocks
+            name: stat_blocks
+            widget: list
+            summary: '{{fields.stat}}  {{fields.attribution}}'
+            fields:
+              - {label: "Stat", name: "stat", widget: "string"}
+              - {label: "Text", name: "content", widget: "text"}
+              - {label: "Attribution", name: "attribution", widget: "string"}
+          - label: What it is
+            name: what_it_is
+            widget: object
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Copy", name: "copy", widget: "markdown"}
+              - {label: "Image", name: "image", widget: "image", required: false}
+          - label: What it isn't
+            name: what_it_isnt
+            widget: object
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Copy", name: "copy", widget: "markdown"}
+              - {label: "Image", name: "image", widget: "image", required: false}
+          - label: Section 1
+            name: section_1
+            widget: object
+            fields:
+              - {label: "Intro", name: "intro", widget: "markdown"}
+              - {label: "Copy", name: "copy", widget: "markdown"}
+              - {label: "Image", name: "image", widget: "image", required: false}
+              - {label: "CTA Label", name: "cta_label", widget: "string", required: false}
+          - label: Section 2
+            name: section_2
+            widget: object
+            fields:
+              - {label: "Subhead", name: "subhead", widget: "string"}
+              - {label: "Headline", name: "headline", widget: "string"}
+              - label: Blocks
+                name: blocks
+                widget: list
+                summary: '{{fields.title}}'
+                fields:
+                  - {label: "Icon", name: "icon", widget: "image", required: false}
+                  - {label: "Title", name: "title", widget: "string"}
+                  - {label: "Copy", name: "copy", widget: "markdown"}
+          - label: Section 3
+            name: section_3
+            widget: object
+            fields:
+              - {label: "Intro", name: "intro", widget: "markdown"}
+              - {label: "CTA Label", name: "cta_label", widget: "string", required: false}
+              - label: Blocks
+                name: blocks
+                widget: list
+                fields:
+                  - {label: "Image", name: "image", widget: "image", required: false}
+                  - {label: "Copy", name: "copy", widget: "markdown"}
+                  - {label: "Image Layout", name: "image_layout", widget: "select", options: ['left','right'], default: "left"}
+          - label: Section 4
+            name: section_4
+            widget: object
+            fields:
+              - {label: "Intro", name: "intro", widget: "markdown"}
+              - {label: "CTA Label", name: "cta_label", widget: "string", required: false}
+              - label: Blocks
+                name: blocks
+                widget: list
+                fields:
+                  - {label: "Image", name: "image", widget: "image", required: false}
+                  - {label: "Copy", name: "copy", widget: "markdown"}
+                  - {label: "Image Layout", name: "image_layout", widget: "select", options: ['left','right'], default: "left"}
+          - label: Section 5
+            name: section_5
+            widget: object
+            fields:
+              - {label: "Intro", name: "intro", widget: "markdown"}
+              - {label: "CTA Label", name: "cta_label", widget: "string", required: false}
+              - label: Blocks
+                name: blocks
+                widget: list
+                fields:
+                  - {label: "Image", name: "image", widget: "image", required: false}
+                  - {label: "Copy", name: "copy", widget: "markdown"}
+                  - {label: "Image Layout", name: "image_layout", widget: "select", options: ['left','right'], default: "left"}
+          - label: Section 6
+            name: section_6
+            widget: object
+            fields:
+              - {label: "Subhead", name: "subhead", widget: "string"}
+              - {label: "Intro", name: "intro", widget: "markdown"}
+              - {label: "CTA Label", name: "cta_label", widget: "string", required: false}
+              - label: Blocks
+                name: blocks
+                widget: list
+                summary: '{{fields.title}}'
+                fields:
+                  - {label: "Icon", name: "icon", widget: "image", required: false}
+                  - {label: "Title", name: "title", widget: "string"}
+                  - {label: "Copy", name: "copy", widget: "markdown"}
+          - label: Outro
+            name: outro
+            widget: object
+            fields:
+              - {label: "Copy", name: "copy", widget: "markdown"}
+              - {label: "Image", name: "image", widget: "image"}
+          - {label: "service tag", name: "service_tag", widget: "string"}
+          - label: "Slide in banner"
+            name: "slide_in_banner"
+            widget: "image"
+            fields:
+              - {label: "Headline", name: "headline", widget: "string"}
+              - {label: "Sub Headline", name: "subheadline", widget: "string"}
+              - {label: "Button Label", name: "buttonLabel", widget: "string"}
+      - label: "Integrated Marketing"
+        name: "integrated_marketing"
+        file: "src/content/services/integrated-marketing.md"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - label: SEO
+            name: "seo"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - {label: "Page Title", name: "page_title", widget: "string"}
+              - {label: "Page Description", name: "description", widget: "string", required: false}
+              - {label: "No index, no follow", name: "noindex", widget: "boolean", required: false}
+              - {label: "Canonical link", name: "canonical", widget: "string", required: false, hint: "Not required. One will be generated if not filled in."}
+          - {label: "Nav Title", name: "nav_title", widget: "string", hint: "Optional nav item label (will default to page title)", required: false}
+          - {label: "Nav Order", name: "nav_sort", widget: "number", required: false, value_type: "int"}
+          - label: "Show in nav?"
+            name: "show_in_menu"
+            widget: "select"
+            required: false
+            options:
+              - { label: "Yes", value: "true" }
+              - { label: "No", value: "false" }
+          - label: "Hero"
+            name: "jumbotron"
+            widget: "object"
+            required: false
+            collapsed: true
+            fields:
+              - {label: "Headline", name: "headline", widget: "string", required: false}
+              - {label: "Tagline", name: "tagline", widget: "string", required: false}
+              - {label: "CTA Url", name: "ctaUrl", widget: "string", required: false}
+              - {label: "CTA Label", name: "ctaText", widget: "string", required: false}
+              - {label: "Image", name: "img", widget: "image", 'hint':"make it a big one", required: false}
+              - {label: "Image Alt Text", name: "img_alt", widget: "string", 'hint':"Alt text for accessibility and seo.", required: false}
+              - {label: "Video", name: "video", widget: "file", 'hint':"videos will override images", required: false}
+          - {label: "Layout", name: "layout", widget: "hidden", default: "pillar-page.njk"}
+          - {label: "Private", name: "private", widget: "boolean", required: false, 'hint':'Set to true to prevent publishing'}
+          - label: "Intro"
+            name: "intro"
+            widget: "object"
+            fields:
+              - {label: "Copy", name: "copy", widget: "markdown"}
+          - label: Stat Blocks
+            name: stat_blocks
+            widget: list
+            summary: '{{fields.stat}}  {{fields.attribution}}'
+            fields:
+              - {label: "Stat", name: "stat", widget: "string"}
+              - {label: "Text", name: "content", widget: "text"}
+              - {label: "Attribution", name: "attribution", widget: "string"}
+          - label: What it is
+            name: what_it_is
+            widget: object
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Copy", name: "copy", widget: "markdown"}
+              - {label: "Image", name: "image", widget: "image", required: false}
+          - label: What it isn't
+            name: what_it_isnt
+            widget: object
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Copy", name: "copy", widget: "markdown"}
+              - {label: "Image", name: "image", widget: "image", required: false}
+          - label: Section 1
+            name: section_1
+            widget: object
+            fields:
+              - {label: "Intro", name: "intro", widget: "markdown"}
+              - {label: "Copy", name: "copy", widget: "markdown"}
+              - {label: "Image", name: "image", widget: "image", required: false}
+              - {label: "CTA Label", name: "cta_label", widget: "string", required: false}
+          - label: Section 2
+            name: section_2
+            widget: object
+            fields:
+              - {label: "Subhead", name: "subhead", widget: "string"}
+              - {label: "Headline", name: "headline", widget: "string"}
+              - label: Blocks
+                name: blocks
+                widget: list
+                summary: '{{fields.title}}'
+                fields:
+                  - {label: "Icon", name: "icon", widget: "image", required: false}
+                  - {label: "Title", name: "title", widget: "string"}
+                  - {label: "Copy", name: "copy", widget: "markdown"}
+          - label: Section 3
+            name: section_3
+            widget: object
+            fields:
+              - {label: "Intro", name: "intro", widget: "markdown"}
+              - {label: "CTA Label", name: "cta_label", widget: "string", required: false}
+              - label: Blocks
+                name: blocks
+                widget: list
+                fields:
+                  - {label: "Image", name: "image", widget: "image", required: false}
+                  - {label: "Copy", name: "copy", widget: "markdown"}
+                  - {label: "Image Layout", name: "image_layout", widget: "select", options: ['left','right'], default: "left"}
+          - label: Section 4
+            name: section_4
+            widget: object
+            fields:
+              - {label: "Intro", name: "intro", widget: "markdown"}
+              - {label: "CTA Label", name: "cta_label", widget: "string", required: false}
+              - label: Blocks
+                name: blocks
+                widget: list
+                fields:
+                  - {label: "Image", name: "image", widget: "image", required: false}
+                  - {label: "Copy", name: "copy", widget: "markdown"}
+                  - {label: "Image Layout", name: "image_layout", widget: "select", options: ['left','right'], default: "left"}
+          - label: Section 5
+            name: section_5
+            widget: object
+            fields:
+              - {label: "Intro", name: "intro", widget: "markdown"}
+              - {label: "CTA Label", name: "cta_label", widget: "string", required: false}
+              - label: Blocks
+                name: blocks
+                widget: list
+                fields:
+                  - {label: "Image", name: "image", widget: "image", required: false}
+                  - {label: "Copy", name: "copy", widget: "markdown"}
+                  - {label: "Image Layout", name: "image_layout", widget: "select", options: ['left','right'], default: "left"}
+          - label: Section 6
+            name: section_6
+            widget: object
+            fields:
+              - {label: "Subhead", name: "subhead", widget: "string"}
+              - {label: "Intro", name: "intro", widget: "markdown"}
+              - {label: "CTA Label", name: "cta_label", widget: "string", required: false}
+              - label: Blocks
+                name: blocks
+                widget: list
+                summary: '{{fields.title}}'
+                fields:
+                  - {label: "Icon", name: "icon", widget: "image", required: false}
+                  - {label: "Title", name: "title", widget: "string"}
+                  - {label: "Copy", name: "copy", widget: "markdown"}
+          - label: Outro
+            name: outro
+            widget: object
+            fields:
+              - {label: "Copy", name: "copy", widget: "markdown"}
+              - {label: "Image", name: "image", widget: "image"}
+          - {label: "service tag", name: "service_tag", widget: "string"}
+          - label: "Slide in banner"
+            name: "slide_in_banner"
+            widget: "image"
+            fields:
+              - {label: "Headline", name: "headline", widget: "string"}
+              - {label: "Sub Headline", name: "subheadline", widget: "string"}
+              - {label: "Button Label", name: "buttonLabel", widget: "string"}
+      - label: "Analytics & Insights"
+        name: "analytics"
+        file: "src/content/services/analytics-and-insights.md"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - label: SEO
+            name: "seo"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - {label: "Page Title", name: "page_title", widget: "string"}
+              - {label: "Page Description", name: "description", widget: "string", required: false}
+              - {label: "No index, no follow", name: "noindex", widget: "boolean", required: false}
+              - {label: "Canonical link", name: "canonical", widget: "string", required: false, hint: "Not required. One will be generated if not filled in."}
+          - {label: "Nav Title", name: "nav_title", widget: "string", hint: "Optional nav item label (will default to page title)", required: false}
+          - {label: "Nav Order", name: "nav_sort", widget: "number", required: false, value_type: "int"}
+          - label: "Show in nav?"
+            name: "show_in_menu"
+            widget: "select"
+            required: false
+            options:
+              - { label: "Yes", value: "true" }
+              - { label: "No", value: "false" }
+          - label: "Hero"
+            name: "jumbotron"
+            widget: "object"
+            required: false
+            collapsed: true
+            fields:
+              - {label: "Headline", name: "headline", widget: "string", required: false}
+              - {label: "Tagline", name: "tagline", widget: "string", required: false}
+              - {label: "CTA Url", name: "ctaUrl", widget: "string", required: false}
+              - {label: "CTA Label", name: "ctaText", widget: "string", required: false}
+              - {label: "Image", name: "img", widget: "image", 'hint':"make it a big one", required: false}
+              - {label: "Image Alt Text", name: "img_alt", widget: "string", 'hint':"Alt text for accessibility and seo.", required: false}
+              - {label: "Video", name: "video", widget: "file", 'hint':"videos will override images", required: false}
+          - {label: "Layout", name: "layout", widget: "hidden", default: "pillar-page.njk"}
+          - {label: "Private", name: "private", widget: "boolean", required: false, 'hint':'Set to true to prevent publishing'}
+          - label: "Intro"
+            name: "intro"
+            widget: "object"
+            fields:
+              - {label: "Copy", name: "copy", widget: "markdown"}
+          - label: Stat Blocks
+            name: stat_blocks
+            widget: list
+            summary: '{{fields.stat}}  {{fields.attribution}}'
+            fields:
+              - {label: "Stat", name: "stat", widget: "string"}
+              - {label: "Text", name: "content", widget: "text"}
+              - {label: "Attribution", name: "attribution", widget: "string"}
+          - label: What it is
+            name: what_it_is
+            widget: object
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Copy", name: "copy", widget: "markdown"}
+              - {label: "Image", name: "image", widget: "image", required: false}
+          - label: What it isn't
+            name: what_it_isnt
+            widget: object
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Copy", name: "copy", widget: "markdown"}
+              - {label: "Image", name: "image", widget: "image", required: false}
+          - label: Section 1
+            name: section_1
+            widget: object
+            fields:
+              - {label: "Intro", name: "intro", widget: "markdown"}
+              - {label: "Copy", name: "copy", widget: "markdown"}
+              - {label: "Image", name: "image", widget: "image", required: false}
+              - {label: "CTA Label", name: "cta_label", widget: "string", required: false}
+          - label: Section 2
+            name: section_2
+            widget: object
+            fields:
+              - {label: "Subhead", name: "subhead", widget: "string"}
+              - {label: "Headline", name: "headline", widget: "string"}
+              - label: Blocks
+                name: blocks
+                widget: list
+                summary: '{{fields.title}}'
+                fields:
+                  - {label: "Icon", name: "icon", widget: "image", required: false}
+                  - {label: "Title", name: "title", widget: "string"}
+                  - {label: "Copy", name: "copy", widget: "markdown"}
+          - label: Section 3
+            name: section_3
+            widget: object
+            fields:
+              - {label: "Intro", name: "intro", widget: "markdown"}
+              - {label: "CTA Label", name: "cta_label", widget: "string", required: false}
+              - label: Blocks
+                name: blocks
+                widget: list
+                fields:
+                  - {label: "Image", name: "image", widget: "image", required: false}
+                  - {label: "Copy", name: "copy", widget: "markdown"}
+                  - {label: "Image Layout", name: "image_layout", widget: "select", options: ['left','right'], default: "left"}
+          - label: Section 4
+            name: section_4
+            widget: object
+            fields:
+              - {label: "Intro", name: "intro", widget: "markdown"}
+              - {label: "CTA Label", name: "cta_label", widget: "string", required: false}
+              - label: Blocks
+                name: blocks
+                widget: list
+                fields:
+                  - {label: "Image", name: "image", widget: "image", required: false}
+                  - {label: "Copy", name: "copy", widget: "markdown"}
+                  - {label: "Image Layout", name: "image_layout", widget: "select", options: ['left','right'], default: "left"}
+          - label: Section 5
+            name: section_5
+            widget: object
+            fields:
+              - {label: "Intro", name: "intro", widget: "markdown"}
+              - {label: "CTA Label", name: "cta_label", widget: "string", required: false}
+              - label: Blocks
+                name: blocks
+                widget: list
+                fields:
+                  - {label: "Image", name: "image", widget: "image", required: false}
+                  - {label: "Copy", name: "copy", widget: "markdown"}
+                  - {label: "Image Layout", name: "image_layout", widget: "select", options: ['left','right'], default: "left"}
+          - label: Section 6
+            name: section_6
+            widget: object
+            fields:
+              - {label: "Subhead", name: "subhead", widget: "string"}
+              - {label: "Intro", name: "intro", widget: "markdown"}
+              - {label: "CTA Label", name: "cta_label", widget: "string", required: false}
+              - label: Blocks
+                name: blocks
+                widget: list
+                summary: '{{fields.title}}'
+                fields:
+                  - {label: "Icon", name: "icon", widget: "image", required: false}
+                  - {label: "Title", name: "title", widget: "string"}
+                  - {label: "Copy", name: "copy", widget: "markdown"}
+          - label: Outro
+            name: outro
+            widget: object
+            fields:
+              - {label: "Copy", name: "copy", widget: "markdown"}
+              - {label: "Image", name: "image", widget: "image"}
+          - {label: "service tag", name: "service_tag", widget: "string"}
+          - label: "Slide in banner"
+            name: "slide_in_banner"
+            widget: "image"
+            fields:
+              - {label: "Headline", name: "headline", widget: "string"}
+              - {label: "Sub Headline", name: "subheadline", widget: "string"}
+              - {label: "Button Label", name: "buttonLabel", widget: "string"}
+
+        
+  - name: "case-study"
+    label_singular: "Case Study"
+    label: "Case Studies"
+    folder: "src/content/work"
+    create: true
+    editor: 
+      preview: false
+    fields:
+      - {label: "Layout", name: "layout", widget: "hidden", default: "case-study.njk"}
+      - {label: "Jumbotron Subhead", name: "jumbotron_subhead", widget: "hidden", default: "Case Study"}
+      - {label: "Private", name: "private", widget: "boolean", default: true, hint: "Set to private to prevent display on the website (like a 'draft')"}
+      - label: "Featured" 
+        name: "collection" 
+        widget: "select"
+        required: false
+        options:
+          - { label: "No", value: "" }
+          - { label: "Yes", value: "featured_case_study" }
+      - {label: "Title", name: "title", widget: "string"}
+      - label: SEO
+        name: "seo"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - {label: "Page Title", name: "page_title", widget: "string"}
+          - {label: "Page Description", name: "description", widget: "string", required: false}
+          - {label: "No index, no follow", name: "noindex", widget: "boolean", required: false}
+          - {label: "Canonical link", name: "canonical", widget: "string", required: false, hint: "Not required. One will be generated if not filled in."}
+      - {label: "Nav Title", name: "nav_title", widget: "string", hint: "Optional nav item label (will default to page title)", required: false}
+      - {label: "Nav Order", name: "nav_sort", widget: "number", required: false, value_type: "int"}
+      - label: "Show in nav?"
+        name: "show_in_menu"
+        widget: "select"
+        required: false
+        options:
+          - { label: "Yes", value: "true" }
+          - { label: "No", value: "false" }
+      - label: "Hero"
+        name: "jumbotron"
+        widget: "object"
+        required: false
+        collapsed: true
+        fields:
+          - {label: "Headline", name: "headline", widget: "string", required: false}
+          - {label: "Tagline", name: "tagline", widget: "string", required: false}
+          - {label: "CTA Url", name: "ctaUrl", widget: "string", required: false}
+          - {label: "CTA Label", name: "ctaText", widget: "string", required: false}
+          - {label: "Image", name: "img", widget: "image", 'hint':"make it a big one", required: false}
+          - {label: "Image Alt Text", name: "img_alt", widget: "string", 'hint':"Alt text for accessibility and seo.", required: false}
+          - {label: "Video", name: "video", widget: "file", 'hint':"videos will override images", required: false}
+      - {label: "Summary", name: "summary", widget: "markdown", required: true, hint: "Shows on work overview page"}
+      - {label: "Order", name: "order", widget: "number", required: false, value_type: "int"}
+      - {label: "Overview Image", name: "overviewimg", widget: "image", required: false}
+      - {label: "Overview Image Alt Text", name: "overviewimg_alt", widget: "string", required: false, hint: "used for accessibility and SEO. Describe the image."}
+      - {label: "Video Embed", name: "videoEmbed", widget: "string", required: false}
+      - name: challenge
+        label: "Challenge"
+        widget: "object"
+        required: false
+        fields:
+          - {label: "Copy", name: "copy", widget: "markdown", required: false}
+          - {label: "Image", name: "img", widget: "image", required: false}
+          - {label: "Image Alt Text", name: "img_alt", widget: "string", required: false, hint:"used for accessibility and SEO. Describe the image."}
+          - {label: "Image Caption", name: "caption", widget: "string", required: false}
+      - name: solution
+        label: "Solution"
+        widget: "object"
+        required: false
+        fields:
+          - {label: "Copy", name: "copy", widget: "markdown", required: false}
+          - {label: "Image", name: "img", widget: "image", required: false}
+          - {label: "Image Alt Text", name: "img_alt", widget: "string", required: false, hint:"used for accessibility and SEO. Describe the image."}
+          - {label: "Image Caption", name: "caption", widget: "string", required: false}
+      - name: results
+        label: "Results"
+        widget: "object"
+        required: false
+        fields:
+          - {label: "Copy", name: "copy", widget: "markdown", required: false}
+          - {label: "Image", name: "img", widget: "image", required: false}
+          - {label: "Image Caption", name: "caption", widget: "string", required: false}
+          - {label: "Image Alt Text", name: "img_alt", widget: "string", required: false, hint:"used for accessibility and SEO. Describe the image."}
+          - {label: "Results Stat", name: "stat", widget: "string", required: false, hint: 'Wrap in <span></span> tags for black color'}
+      - name: testimonial
+        label: "Testimonial"
+        widget: "object"
+        required: false
+        fields:
+          - {label: "Copy", name: "copy", widget: "markdown", required: false}
+          - {label: "Attestant", name: "attestant", widget: "string", required: false, hint: '"attestant": one who attests'}
+  - name: "team"
+    label: "Team"
+    folder: "src/content/team"
+    create: true
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Job Title", name: "job_title", widget: "string"}
+      - {label: "Image", name: "img", widget: "image"}
+      - {label: "Linkedin", name: "linkedin", widget: "string", required: false}
+      - {label: "Twitter", name: "twitter", widget: "string",  required: false}
+      - {label: "Facebook", name: "facebook", widget: "string", required: false}
+      - {label: "Order", name: "order", widget: "number", required: true, value_type: "int"}
+  - name: "clients" 
+    label: "Client" 
+    folder: "src/content/clients" 
+    create: true
+    fields: 
+      - {label: "Layout", name: "layout", widget: "hidden", default: "client.njk"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Title", name: "title", widget: "string"}
+      - label: SEO
+        name: "seo"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - {label: "Page Title", name: "page_title", widget: "string"}
+          - {label: "Page Description", name: "description", widget: "string", required: false}
+          - {label: "No index, no follow", name: "noindex", widget: "boolean", required: false}
+          - {label: "Canonical link", name: "canonical", widget: "string", required: false, hint: "Not required. One will be generated if not filled in."}
+      - {label: "Nav Title", name: "nav_title", widget: "string", hint: "Optional nav item label (will default to page title)", required: false}
+      - {label: "Nav Order", name: "nav_sort", widget: "number", required: false, value_type: "int"}
+      - label: "Show in nav?"
+        name: "show_in_menu"
+        widget: "select"
+        required: false
+        options:
+          - { label: "Yes", value: "true" }
+          - { label: "No", value: "false" }
+      - label: "Hero"
+        name: "jumbotron"
+        widget: "object"
+        required: false
+        collapsed: true
+        fields:
+          - {label: "Headline", name: "headline", widget: "string", required: false}
+          - {label: "Tagline", name: "tagline", widget: "string", required: false}
+          - {label: "CTA Url", name: "ctaUrl", widget: "string", required: false}
+          - {label: "CTA Label", name: "ctaText", widget: "string", required: false}
+          - {label: "Image", name: "img", widget: "image", 'hint':"make it a big one", required: false}
+          - {label: "Image Alt Text", name: "img_alt", widget: "string", 'hint':"Alt text for accessibility and seo.", required: false}
+          - {label: "Video", name: "video", widget: "file", 'hint':"videos will override images", required: false}
+      - label: "Related Case Study"
+        name: "relatedCaseStudy"
+        widget: "relation"
+        collection: "case-study"
+        search_fields: ["title"]
+        value_field: "title"
+        display_fields: ["title"]
+        required: false
+      - label: Sections
+        name: sections
+        widget: list
+        fields:
+          - {label: "Title", name: "title", widget: "string", tagname: "h3"}
+          - {label: "Text", name: "content", widget: "text"}
+          - {label: "Icon", name: "img", widget: "image", hint: "max size"}
+  - name: "service" 
+    label: "Services Pages" 
+    folder: "src/content/services" 
+    create: true
+    editor: 
+      preview: false
+    fields: 
+      - {label: "Layout", name: "layout", widget: "hidden", default: "service.njk"}
+      - {label: "Title", name: "title", widget: "string"}
+      - label: SEO
+        name: "seo"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - {label: "Page Title", name: "page_title", widget: "string"}
+          - {label: "Page Description", name: "description", widget: "string", required: false}
+          - {label: "No index, no follow", name: "noindex", widget: "boolean", required: false}
+          - {label: "Canonical link", name: "canonical", widget: "string", required: false, hint: "Not required. One will be generated if not filled in."}
+      - {label: "Nav Title", name: "nav_title", widget: "string", hint: "Optional nav item label (will default to page title)", required: false}
+      - {label: "Nav Order", name: "nav_sort", widget: "number", required: false, value_type: "int"}
+      - label: "Show in nav?"
+        name: "show_in_menu"
+        widget: "select"
+        required: false
+        options:
+          - { label: "Yes", value: "true" }
+          - { label: "No", value: "false" }
+      - label: "Hero"
+        name: "jumbotron"
+        widget: "object"
+        required: false
+        collapsed: true
+        fields:
+          - {label: "Headline", name: "headline", widget: "string", required: false}
+          - {label: "Tagline", name: "tagline", widget: "string", required: false}
+          - {label: "CTA Url", name: "ctaUrl", widget: "string", required: false}
+          - {label: "CTA Label", name: "ctaText", widget: "string", required: false}
+          - {label: "Image", name: "img", widget: "image", 'hint':"make it a big one", required: false}
+          - {label: "Image Alt Text", name: "img_alt", widget: "string", 'hint':"Alt text for accessibility and seo.", required: false}
+          - {label: "Video", name: "video", widget: "file", 'hint':"videos will override images", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
+  - name: "portfolio" 
+    label: "Potfolio Pages" 
+    description: "Internal pages for housing portfolio assets."
+    folder: "src/content/portfolio" 
+    create: true
+    fields: 
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Private", name: "Private", widget: "hidden", default: true}
+      - {label: "Layout", name: "layout", widget: "hidden", default: "portfolio.njk"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - name: media
+        label: Media
+        widget: list
+        fields:
+          - {label: "Title", name: "title", widget: "string", tagname: "h3"}
+          - {label: "Image", name: "img", widget: "image"}
+      - name: email
+        label: Emails
+        widget: list
+        fields:
+          - {label: "Title", name: "title", widget: "string", tagname: "h3"}
+          - {label: "Image", name: "img", widget: "image"}
+      - name: lps
+        label: Pages
+        widget: list
+        fields:
+          - {label: "Title", name: "title", widget: "string", tagname: "h3"}
+          - {label: "Image", name: "img", widget: "image"}
+          - {label: "URL", name: "url", widget: "string"}
+  - name: "blog"
+    label: "Blog"
+    label_singular: "Blog Post"
+    folder: "src/content/insights/articles/"
+    filter: {field: "layout", value: "blog-post.njk"}
+    create: true
+    fields:
+      
+      - {label: "Title", name: "title", widget: "string"}
+      - label: SEO
+        name: "seo"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - {label: "Page Title", name: "page_title", widget: "string"}
+          - {label: "Page Description", name: "description", widget: "string", required: false}
+          - {label: "No index, no follow", name: "noindex", widget: "boolean", required: false}
+          - {label: "Canonical link", name: "canonical", widget: "string", required: false, hint: "Not required. One will be generated if not filled in."}
+      - {label: "Nav Title", name: "nav_title", widget: "string", hint: "Optional nav item label (will default to page title)", required: false}
+      - {label: "Nav Order", name: "nav_sort", widget: "number", required: false, value_type: "int"}
+      - label: "Show in nav?"
+        name: "show_in_menu"
+        widget: "select"
+        required: false
+        options:
+          - { label: "Yes", value: "true" }
+          - { label: "No", value: "false" }
+      - label: "Hero"
+        name: "jumbotron"
+        widget: "object"
+        required: false
+        collapsed: true
+        fields:
+          - {label: "Headline", name: "headline", widget: "string", required: false}
+          - {label: "Tagline", name: "tagline", widget: "string", required: false}
+          - {label: "CTA Url", name: "ctaUrl", widget: "string", required: false}
+          - {label: "CTA Label", name: "ctaText", widget: "string", required: false}
+          - {label: "Image", name: "img", widget: "image", 'hint':"make it a big one", required: false}
+          - {label: "Image Alt Text", name: "img_alt", widget: "string", 'hint':"Alt text for accessibility and seo.", required: false}
+          - {label: "Video", name: "video", widget: "file", 'hint':"videos will override images", required: false}
+      - {label: "Layout", name: "layout", widget: "hidden", default: "blog-post.njk"}
+      - {label: "Private", name: "private", widget: "boolean", required: false, 'hint':'Set to true to prevent publishing'}
+      - {label: "Short Description", name: "short_description", widget: "string", 'hint':"shows on blog overview/listing page"}
+      - {label: "Post Date", name: "date", widget: "datetime", time_format: false, required: true, format: 'YYYY-MM-DD'}
+      - {label: "Intro", name: "intro", widget: "markdown", required: false}
+      - {label: "Thumbnail Image", name: "thumbnail", widget: "image", required: false, hint: "Shows on listings"}
+      - {label: "Thumbnail Image Alt", name: "thumbnail_alt", widget: "string", required: false, hint: "Alt text for seo."}
+      - {label: "Footer Image", name: "footer_image", widget: "image", required: false, hint: "Shows on site footer (625x434)"}
+      - {label: "Footer Image Alt", name: "footer_image_alt", widget: "string", required: false, hint: "Alt text for accessibility and seo."}
+      - {label: "Section Image", name: "section_image", widget: "image", required: false, hint: "Shows after the Intro"}
+      - {label: "Section Image Alt", name: "section_image_alt", widget: "string", required: false, hint: "Alt text for accessibility and seo."}
+      - {label: "Permalink (slug)", name: "permalink", widget: "string", required: false, hint: "A permalink will be inferred from the title if not provided. If you do enter a custom permalink, be sure to include the full path (eg. insights/articles/my-cool-link/). Do not inlude a leading slash for custom permalinks. Do not include 'https://', this is not a url field"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - label: "Post Type"
+        name: "post_type"
+        widget: "select"
+        options:
+          - { label: "Article", value: "article"}
+          - { label: "Fun Fact", value: "fun-fact"}
+          - { label: "Video", value: "video"}
+          - { label: "Podcast", value: "podcast"}
+        hint: 'This controls graphical differences for posts. Currently only "fun fact" is used and should be set for all articles that are fun facts.'
+      - label: "Campaign ID"
+        name: "campaign_id"
+        widget: "select"
+        hint: "Set if related to a specific campaign"
+        required: false
+        options:
+          - { label: "Q3 2019", value: "20193"}
+          - { label: "Q4 2019", value: "20194"}
+          - { label: "Q1 2020", value: "20201"}
+          - { label: "Q2 2020", value: "20202"}
+          - { label: "Q3 2020", value: "20203"}
+          - { label: "Q4 2020", value: "20204"}
+      - label: "CTA"
+        name: "cta"
+        widget: "object"
+        fields:
+          - { label: "CTA Headline", name: "headline", widget: "string" , required: false}
+          - { label: "CTA Copy", name: "copy", widget: "string" , required: false}
+          - { label: "CTA URL", name: "url", widget: "string" , required: false}
+          - { label: "CTA Button Label", name: "label", widget: "" , required: false}
+          - { label: "CTA Image", name: "image", widget: "image" , required: false}
+  - name: "videos"
+    label: "Videos"
+    label_singular: "Video"
+    folder: "src/content/insights/videos/"
+    filter: {field: "layout", value: "blog-post.njk"}
+    create: true
+    fields:
+      
+      - {label: "Title", name: "title", widget: "string"}
+      - label: SEO
+        name: "seo"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - {label: "Page Title", name: "page_title", widget: "string"}
+          - {label: "Page Description", name: "description", widget: "string", required: false}
+          - {label: "No index, no follow", name: "noindex", widget: "boolean", required: false}
+          - {label: "Canonical link", name: "canonical", widget: "string", required: false, hint: "Not required. One will be generated if not filled in."}
+      - {label: "Nav Title", name: "nav_title", widget: "string", hint: "Optional nav item label (will default to page title)", required: false}
+      - {label: "Nav Order", name: "nav_sort", widget: "number", required: false, value_type: "int"}
+      - label: "Show in nav?"
+        name: "show_in_menu"
+        widget: "select"
+        required: false
+        options:
+          - { label: "Yes", value: "true" }
+          - { label: "No", value: "false" }
+      - label: "Hero"
+        name: "jumbotron"
+        widget: "object"
+        required: false
+        collapsed: true
+        fields:
+          - {label: "Headline", name: "headline", widget: "string", required: false}
+          - {label: "Tagline", name: "tagline", widget: "string", required: false}
+          - {label: "CTA Url", name: "ctaUrl", widget: "string", required: false}
+          - {label: "CTA Label", name: "ctaText", widget: "string", required: false}
+          - {label: "Image", name: "img", widget: "image", 'hint':"make it a big one", required: false}
+          - {label: "Image Alt Text", name: "img_alt", widget: "string", 'hint':"Alt text for accessibility and seo.", required: false}
+          - {label: "Video", name: "video", widget: "file", 'hint':"videos will override images", required: false}
+      - {label: "Layout", name: "layout", widget: "hidden", default: "blog-post.njk"}
+      - {label: "Private", name: "private", widget: "boolean", required: false, 'hint':'Set to true to prevent publishing'}
+      - {label: "Short Description", name: "short_description", widget: "string", 'hint':"shows on blog overview/listing page"}
+      - {label: "Post Date", name: "date", widget: "datetime", time_format: false, required: true, format: 'YYYY-MM-DD'}
+      - {label: "Intro", name: "intro", widget: "markdown", required: false}
+      - {label: "Thumbnail Image", name: "thumbnail", widget: "image", required: false, hint: "Shows on listings"}
+      - {label: "Thumbnail Image Alt", name: "thumbnail_alt", widget: "string", required: false, hint: "Alt text for seo."}
+      - {label: "Footer Image", name: "footer_image", widget: "image", required: false, hint: "Shows on site footer (625x434)"}
+      - {label: "Footer Image Alt", name: "footer_image_alt", widget: "string", required: false, hint: "Alt text for accessibility and seo."}
+      - {label: "Section Image", name: "section_image", widget: "image", required: false, hint: "Shows after the Intro"}
+      - {label: "Section Image Alt", name: "section_image_alt", widget: "string", required: false, hint: "Alt text for accessibility and seo."}
+      - {label: "Permalink (slug)", name: "permalink", widget: "string", required: false, hint: "A permalink will be inferred from the title if not provided. If you do enter a custom permalink, be sure to include the full path (eg. insights/articles/my-cool-link/). Do not inlude a leading slash for custom permalinks. Do not include 'https://', this is not a url field"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - label: "Post Type"
+        name: "post_type"
+        widget: "select"
+        options:
+          - { label: "Article", value: "article"}
+          - { label: "Fun Fact", value: "fun-fact"}
+          - { label: "Video", value: "video"}
+          - { label: "Podcast", value: "podcast"}
+        hint: 'This controls graphical differences for posts. Currently only "fun fact" is used and should be set for all articles that are fun facts.'
+      - label: "Campaign ID"
+        name: "campaign_id"
+        widget: "select"
+        hint: "Set if related to a specific campaign"
+        required: false
+        options:
+          - { label: "Q3 2019", value: "20193"}
+          - { label: "Q4 2019", value: "20194"}
+          - { label: "Q1 2020", value: "20201"}
+          - { label: "Q2 2020", value: "20202"}
+          - { label: "Q3 2020", value: "20203"}
+          - { label: "Q4 2020", value: "20204"}
+      - label: "CTA"
+        name: "cta"
+        widget: "object"
+        fields:
+          - { label: "CTA Headline", name: "headline", widget: "string" , required: false}
+          - { label: "CTA Copy", name: "copy", widget: "string" , required: false}
+          - { label: "CTA URL", name: "url", widget: "string" , required: false}
+          - { label: "CTA Button Label", name: "label", widget: "" , required: false}
+          - { label: "CTA Image", name: "image", widget: "image" , required: false}
+      - {label: "Youtube URL", name: "youtube_url", widget: "string", required: false, 'hint':'For videos only - enter a full url like "https://www.youtube.com/watch?v=8PVal8Fy7CM"'}
+      - {label: "Youtube ID", name: "youtube_id", widget: "string", required: false, 'hint':'For videos only - enter an id like "8PVal8Fy7CM"'}
+      - {label: "Thumbnail Image Alt Text", name: "youtube_thumbnail_alt", widget: "string", required: true, hint: "Use for accessibility and seo. Describe the image."}
+  - name: "podcasts"
+    label: "Podcasts"
+    label_singular: "Podcast"
+    folder: "src/content/insights/podcast/"
+    filter: {field: "layout", value: "blog-post.njk"}
+    create: true
+    fields:
+      - label: "Post Type"
+        name: "post_type"
+        widget: "select"
+        options:
+          - { label: "Article", value: "article"}
+          - { label: "Fun Fact", value: "fun-fact"}
+          - { label: "Video", value: "video"}
+          - { label: "Podcast", value: "podcast"}
+        hint: 'This controls graphical differences for posts. Currently only "fun fact" is used and should be set for all articles that are fun facts.'
+      - {label: "Title", name: "title", widget: "string"}
+      - label: SEO
+        name: "seo"
+        widget: "object"
+        required: false
+        fields:
+          - {label: "Page Title", name: "page_title", widget: "string"}
+          - {label: "Page Description", name: "description", widget: "string", required: false}
+          - {label: "No index, no follow", name: "noindex", widget: "boolean", required: false}
+      - {label: "Layout", name: "layout", widget: "hidden", default: "blog-post.njk"}
+      - {label: "Private", name: "private", widget: "boolean", required: false, 'hint':'Set to true to prevent publishing'}
+      - {label: "Short Description", name: "short_description", widget: "string", 'hint':"Shows on Podcast overview page"}
+      - {label: "Post Date", name: "date", widget: "datetime", time_format: false, required: true, format: 'YYYY-MM-DD'}
+      - {label: "Episode", name: "episode", widget: "string", required: false}
+      - {label: "Podcast Embed", name: "podcast_embed", widget: "string", required: false, hint: 'Copy/Paste the entire Buzzsprout embed.'}
+      
+      - {label: "Open Graph Image", name: "open_graph_img", widget: "image", required: true, hint: "Needed for social platforms"}
+      - {label: "Episode URL Permalink", name: "permalink", widget: "string", required: true, default: "insights/podcast/"}
+      - {label: "Thumbnail Image", name: "thumbnail", widget: "image", required: true, hint: "Shows on listings"}
+      - {label: "Thumbnail Image Alt Text", name: "thumbnail_alt", widget: "string", required: true, hint: "Use for accessibility and seo. Describe the image."}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - label: jumbotron
+        name: "jumbotron"
+        widget: "object"
+        required: false
+        fields:
+          - {label: "img", name: "img", widget: "hidden", default: "/img/podcasts-jumbotron.jpg"}
